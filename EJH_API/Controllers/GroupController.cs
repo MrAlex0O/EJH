@@ -68,14 +68,34 @@ namespace API.Controllers
 
         // PUT api/<GroupController>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(Guid id, [FromBody] UpdateGroupRequest updateGroupRequest)
         {
+            try
+            {
+                _groupWriteService.Update(id, updateGroupRequest);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         // DELETE api/<GroupController>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
+            try
+            {
+                _groupWriteService.Delete(id);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
     }
 }

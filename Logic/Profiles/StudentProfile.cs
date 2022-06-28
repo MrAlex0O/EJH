@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
 using DataBase.Models;
+using Logic.DTOs.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Logic.DTOs.Group;
+
 namespace Logic.Profiles
 {
-    public class GroupProfile : Profile
+    public class StudentProfile : Profile
     {
-        public GroupProfile()
+        public StudentProfile()
         {
-            CreateMap<CreateGroupRequest, Group>();
-            CreateMap<UpdateGroupRequest, Group>();
+            CreateMap<CreateStudentRequest, Person>();
+            CreateMap<UpdateStudentRequest, Person>();
         }
     }
 }

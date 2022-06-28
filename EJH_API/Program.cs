@@ -8,6 +8,7 @@ using Logic.Queries.Interfaces;
 using Logic.ReadServices;
 using Logic.ReadServices.Interfaces;
 using Logic.WriteServices;
+using Logic.WriteServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,29 @@ builder.Services.AddScoped<IGroupWriteService, GroupWriteService>();
 builder.Services.AddScoped<IGroupReadService, GroupReadService>();
 builder.Services.AddScoped<IGroupQuery, GroupQuery>();
 
+builder.Services.AddScoped<IPersonWriteService, PersonWriteService>();
+
+builder.Services.AddScoped<IStudentWriteService, StudentWriteService>();
+builder.Services.AddScoped<IStudentReadService, StudentReadService>();
+builder.Services.AddScoped<IStudentQuery, StudentQuery>();
+
+builder.Services.AddScoped<ITeacherWriteService, TeacherWriteService>();
+builder.Services.AddScoped<ITeacherReadService, TeacherReadService>();
+builder.Services.AddScoped<ITeacherQuery, TeacherQuery>();
+
+builder.Services.AddScoped<IDisciplineWriteService, DisciplineWriteService>();
+builder.Services.AddScoped<IDisciplineReadService, DisciplineReadService>();
+builder.Services.AddScoped<IDisciplineQuery, DisciplineQuery>();
+
+builder.Services.AddScoped<IAssistantWriteService, AssistantWriteService>();
+
+builder.Services.AddScoped<ILessonTypeReadService, LessonTypeReadService>();
+builder.Services.AddScoped<ILessonTypeQuery, LessonTypeQuery>();
+
+builder.Services.AddScoped<ILessonWriteService, LessonWriteService>();
+builder.Services.AddScoped<ILessonReadService, LessonReadService>();
+builder.Services.AddScoped<ILessonQuery, LessonQuery>();
+
 
 builder.Services.AddDbContext<IWebContext, Context>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -37,8 +61,10 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile<GroupProfile>();
+    cfg.AddProfile<StudentProfile>();
+    cfg.AddProfile<DisciplineProfile>();
+    cfg.AddProfile<LessonProfile>();
 });
-
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

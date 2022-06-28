@@ -2,11 +2,6 @@
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataBase.Repositories
 {
@@ -39,10 +34,10 @@ namespace DataBase.Repositories
         {
             return _dbSet.Where(i => i.Id == id).FirstOrDefault();
         }
-        public bool Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             entity.DateUpdate = DateTime.Now;
-            return _context.Update(entity);
+            return (TEntity)_context.Update(entity).Entity;
         }
         public TEntity Delete(TEntity entity)
         {

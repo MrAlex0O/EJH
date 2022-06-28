@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -68,20 +69,19 @@ namespace DataBase.Contexts
 
             return true;
         }
-        public bool Update<TEntity>(TEntity entity)
+        public EntityEntry? Update<TEntity>(TEntity entity)
         {
             try
             {
-                base.Update(entity);
+                return base.Update(entity);
             }
             catch (Exception e)
             {
                 //handle with some logger
                 Console.WriteLine(e);
-                return false;
+                return null;
             }
 
-            return true;
         }
         public bool Dispose()
         {

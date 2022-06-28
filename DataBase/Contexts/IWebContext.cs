@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace DataBase.Contexts
         public DbSet<Teacher> Teachers { get; set; }
         public Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);
         public bool SaveChanges();
-        public bool Update<TEntity>(TEntity entity);
+        public EntityEntry Update<TEntity>(TEntity entity);
         public bool Dispose();
     }
 }

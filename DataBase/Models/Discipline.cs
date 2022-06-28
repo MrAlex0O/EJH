@@ -10,7 +10,7 @@ namespace DataBase.Models
     {
         public string Name { get; set; }
         public Guid? LectorId { get; set; }
-        public Person? Lector { get; set; }
+        public Teacher? Lector { get; set; }
         public Guid? GroupId { get; set; }
         public Group? Group { get; set; }
         public int Semester { get; set; }

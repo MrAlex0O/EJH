@@ -11,18 +11,18 @@ namespace Logic.ReadServices
 {
     public class GroupReadService : IGroupReadService
     {
-        IGroupQuery _query;
+        IGroupQuery _groupQuery;
         public GroupReadService(IGroupQuery query)
         {
-            _query = query;
+            _groupQuery = query;
         }
         public List<GetGroupResponse> GetAll()
         {
-            return _query.GetAll();
+            return _groupQuery.GetAll();
         }
         public GetGroupResponse Get(Guid id)
         {
-            return _query.Get(id);
+            return _groupQuery.Get(id);
         }
     }
 }

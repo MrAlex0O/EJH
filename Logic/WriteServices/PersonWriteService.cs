@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
-using Logic.DTOs.Group;
+using Logic.DTOs.Student;
+using Logic.WriteServices.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +11,35 @@ using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {
-    public class GroupWriteService : IGroupWriteService
+    public class PersonWriteService : IPersonWriteService
     {
         private IUnitOfWorkRepository _repositories;
         readonly IMapper _mapper;
-        public GroupWriteService(IUnitOfWorkRepository repositories, IMapper mapper)
+        public PersonWriteService(IUnitOfWorkRepository repositories, IMapper mapper)
         {
             _repositories = repositories;
             _mapper = mapper;
         }
 
-        public void Add(CreateGroupRequest createGroupRequest)
+        public Guid Add(Person person)
         {
-            _repositories.Groups.Add(_mapper.Map<Group>(createGroupRequest));
+            Guid id = _repositories.Persons.Add(person).Id;
             _repositories.SaveChanges();
+            return id;
         }
 
-        public void Update(Guid id, UpdateGroupRequest updateGroupRequest)
+        public void Update(Guid id, Person person)
         {
-            Group group = _mapper.Map<Group>(updateGroupRequest);
-            group.Id = id;
-            _repositories.Groups.Update(group);
+            person.Id = (Guid)id;
+            _repositories.Persons.Update(person);
             _repositories.SaveChanges();
         }
         public void Delete(Guid id)
         {
-            Group group = _repositories.Groups.Get(id);
-            _repositories.Groups.Delete(group);
+            Person person = _repositories.Persons.Get(id);
+            _repositories.Persons.Delete(person);
             _repositories.SaveChanges();
         }
+
     }
 }

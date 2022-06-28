@@ -1,6 +1,5 @@
 ﻿using Dapper;
-using DataBase.Models;
-using Logic.DTOs.Group;
+using Logic.DTOs.LessonType;
 using Logic.Queries.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -12,31 +11,31 @@ using System.Threading.Tasks;
 
 namespace Logic.Queries
 {
-    public class GroupQuery : IGroupQuery
+    public class LessonTypeQuery : ILessonTypeQuery
     {
         string _connectionString;
-        public GroupQuery(IConfiguration configuration)
+        public LessonTypeQuery(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetGroupResponse> GetAll()
+        public List<GetLessonTypeResponse> GetAll()
         {
-            string querry = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
+            string querry = $@"SELECT ""Id"", ""Name"" FROM ""LessonTypes""
                                 ORDER BY ""DateCreate"" ASC";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetGroupResponse>(querry).ToList();
+                return db.Query<GetLessonTypeResponse>(querry).ToList();
             }
         }
-        public GetGroupResponse Get(Guid id)
+        public GetLessonTypeResponse Get(Guid id)
         {
-            string querry = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
+            string querry = $@"SELECT ""Id"", ""Name"" FROM ""LessonTypes""
                                 WHERE ""Id"" = '{id}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetGroupResponse>(querry).FirstOrDefault();
+                return db.Query<GetLessonTypeResponse>(querry).FirstOrDefault();
             }
         }
     }
