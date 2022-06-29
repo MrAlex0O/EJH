@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBase.Models
 {
-    public class LessonsVisitors : BaseModel
+    public class LessonVisitor : BaseModel
     {
         public Guid? LessonId { get; set; }
         public Lesson? Lesson { get; set; }

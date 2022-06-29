@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
+using Logic.DTOs.Student;
 using Logic.WriteServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,13 @@ namespace Logic.WriteServices
             _repositories.Students.Add(student);
             _repositories.SaveChanges();
         }
-        public Student Update(Guid id, Guid groupId)
+        public Student Update(Guid id, UpdateStudentRequest updateStudentRequest)
         {
             Student student = _repositories.Students.Get(id);
-            student.GroupId = groupId;
+            _mapper.Map<UpdateStudentRequest, Student>(updateStudentRequest, student);
             _repositories.Students.Update(student);
             _repositories.SaveChanges();
             return student;
-
         }
         public Student Delete(Guid id)
         {

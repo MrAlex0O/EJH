@@ -30,8 +30,8 @@ namespace Logic.WriteServices
 
         public void Update(Guid id, UpdateLessonRequest updateLessonRequest)
         {
-            Lesson lesson = _mapper.Map<Lesson>(updateLessonRequest);
-            lesson.Id = id;
+            Lesson lesson = _repositories.Lessons.Get(id);
+            _mapper.Map<UpdateLessonRequest, Lesson>(updateLessonRequest, lesson);
             _repositories.Lessons.Update(lesson);
             _repositories.SaveChanges();
         }

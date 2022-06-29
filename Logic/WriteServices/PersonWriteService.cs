@@ -28,9 +28,10 @@ namespace Logic.WriteServices
             return id;
         }
 
-        public void Update(Guid id, Person person)
+        public void Update(Guid id, Person updatePerson)
         {
-            person.Id = (Guid)id;
+            Person person = _repositories.Persons.Get(id);
+            _mapper.Map<Person, Person>(updatePerson, person);
             _repositories.Persons.Update(person);
             _repositories.SaveChanges();
         }

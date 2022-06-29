@@ -23,7 +23,6 @@ namespace Logic.WriteServices
             assistant = _repositories.Assistants.Add(assistant);
             _repositories.SaveChanges();
             return assistant.Id;
-
         }
 
         public void Delete(Guid disciplineId, Guid teacherId)

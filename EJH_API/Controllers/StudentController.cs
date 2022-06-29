@@ -88,7 +88,7 @@ namespace API.Controllers
         {
             try
             {
-                Guid personId = (Guid)_studentWriteService.Update(id, updateStudentRequest.GroupId).PersonId;
+                Guid personId = (Guid)_studentWriteService.Update(id, updateStudentRequest).PersonId;
                 _personWriteService.Update(personId, _mapper.Map<Person>(updateStudentRequest));
 
                 return Ok();

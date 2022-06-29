@@ -75,7 +75,7 @@ namespace API.Controllers
         {
             try
             {
-                Guid personId = (Guid)_teacherWriteService.Update(id).PersonId;
+                Guid personId = (Guid)_teacherWriteService.Update(id, updateTeacherRequest).PersonId;
                 _personWriteService.Update(personId, _mapper.Map<Person>(updateTeacherRequest));
 
                 return Ok();

@@ -30,8 +30,8 @@ namespace Logic.WriteServices
 
         public void Update(Guid id, UpdateDisciplineRequest updateDisciplineRequest)
         {
-            Discipline discipline = _mapper.Map<Discipline>(updateDisciplineRequest);
-            discipline.Id = id;
+            Discipline discipline = _repositories.Disciplines.Get(id);
+            _mapper.Map<UpdateDisciplineRequest, Discipline>(updateDisciplineRequest, discipline);
             _repositories.Disciplines.Update(discipline);
             _repositories.SaveChanges();
         }

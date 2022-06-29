@@ -10,6 +10,7 @@ namespace DataBase.Enums
     {
         Lecture = 1,
         LabWork = 2,
-        Seminar = 3
+        Seminar = 3,
+        Lesson = 4
     }
 }

@@ -52,6 +52,12 @@ builder.Services.AddScoped<ILessonWriteService, LessonWriteService>();
 builder.Services.AddScoped<ILessonReadService, LessonReadService>();
 builder.Services.AddScoped<ILessonQuery, LessonQuery>();
 
+builder.Services.AddScoped<IStatusOnLessonReadService, StatusOnLessonReadService>();
+builder.Services.AddScoped<IStatusOnLessonQuery, StatusOnLessonQuery>();
+
+builder.Services.AddScoped<ILessonVisitorWriteService, LessonVisitorsWriteService>();
+builder.Services.AddScoped<ILessonVisitorReadService, LessonVisitorReadService>();
+builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
 
 builder.Services.AddDbContext<IWebContext, Context>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

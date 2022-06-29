@@ -28,8 +28,9 @@ namespace Logic.WriteServices
 
         public void Update(Guid id, UpdateGroupRequest updateGroupRequest)
         {
-            Group group = _mapper.Map<Group>(updateGroupRequest);
-            group.Id = id;
+            Group group = _repositories.Groups.Get(id);
+            
+            _mapper.Map<UpdateGroupRequest, Group>(updateGroupRequest, group);
             _repositories.Groups.Update(group);
             _repositories.SaveChanges();
         }

@@ -21,7 +21,7 @@ namespace DataBase.Repositories
         private BaseRepository<Assistant>? _assistantsRepository;
         private BaseRepository<Discipline>? _disciplinesRepository;
         private BaseRepository<Group>? _groupRepository;
-        private BaseRepository<LessonsVisitors>? _lessonVisitorsRepository;
+        private BaseRepository<LessonVisitor>? _lessonVisitorsRepository;
         private BaseRepository<Lesson>? _lessonRepository;
         private BaseRepository<LessonType>? _lessonTypeRepository;
         private BaseRepository<Person>? _personRepository;
@@ -34,7 +34,7 @@ namespace DataBase.Repositories
         public BaseRepository<Assistant> Assistants => _assistantsRepository ??= new BaseRepository<Assistant>((Context)_context);
         public BaseRepository<Discipline> Disciplines => _disciplinesRepository ??= new BaseRepository<Discipline>((Context)_context);
         public BaseRepository<Group> Groups => _groupRepository ??= new BaseRepository<Group>((Context)_context);
-        public BaseRepository<LessonsVisitors> LessonsVisitors => _lessonVisitorsRepository ??= new BaseRepository<LessonsVisitors>((Context)_context);
+        public BaseRepository<LessonVisitor> LessonVisitors => _lessonVisitorsRepository ??= new BaseRepository<LessonVisitor>((Context)_context);
         public BaseRepository<Lesson> Lessons => _lessonRepository ??= new BaseRepository<Lesson>((Context)_context);
         public BaseRepository<LessonType> LessonTypes => _lessonTypeRepository ??= new BaseRepository<LessonType>((Context)_context);
         public BaseRepository<Person> Persons => _personRepository ??= new BaseRepository<Person>((Context)_context);

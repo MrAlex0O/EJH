@@ -12,7 +12,7 @@ namespace DataBase.Repositories.Interfaces
         public BaseRepository<Assistant> Assistants { get; }
         public BaseRepository<Discipline> Disciplines { get; }
         public BaseRepository<Group> Groups { get; }
-        public BaseRepository<LessonsVisitors> LessonsVisitors { get; }
+        public BaseRepository<LessonVisitor> LessonVisitors { get; }
         public BaseRepository<Lesson> Lessons { get; }
         public BaseRepository<LessonType> LessonTypes { get; }
         public BaseRepository<Person> Persons { get; }

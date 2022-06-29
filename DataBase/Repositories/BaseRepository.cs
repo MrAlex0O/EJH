@@ -39,6 +39,13 @@ namespace DataBase.Repositories
             entity.DateUpdate = DateTime.Now;
             return (TEntity)_context.Update(entity).Entity;
         }
+        public TEntity Attach(TEntity entity)
+        {
+            entity = _dbSet.Attach(entity).Entity;
+
+            _context.Entry(entity).State = EntityState.Modified; ;
+            return entity;
+        }
         public TEntity Delete(TEntity entity)
         {
             return _context.Remove(entity).Entity;

@@ -3,6 +3,7 @@ using System;
 using DataBase.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220629111645_UpdatedDictionaries")]
+    partial class UpdatedDictionaries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,65 +139,7 @@ namespace DataBase.Migrations
                     b.ToTable("Lessons");
                 });
 
-            modelBuilder.Entity("DataBase.Models.LessonType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("EnumId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LessonTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("6aa74582-0eba-4eee-a960-3b6fc3092130"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9516),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9529),
-                            EnumId = 1,
-                            Name = "Лекция"
-                        },
-                        new
-                        {
-                            Id = new Guid("3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9553),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9553),
-                            EnumId = 2,
-                            Name = "Лабораторная работа"
-                        },
-                        new
-                        {
-                            Id = new Guid("f69a359a-4986-4253-9409-078660dc8fc8"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9566),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9566),
-                            EnumId = 3,
-                            Name = "Семинар"
-                        },
-                        new
-                        {
-                            Id = new Guid("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9578),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9579),
-                            EnumId = 4,
-                            Name = "Занятие"
-                        });
-                });
-
-            modelBuilder.Entity("DataBase.Models.LessonVisitor", b =>
+            modelBuilder.Entity("DataBase.Models.LessonsVisitors", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -225,6 +169,64 @@ namespace DataBase.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("LessonsVisitors");
+                });
+
+            modelBuilder.Entity("DataBase.Models.LessonType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("EnumId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LessonTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6aa74582-0eba-4eee-a960-3b6fc3092130"),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5786),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5797),
+                            EnumId = 1,
+                            Name = "Лекция"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9"),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5822),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5823),
+                            EnumId = 2,
+                            Name = "Лабораторная работа"
+                        },
+                        new
+                        {
+                            Id = new Guid("f69a359a-4986-4253-9409-078660dc8fc8"),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5835),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5835),
+                            EnumId = 3,
+                            Name = "Семинар"
+                        },
+                        new
+                        {
+                            Id = new Guid("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5847),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5847),
+                            EnumId = 4,
+                            Name = "Занятие"
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Person", b =>
@@ -294,48 +296,48 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = new Guid("6aa74582-0eba-4eee-a960-3b6fc3092130"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9593),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9594),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5863),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5864),
                             EnumId = 1,
                             Name = "Присутствовал"
                         },
                         new
                         {
                             Id = new Guid("3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9611),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9612),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5880),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5880),
                             EnumId = 2,
                             Name = "Отсутствовал"
                         },
                         new
                         {
                             Id = new Guid("f69a359a-4986-4253-9409-078660dc8fc8"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9623),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9624),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5891),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5892),
                             EnumId = 3,
                             Name = "Освобожден"
                         },
                         new
                         {
                             Id = new Guid("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9635),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9636),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5903),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5904),
                             EnumId = 4,
                             Name = "Другая подгруппа"
                         },
                         new
                         {
                             Id = new Guid("79765635-f6e4-49bf-a7ac-11c3458f2fa9"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9648),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9648),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5916),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5917),
                             EnumId = 5,
                             Name = "Отсутствовал (уважительная причина)"
                         },
                         new
                         {
                             Id = new Guid("075eb8de-9471-4542-958d-d8ab12320a71"),
-                            DateCreate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9663),
-                            DateUpdate = new DateTime(2022, 6, 29, 15, 4, 20, 187, DateTimeKind.Local).AddTicks(9664),
+                            DateCreate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5931),
+                            DateUpdate = new DateTime(2022, 6, 29, 14, 16, 45, 166, DateTimeKind.Local).AddTicks(5931),
                             EnumId = 6,
                             Name = "Невозможно рассчитать"
                         });
@@ -435,7 +437,7 @@ namespace DataBase.Migrations
                     b.Navigation("LessonType");
                 });
 
-            modelBuilder.Entity("DataBase.Models.LessonVisitor", b =>
+            modelBuilder.Entity("DataBase.Models.LessonsVisitors", b =>
                 {
                     b.HasOne("DataBase.Models.Lesson", "Lesson")
                         .WithMany()
