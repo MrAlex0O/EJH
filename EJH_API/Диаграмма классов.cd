@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DataBase.Models.Assistant">
+    <Position X="347.25" Y="337" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.BaseModel">
+    <Position X="343.75" Y="334.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Discipline">
+    <Position X="345.5" Y="339.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Group">
+    <Position X="340.25" Y="337" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.LessonVisitor">
+    <Position X="342" Y="339.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Lesson">
+    <Position X="343.75" Y="339.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.LessonType">
+    <Position X="340.25" Y="339.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Person">
+    <Position X="343.75" Y="337" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.StatusOnLesson">
+    <Position X="340.25" Y="341" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Student">
+    <Position X="342" Y="337" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Models.Teacher">
+    <Position X="345.5" Y="337" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DataBase.Repositories.BaseRepository&lt;TEntity&gt;" BaseTypeListCollapsed="true">
+    <Position X="339.25" Y="343" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="DataBase.Repositories.UnitOfWorkRepository" BaseTypeListCollapsed="true">
+    <Position X="342" Y="343" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="DataBase.Contexts.Context" BaseTypeListCollapsed="true">
+    <Position X="347.5" Y="343" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="DataBase.Contexts.SeedDB">
+    <Position X="344.75" Y="343" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAEAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contexts\DBSeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Configurations.AuthConfig">
+    <Position X="309" Y="338.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configurations\AuthConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.Models.AuthRequest">
+    <Position X="309" Y="336.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\Models\AuthRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.Models.AuthResponse">
+    <Position X="310.75" Y="343" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAQABAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Authorization\Models\AuthResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.Models.RegisterRequest">
+    <Position X="307.25" Y="343" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAQABAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\Models\RegisterRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.Models.UpdateRequest">
+    <Position X="309" Y="343" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAQABAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\Models\UpdateRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.AllowAnonymousAttribute">
+    <Position X="309" Y="339.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\AllowAnonymousAttribyte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.AppSettings">
+    <Position X="305.5" Y="340.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Authorization\AppSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.AuthorizeAttribute" BaseTypeListCollapsed="true">
+    <Position X="305.5" Y="339.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\AuthAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="API.Authorization.ErrorHandlerMiddleware">
+    <Position X="305.5" Y="337" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\ErrorHandleMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.JwtMiddleware">
+    <Position X="309" Y="340.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\JwtMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.JwtUtils" BaseTypeListCollapsed="true">
+    <Position X="307.25" Y="340.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAABAAAAA=</HashCode>
+      <FileName>Authorization\JwtUtils.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="API.Authorization.UserProfile">
+    <Position X="305.5" Y="343" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Authorization.UserService" BaseTypeListCollapsed="true">
+    <Position X="310.75" Y="339" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAABAAIAAAEBCAAAAgAAABAAAIA=</HashCode>
+      <FileName>Authorization\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="API.Controllers.DisciplineController">
+    <Position X="318.75" Y="339.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAABAAAAAAAAACAEgAAEAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\DisciplineController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.GroupController">
+    <Position X="314.25" Y="339.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAABAAAACAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\GroupController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.LessonController">
+    <Position X="316.5" Y="339.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAABAAAAACAAACAEAAAAAAAAAAAAAgAg=</HashCode>
+      <FileName>Controllers\LessonController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.LessonTypeController">
+    <Position X="318.75" Y="343" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Controllers\LessonTypeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.LessonVisitorController">
+    <Position X="316.5" Y="342.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAASAEAAAgAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\LessonVisitorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.StatusOnLessonController">
+    <Position X="314.25" Y="342.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Controllers\StatusOnLessonController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.StudentController">
+    <Position X="314.25" Y="336.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAABAAAABAABACAEAAAAAAAAACAAAACg=</HashCode>
+      <FileName>Controllers\StudentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.TeacherController">
+    <Position X="318.75" Y="336.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAgAABQAAABAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\TeacherController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.UserController">
+    <Position X="316.5" Y="336.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAABAAIAAAEBAAAAAgAEABAAAIA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.WriteServices.AssistantWriteService" BaseTypeListCollapsed="true">
+    <Position X="270.25" Y="339.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.DisciplineWriteService" BaseTypeListCollapsed="true">
+    <Position X="270.25" Y="343.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.GroupWriteService" BaseTypeListCollapsed="true">
+    <Position X="268" Y="343.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.LessonVisitorsWriteService" BaseTypeListCollapsed="true">
+    <Position X="263.5" Y="343.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.LessonWriteService" BaseTypeListCollapsed="true">
+    <Position X="265.75" Y="343.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.PersonWriteService" BaseTypeListCollapsed="true">
+    <Position X="265.75" Y="339.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.StudentWriteService" BaseTypeListCollapsed="true">
+    <Position X="263.5" Y="339.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.WriteServices.TeacherWriteService" BaseTypeListCollapsed="true">
+    <Position X="268" Y="339.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.DisciplineReadService" BaseTypeListCollapsed="true">
+    <Position X="278.25" Y="338.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.GroupReadService" BaseTypeListCollapsed="true">
+    <Position X="273.75" Y="342" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.LessonReadService" BaseTypeListCollapsed="true">
+    <Position X="280.5" Y="338.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.LessonTypeReadService" BaseTypeListCollapsed="true">
+    <Position X="280.5" Y="341.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.LessonVisitorReadService" BaseTypeListCollapsed="true">
+    <Position X="278.25" Y="341.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.StatusOnLessonReadService" BaseTypeListCollapsed="true">
+    <Position X="276" Y="342" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.StudentReadService" BaseTypeListCollapsed="true">
+    <Position X="273.75" Y="338.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.ReadServices.TeacherReadService" BaseTypeListCollapsed="true">
+    <Position X="276" Y="338.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.DisciplineQuery" BaseTypeListCollapsed="true">
+    <Position X="268.75" Y="330.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.GroupQuery" BaseTypeListCollapsed="true">
+    <Position X="262" Y="330.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.LessonQuery" BaseTypeListCollapsed="true">
+    <Position X="268.75" Y="334" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.LessonTypeQuery" BaseTypeListCollapsed="true">
+    <Position X="266.5" Y="334" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.LessonVisitorQuery" BaseTypeListCollapsed="true">
+    <Position X="264.25" Y="334" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.StatusOnLessonQuery" BaseTypeListCollapsed="true">
+    <Position X="262" Y="334" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.StudentQuery" BaseTypeListCollapsed="true">
+    <Position X="264.25" Y="330.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Queries.TeacherQuery" BaseTypeListCollapsed="true">
+    <Position X="266.5" Y="330.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Logic.Profiles.DisciplineProfile">
+    <Position X="290.5" Y="334.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.Profiles.GroupProfile">
+    <Position X="284.75" Y="334.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.Profiles.LessonProfile">
+    <Position X="287.75" Y="334.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.Profiles.LessonVisitorsProfile">
+    <Position X="290.5" Y="335.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.Profiles.StudentProfile">
+    <Position X="284.75" Y="335.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.Profiles.TeacherProfile">
+    <Position X="287.75" Y="335.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Discipline.CreateDisciplineRequest">
+    <Position X="284.25" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Discipline.GetDisciplineResponse">
+    <Position X="284.25" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Discipline.UpdateDisciplineRequest">
+    <Position X="295.5" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Group.CreateGroupRequest">
+    <Position X="286.5" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Group.GetGroupResponse">
+    <Position X="286.5" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Group.UpdateGroupRequest">
+    <Position X="284.25" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Lesson.CreateLessonRequest">
+    <Position X="288.75" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Lesson.GetLessonResponse">
+    <Position X="288.75" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Lesson.UpdateLessonRequest">
+    <Position X="286.5" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.LessonType.GetLessonTypeResponse">
+    <Position X="291" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.LessonVisitors.CreateLessonVisitorRequest">
+    <Position X="291" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.LessonVisitors.GetLessonVisitorResponse">
+    <Position X="293.25" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.LessonVisitors.UpdateLessonVisitorRequest">
+    <Position X="288.75" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.StatusOnLesson.GetStatusOnLessonResponse">
+    <Position X="286.5" Y="328.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Student.CreateStudentRequest">
+    <Position X="293.25" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Student.GetStudentResponse">
+    <Position X="295.5" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Student.UpdateStudentRequest">
+    <Position X="291" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Teacher.CreateTeacherRequest">
+    <Position X="295.5" Y="323.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Teacher.GetTeacherResponse">
+    <Position X="297.75" Y="326.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Logic.DTOs.Teacher.UpdateTeacherRequest">
+    <Position X="293.25" Y="330.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="DataBase.Repositories.Interfaces.IBaseRepository&lt;T&gt;">
+    <Position X="338.5" Y="346.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DataBase.Repositories.Interfaces.IUnitOfWorkRepository">
+    <Position X="340.25" Y="346.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DataBase.Contexts.IWebContext">
+    <Position X="344.75" Y="344.75" Width="2.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="API.Authorization.IJwtUtils">
+    <Position X="307.25" Y="339.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\IJwtUtils.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="API.Authorization.IUserService">
+    <Position X="310.75" Y="336.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAIAAAEBAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Authorization\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.IAssistantWriteService">
+    <Position X="270.25" Y="338" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.IDisciplineWriteService">
+    <Position X="270.25" Y="341.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.ILessonVisitorWriteService">
+    <Position X="263.5" Y="341.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.ILessonWriteService">
+    <Position X="265.75" Y="341.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.IPersonWriteService">
+    <Position X="265.75" Y="338" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.IStudentWriteService">
+    <Position X="263.5" Y="338" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.Interfaces.ITeacherWriteService">
+    <Position X="268" Y="338" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.WriteServices.IGroupWriteService">
+    <Position X="268" Y="341.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.IDisciplineReadService">
+    <Position X="278.25" Y="336.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.IGroupReadService">
+    <Position X="273.75" Y="340.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.ILessonReadService">
+    <Position X="280.5" Y="336.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.ILessonTypeReadService">
+    <Position X="280.5" Y="340.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.ILessonVisitorReadService">
+    <Position X="278.25" Y="340.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.IStatusOnLessonReadService">
+    <Position X="276" Y="340.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.IStudentReadService">
+    <Position X="273.75" Y="336.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.ReadServices.Interfaces.ITeacherReadService">
+    <Position X="276" Y="336.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.IDisciplineQuery">
+    <Position X="268.75" Y="328.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.IGroupQuery">
+    <Position X="262" Y="328.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.ILessonQuery">
+    <Position X="268.75" Y="332.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.ILessonTypeQuery">
+    <Position X="266.5" Y="332.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.ILessonVisitorQuery">
+    <Position X="264.25" Y="332.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.IStatusOnLessonQuery">
+    <Position X="262" Y="332.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.IStudentQuery">
+    <Position X="264.25" Y="328.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Logic.Queries.Interfaces.ITeacherQuery">
+    <Position X="266.5" Y="328.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="DataBase.Enums.LessonTypeEnum" Collapsed="true">
+    <Position X="338.5" Y="339.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAACAAgAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Enums\LessonTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DataBase.Enums.StatusOnLessonEnum" Collapsed="true">
+    <Position X="338.5" Y="341" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACIAAAABAAAAAAAgACAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Enums\StatusOnLessonEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
