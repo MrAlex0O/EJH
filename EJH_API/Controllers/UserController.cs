@@ -1,7 +1,7 @@
 ﻿using API.Authorization;
 using API.Authorization.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [Authorization.Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private IUserService _userService;
@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [Authorization.AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost("login")]
         public IActionResult Authenticate(AuthRequest model)
         {
             var response = _userService.Authenticate(model);

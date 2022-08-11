@@ -52,7 +52,15 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
-
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials()
+           .WithOrigins("http://localhost:4200");
+}));
+builder.Services.AddSignalR();
 #region services
 builder.Services.AddScoped<IGroupWriteService, GroupWriteService>();
 builder.Services.AddScoped<IGroupReadService, GroupReadService>();
@@ -115,10 +123,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("CorsPolicy");
 app.UseMiddleware<ErrorHandlerMiddleware>();
-app.UseMiddleware<JwtMiddleware>();
-
+app.UseMiddleware<JwtMiddleware>();     
 
 app.UseHttpsRedirection();
 
