@@ -22,14 +22,17 @@ namespace API.Authorization
 
         public AuthResponse Authenticate(AuthRequest model)
         {
-            var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
+            var user = _context.Users.FirstOrDefault(x => x.Username == model.Username);
 
             // validate
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
                 throw new Exception("Username or password is incorrect");
 
             // authentication successful
-            var response = _mapper.Map<AuthResponse>(user);
+            AuthResponse response = _mapper.Map<AuthResponse>(user);
+            Person person = _context.Persons.Where(i => i.Id == user.PersonId).FirstOrDefault();
+            response.Surname = person.Surname;
+            response.Name = person.Name;
             response.Token = _jwtUtils.GenerateToken(user);
             return response;
         }
@@ -52,11 +55,13 @@ namespace API.Authorization
 
             // map model to new user object
             var user = _mapper.Map<User>(model);
-
+            var person = _mapper.Map<Person>(model);
             // hash password
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
             // save user
+            person = _context.Persons.Add(person).Entity;
+            user.PersonId = person.Id;
             _context.Users.Add(user);
             _context.SaveChanges();
         }

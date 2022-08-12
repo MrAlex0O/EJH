@@ -9,8 +9,8 @@ namespace DataBase.Models
 {
     public class User : BaseModel
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public Guid PersonId { get; set; }
+        public Person Person { get; set; }
         public string Username { get; set; }
 
         [JsonIgnore]

@@ -11,6 +11,9 @@ namespace API.Authorization.Models
         public string Surname { get; set; }
 
         [Required]
+        public string Email { get; set; }
+
+        [Required]
         public string Username { get; set; }
 
         [Required]

@@ -3,6 +3,7 @@ using System;
 using DataBase.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220812065532_addUserPersonRelation")]
+    partial class addUserPersonRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,32 +166,32 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = new Guid("6aa74582-0eba-4eee-a960-3b6fc3092130"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4334),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4342),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8178),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8189),
                             EnumId = 1,
                             Name = "Лекция"
                         },
                         new
                         {
                             Id = new Guid("3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4372),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4373),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8219),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8220),
                             EnumId = 2,
                             Name = "Лабораторная работа"
                         },
                         new
                         {
                             Id = new Guid("f69a359a-4986-4253-9409-078660dc8fc8"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4386),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4387),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8233),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8234),
                             EnumId = 3,
                             Name = "Семинар"
                         },
                         new
                         {
                             Id = new Guid("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4400),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4400),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8247),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8248),
                             EnumId = 4,
                             Name = "Занятие"
                         });
@@ -234,6 +236,7 @@ namespace DataBase.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateCreate")
@@ -254,6 +257,7 @@ namespace DataBase.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Surname")
@@ -292,48 +296,48 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = new Guid("6aa74582-0eba-4eee-a960-3b6fc3092130"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4420),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4421),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8266),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8266),
                             EnumId = 1,
                             Name = "Присутствовал"
                         },
                         new
                         {
                             Id = new Guid("3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4442),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4443),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8282),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8283),
                             EnumId = 2,
                             Name = "Отсутствовал"
                         },
                         new
                         {
                             Id = new Guid("f69a359a-4986-4253-9409-078660dc8fc8"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4455),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4456),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8296),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8297),
                             EnumId = 3,
                             Name = "Освобожден"
                         },
                         new
                         {
                             Id = new Guid("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4506),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4507),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8310),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8310),
                             EnumId = 4,
                             Name = "Другая подгруппа"
                         },
                         new
                         {
                             Id = new Guid("79765635-f6e4-49bf-a7ac-11c3458f2fa9"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4520),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4521),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8324),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8325),
                             EnumId = 5,
                             Name = "Отсутствовал (уважительная причина)"
                         },
                         new
                         {
                             Id = new Guid("075eb8de-9471-4542-958d-d8ab12320a71"),
-                            DateCreate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4536),
-                            DateUpdate = new DateTime(2022, 8, 12, 10, 2, 34, 265, DateTimeKind.Local).AddTicks(4537),
+                            DateCreate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8340),
+                            DateUpdate = new DateTime(2022, 8, 12, 9, 55, 32, 61, DateTimeKind.Local).AddTicks(8341),
                             EnumId = 6,
                             Name = "Невозможно рассчитать"
                         });
