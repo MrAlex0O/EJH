@@ -7,6 +7,7 @@ using Logic.ReadServices.Interfaces;
 
 namespace API.Controllers
 {
+    //[Authorization.Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupController : ControllerBase

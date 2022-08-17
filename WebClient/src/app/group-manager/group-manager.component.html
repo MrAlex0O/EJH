@@ -1,0 +1,16 @@
+<app-group-combo-box name="groups" (myEvent)="importValue($event)"></app-group-combo-box>
+
+
+<input type="text" name="name" id="group-input" #newGroup [(ngModel)]="selected.name"/>
+
+
+
+
+
+
+
+
+<button name="update" value="" (click)="update()">Обновить</button>
+<button name="add" value="" (click)="add()">Добавить</button>
+<button mat-button (click)="add()">Basic</button>
+

@@ -40,8 +40,10 @@ namespace API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest model)
         {
-            _userService.Register(model);
-            return Ok(new { message = "Registration successful" });
+            if (_userService.Register(model))
+                return Ok(new { message = "Registration successful" });
+            else
+                return BadRequest("Username '" + model.Username + "' is already taken");
         }
 
         [HttpGet]

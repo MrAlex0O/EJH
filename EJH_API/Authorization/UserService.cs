@@ -36,7 +36,6 @@ namespace API.Authorization
             response.Token = _jwtUtils.GenerateToken(user);
             return response;
         }
-
         public IEnumerable<User> GetAll()
         {
             return _context.Users;
@@ -47,11 +46,11 @@ namespace API.Authorization
             return getUser(id);
         }
 
-        public void Register(RegisterRequest model)
+        public bool Register(RegisterRequest model)
         {
             // validate
             if (_context.Users.Any(x => x.Username == model.Username))
-                throw new Exception("Username '" + model.Username + "' is already taken");
+                return false;
 
             // map model to new user object
             var user = _mapper.Map<User>(model);
@@ -64,7 +63,9 @@ namespace API.Authorization
             user.PersonId = person.Id;
             _context.Users.Add(user);
             _context.SaveChanges();
+            return true;
         }
+        
 
         public void Update(Guid id, UpdateRequest model)
         {

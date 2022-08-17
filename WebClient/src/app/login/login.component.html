@@ -1,8 +1,6 @@
 <div class="col-md-12">
   <div class="card card-container">
-    <img id="profile-img"
-         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-         class="profile-img-card" />
+    
     <form *ngIf="!isLoggedIn"
           name="form"
           (ngSubmit)="f.form.valid && onSubmit()"
@@ -52,5 +50,7 @@
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in as {{ data.name }}.
     </div>
+
+    <a href class="nav-link" (click)="logout()">LogOut</a>
   </div>
 </div>

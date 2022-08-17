@@ -19,6 +19,13 @@ export class StorageService {
     }
     return {};
   }
+  public getUserToken(): string {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user)['token'];
+    }
+    return "";
+  }
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {

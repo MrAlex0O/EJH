@@ -1,9 +1,9 @@
-export class RegisterModel {
+export interface RegisterModel {
 
-  name: string = "";
-  surname: string = "";
-  email: string = "";
-  username: string = "";
-  password: string = "";
+  name: string;
+  surname: string;
+  email: string;
+  username: string;
+  password: string;
 
 }

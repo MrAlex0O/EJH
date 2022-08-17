@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorization.Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DisciplineController : ControllerBase

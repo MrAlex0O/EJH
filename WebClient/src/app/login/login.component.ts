@@ -10,31 +10,46 @@ import { AuthReponseModel } from '../_models/AuthResponseModel'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: LoginModel = new LoginModel;
-  data: AuthReponseModel = new AuthReponseModel;
+  form: LoginModel = { username: "", password: "" };
+
+;
+  data: AuthReponseModel = {
+    id: "",
+    name: "",
+    surname: "",
+    midname: "",
+    username: "",
+    password: "",
+    token: "" } ;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(private _authService: AuthService, private _storageService: StorageService) { }
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
+    if (this._storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-      this.data = this.storageService.getUser();
+      this.roles = this._storageService.getUser().roles;
+      this.data = this._storageService.getUser();
     }
   }
   onSubmit(): void {
-    this.authService.login(this.form).subscribe(
+    this._authService.login(this.form).subscribe(
       data => {
         this.data = data;
-        this.storageService.saveUser(data);
+        this._storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-
+        this.roles = this._storageService.getUser().roles;
+        window.location.reload();;
         console.log("logged as " + data.name);
         console.log(data);
-    });
+      });
+
+    
+  }
+
+  logout(): void {
+    this._authService.logout();
   }
 }

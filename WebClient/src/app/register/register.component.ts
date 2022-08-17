@@ -7,7 +7,13 @@ import { RegisterModel } from '../_models/registerModel'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form: RegisterModel = new RegisterModel;
+  form: RegisterModel = {
+    name: "",
+    surname: "",
+    email: "",
+    username: "",
+    password: ""
+  };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';

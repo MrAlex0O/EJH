@@ -17,7 +17,9 @@ import { DisciplineService } from './_services/discipline.service';
 import { HttpRequestInterceptor } from './_helpers/http.inceptor';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { GroupComboBoxComponent } from './group-combo-box/group-combo-box.component';
+import { GroupManagerComponent } from './group-manager/group-manager.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,7 +40,10 @@ const appRoutes: Routes = [
     NotFoundComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    GroupComboBoxComponent,
+    GroupManagerComponent
+
   ],
   imports: [
     BrowserModule,
