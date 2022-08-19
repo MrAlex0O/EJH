@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { StorageService } from '../_services/storage.service';
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -13,7 +14,23 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       withCredentials: true,
       headers: req.headers.set('Authorization', `Bearer ${this.token}`)
     });
-    return next.handle(req);
+    return next.handle(req).pipe(
+      tap(
+        (event) => {
+          if (event instanceof HttpResponse) {
+            console.log('Server response')
+
+            console.log(JSON.stringify(event))
+          }
+        },
+        (err) => {
+          if (err instanceof HttpErrorResponse) {
+            console.log('Server response')
+            console.log(JSON.stringify(err))
+          }
+        }
+      )
+    )
   }
 }
 
