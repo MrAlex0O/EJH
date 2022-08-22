@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GroupComboBoxComponent } from './group-combo-box/group-combo-box.component';
 import { GroupManagerComponent } from './group-manager/group-manager.component';
+import { TeacherComboBoxComponent } from './teacher-combo-box/teacher-combo-box.component';
+import { TeacherManagerComponent } from './teacher-manager/teacher-manager.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +29,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'groupManager', component: GroupManagerComponent },
+  { path: 'teacherManager', component: TeacherManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -42,7 +46,9 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfileComponent,
     GroupComboBoxComponent,
-    GroupManagerComponent
+    GroupManagerComponent,
+    TeacherComboBoxComponent,
+    TeacherManagerComponent
 
   ],
   imports: [

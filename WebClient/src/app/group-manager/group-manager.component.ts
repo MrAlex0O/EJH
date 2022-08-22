@@ -27,7 +27,6 @@ export class GroupManagerComponent implements OnInit {
     console.log(group);
   }
   update() {
-
     this.loading = true;
     this._groupService.Update(this.selected).subscribe(() => this.loading = false);
   }
@@ -37,7 +36,6 @@ export class GroupManagerComponent implements OnInit {
     this._groupService.Add(group).subscribe(() => this.loading = false);
   }
   delete() {
-
     this.loading = true;
     this._groupService.Delete(this.selected).subscribe(() => this.loading = false);
   }

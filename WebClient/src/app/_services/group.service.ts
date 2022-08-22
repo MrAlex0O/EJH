@@ -14,8 +14,8 @@ export class GroupService {
   public getAll(): Observable<GroupModel[]> {
     return this._http.get<GroupModel[]>(API_PATH);
   }
-  public Update(group: GroupModel): Observable<httpResponse> {
-    return this._http.put<httpResponse>(API_PATH + '/' + group.id, group);
+  public Update(group: GroupModel): Observable<any> {
+    return this._http.put(API_PATH + '/' + group.id, group);
   }
   public Delete(group: GroupModel): Observable<any> {
     return this._http.delete(API_PATH + '/' + group.id);
@@ -23,9 +23,4 @@ export class GroupService {
   public Add(group: GroupModel): Observable<any> {
     return this._http.post(API_PATH, group);
   }
-}
-export class httpResponse {
-  public code: number = 0;
-  public message: string = "";
-  constructor() { }
 }

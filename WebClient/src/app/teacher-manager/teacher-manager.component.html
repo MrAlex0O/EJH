@@ -1,0 +1,15 @@
+<app-teacher-combo-box name="teachers" (myEvent)="importValue($event)" [loading]="loading"></app-teacher-combo-box>
+
+
+<input placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
+<input placeholder="midname" type="text" name="midname" id="midname-input" [(ngModel)]="midname" />
+<input placeholder="surname" type="text" name="surname" id="surname-input" [(ngModel)]="surname" />
+<input placeholder="address" type="text" name="address" id="address-input" [(ngModel)]="address" />
+<input placeholder="email" type="text" name="email" id="email-input" [(ngModel)]="email" />
+<input placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
+
+
+<button mat-button name="update" value="" (click)="update()">Обновить</button>
+<button mat-button name="add" value="" (click)="add()">Добавить</button>
+<button mat-button name="delete" value="" (click)="delete()">Удалить</button>
+

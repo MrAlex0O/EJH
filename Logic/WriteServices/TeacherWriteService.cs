@@ -29,7 +29,10 @@ namespace Logic.WriteServices
         public Teacher Update(Guid id, UpdateTeacherRequest updateTeacherRequest)
         {
             Teacher teacher = _repositories.Teachers.Get(id);
+            Person person = _repositories.Persons.Get((Guid)teacher.PersonId);
             _mapper.Map<UpdateTeacherRequest, Teacher>(updateTeacherRequest, teacher);
+            _mapper.Map<UpdateTeacherRequest, Person>(updateTeacherRequest, person);
+            teacher.Person = person;
             _repositories.Teachers.Update(teacher);
             _repositories.SaveChanges();
             return teacher;
