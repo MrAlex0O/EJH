@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DisciplinesComboBoxComponent } from './disciplines-combo-box.component';
+import { DisciplineComboBoxComponent } from './discipline-combo-box.component';
 
 describe('DisciplinesComboBoxComponent', () => {
-  let component: DisciplinesComboBoxComponent;
-  let fixture: ComponentFixture<DisciplinesComboBoxComponent>;
+  let component: DisciplineComboBoxComponent;
+  let fixture: ComponentFixture<DisciplineComboBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DisciplinesComboBoxComponent ]
+      declarations: [ DisciplineComboBoxComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DisciplinesComboBoxComponent);
+    fixture = TestBed.createComponent(DisciplineComboBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

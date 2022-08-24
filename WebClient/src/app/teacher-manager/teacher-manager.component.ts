@@ -11,23 +11,15 @@ import { TeacherService } from '../_services/teacher.service'
 })
 export class TeacherManagerComponent implements OnInit {
 
-  constructor(private _teacherService: TeacherService, private _router: Router) { }
-  @Input() selected: TeacherModel = {
-      id: "", name: "",
-      midname: "",
-      surname: "",
-      address: "",
-      email: "",
-      phoneNumber: ""
-  };
+  constructor(private _teacherService: TeacherService) { }
+  @Input() selected: TeacherModel;
   name: string = "";
   midname: string = "";
   surname: string = "";
   email: string = "";
   address: string = "";
   phoneNumber: string = "";
-  @ViewChild(TeacherComboBoxComponent)
-  viewChild!: TeacherComboBoxComponent;
+  @ViewChild(TeacherComboBoxComponent) viewChild!: TeacherComboBoxComponent;
   loading: boolean = false;
 
   ngOnInit(): void {

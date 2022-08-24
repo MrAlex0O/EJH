@@ -25,6 +25,7 @@ namespace API.Controllers
 
         // GET api/<DisciplineController>
         [HttpGet]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult<List<GetDisciplineResponse>>> Get()
         {
             try
@@ -39,6 +40,7 @@ namespace API.Controllers
 
         // GET api/<DisciplineController>
         [HttpGet("{id}")]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult<GetDisciplineResponse>> Get(Guid id)
         {
             try
@@ -52,6 +54,7 @@ namespace API.Controllers
         }
         // GET api/<TeacherController>/5
         [HttpGet("byTeacherId/{teacherId}")]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult<List<GetDisciplineResponse>>> GetByTeacherId(Guid teacherId)
         {
             try
@@ -66,6 +69,7 @@ namespace API.Controllers
 
         // POST api/<DisciplineController>
         [HttpPost]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult> Post([FromBody] CreateDisciplineRequest createDisciplineRequest)
         {
             try
@@ -85,6 +89,7 @@ namespace API.Controllers
 
         // PUT api/<DisciplineController>
         [HttpPut("{id}")]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult> Put(Guid id, [FromBody] UpdateDisciplineRequest updateDisciplineRequest)
         {
             try
@@ -105,6 +110,7 @@ namespace API.Controllers
 
         // DELETE api/<DisciplineController>
         [HttpDelete("{id}")]
+        [Authorization.AllowAnonymous]
         public async Task<ActionResult> Delete(Guid id)
         {
             try

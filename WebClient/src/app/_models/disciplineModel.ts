@@ -1,14 +1,12 @@
-import { Guid } from 'guid-typescript';
-
 export interface DisciplineModel {
-  id: Guid;
+  id: string;
   name: string;
-  lectorId: Guid;
+  lectorId: string;
   lectorFullName: string;
-  groupId: Guid;
+  groupId: string;
   groupName: string;
   semester: number;
-  assistantsIds: Guid[];
+  assistantsIds: string[];
   assistantsFullNames: string[];
 }
 

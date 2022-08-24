@@ -12,15 +12,19 @@ import { GroupService } from '../_services/group.service';
 })
 export class GroupComboBoxComponent implements OnInit, OnChanges {
   groups: GroupModel[] = [];
-  public selectedGroup: GroupModel = { id: "", name: "" };
+  public selectedGroup: GroupModel;
   @Output() myEvent = new EventEmitter<GroupModel>();
   @Input() loading: boolean = false;
     
-  constructor(public _groupService: GroupService, private _router: Router) { }
+  constructor(public _groupService: GroupService) { }
 
   ngOnInit(): void {
     this._groupService.getAll().subscribe(groups => this.groups = groups);
 
+  }
+
+  public showById(id: string) {
+    this.selectedGroup = <GroupModel>this.groups.find(g => g.id == id);
   }
   ngOnChanges() {
     if (this.loading == false) {
@@ -30,7 +34,6 @@ export class GroupComboBoxComponent implements OnInit, OnChanges {
   public upload(): void {
     this.groups.length = 0;
     this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
-    //this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
   }
   exportValue() {
     this.myEvent.emit(this.selectedGroup);

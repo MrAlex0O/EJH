@@ -1,14 +1,16 @@
 <form>
   <mat-form-field>
-    <mat-select placeholder="teachers" [(ngModel)]="selectedTeacher" name="teacher"
-                (selectionChange)="exportValue()">
-      <mat-option *ngFor="let teacher of teachers" [value]="teacher">
+    <mat-select placeholder="teachers"
+                [(ngModel)]="selectedTeacher"
+                name="teacher"
+                (selectionChange)="exportValue()"
+                #aaa>
+
+      <mat-option *ngFor="let teacher of teachers"
+                  [value]="teacher">
         {{teacher.surname}} {{teacher.name}} {{teacher.midname}}
-
-
       </mat-option>
+
     </mat-select>
   </mat-form-field>
-
-  <p> Selected value: {{selectedTeacher.name}}-{{selectedTeacher.id}} </p>
 </form>

@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
-import { DisciplinesComboBoxComponent } from './disciplines-combo-box/disciplines-combo-box.component';
+import { DisciplineComboBoxComponent } from './discipline-combo-box/discipline-combo-box.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -22,6 +22,7 @@ import { GroupComboBoxComponent } from './group-combo-box/group-combo-box.compon
 import { GroupManagerComponent } from './group-manager/group-manager.component';
 import { TeacherComboBoxComponent } from './teacher-combo-box/teacher-combo-box.component';
 import { TeacherManagerComponent } from './teacher-manager/teacher-manager.component';
+import { DisciplineManagerComponent } from './discipline-manager/discipline-manager.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'groupManager', component: GroupManagerComponent },
   { path: 'teacherManager', component: TeacherManagerComponent },
+  { path: 'disciplineManager', component: DisciplineManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -38,7 +40,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DisciplinesComboBoxComponent,
+    DisciplineComboBoxComponent,
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     GroupComboBoxComponent,
     GroupManagerComponent,
     TeacherComboBoxComponent,
-    TeacherManagerComponent
+    TeacherManagerComponent,
+    DisciplineManagerComponent
 
   ],
   imports: [
