@@ -34,10 +34,11 @@ export class DisciplineManagerComponent implements OnInit {
   groupId: string = "";
   groupName: string = "";
   semester: number = 0;
-  assistantsIds: string[];
-  assistantsFullNames: string[];
+  assistantsIds: string[] = [];
+  assistantsFullNames: string[] = [];
   @ViewChild(DisciplineComboBoxComponent) disciplineViewChild!: DisciplineComboBoxComponent;
-  @ViewChild(TeacherComboBoxComponent) lectorlineViewChild!: TeacherComboBoxComponent;
+  @ViewChild('lector') lectorViewChild!: TeacherComboBoxComponent;
+  @ViewChild('newAssistant') assistantViewChild!: TeacherComboBoxComponent;
   @ViewChild(GroupComboBoxComponent) groupViewChild!: GroupComboBoxComponent;
   loading: boolean = false;
   
@@ -48,7 +49,7 @@ export class DisciplineManagerComponent implements OnInit {
     this.lectorId = discipline.lectorId;
     this.lectorFullName = discipline.lectorFullName;
 
-    this.lectorlineViewChild.showById(this.lectorId);
+    this.lectorViewChild.showById(this.lectorId);
 
     this.groupId = discipline.groupId;
     this.groupName = discipline.groupName;
@@ -66,32 +67,53 @@ export class DisciplineManagerComponent implements OnInit {
   importGroup(group: GroupModel) {
 
   }
-  /*
-  update() {
-    this.loading = true;
-    let teacher: TeacherModel = {
-      name: this.name, id: this.selected.id, midname: this.midname,
-      surname: this.surname,
-      address: this.address,
-      email: this.email,
-      phoneNumber: this.phoneNumber
-    }
-    this._teacherService.Update(teacher).subscribe(() => this.loading = false);
+
+  deleteAssistant(index: number) {
+    this.assistantsFullNames.splice(index, 1);
+    this.assistantsIds.splice(index, 1);
   }
-  add() {
-    let teacher: TeacherModel = {
-      name: this.name, id: "", midname: this.midname,
-      surname: this.surname,
-      address: this.address,
-      email: this.email,
-      phoneNumber: this.phoneNumber
+
+  addAssistant() {
+    const fullname = this.assistantViewChild.selectedTeacher.surname + " " + this.assistantViewChild.selectedTeacher.name + " " + this.assistantViewChild.selectedTeacher.midname;
+    this.assistantsFullNames.push(fullname);
+    this.assistantsIds.push(this.assistantViewChild.selectedTeacher.id);
+  }
+
+  addDiscipline() {
+    let discipline: DisciplineModel = {
+      name: this.name,
+      id: "",
+      lectorId: this.lectorViewChild.selectedTeacher.id,
+      lectorFullName: "",
+      groupId: this.groupViewChild.selectedGroup.id,
+      groupName: "",
+      semester: this.semester,
+      assistantsIds: this.assistantsIds,
+        assistantsFullNames: []
     }
     this.loading = true;
-    this._teacherService.Add(teacher).subscribe(() => this.loading = false);
+    this._disciplineService.Add(discipline).subscribe(() => this.loading = false);
+
   }
-  delete() {
+  deleteDiscipline() {
     this.loading = true;
-    this._teacherService.Delete(this.selected).subscribe(() => this.loading = false);
-  }*/
+    this._disciplineService.Delete(this.selected).subscribe(() => this.loading = false);
+  }
+  
+  updateDiscipline() {
+    let discipline: DisciplineModel = {
+      name: this.name,
+      id: this.id,
+      lectorId: this.lectorViewChild.selectedTeacher.id,
+      lectorFullName: "",
+      groupId: this.groupViewChild.selectedGroup.id,
+      groupName: "",
+      semester: this.semester,
+      assistantsIds: this.assistantsIds,
+        assistantsFullNames: []
+    }
+    this.loading = true;
+    this._disciplineService.Update(discipline).subscribe(() => this.loading = false);
+  }
 }
 

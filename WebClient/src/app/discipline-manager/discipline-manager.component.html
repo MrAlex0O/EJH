@@ -2,14 +2,29 @@
 
 
 <input placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
-<app-teacher-combo-box name="lector" (myEvent)="importLector($event)" [loading]="loading">Lector</app-teacher-combo-box>
+<app-teacher-combo-box name="lector" #lector (myEvent)="importLector($event)" [loading]="loading">Lector</app-teacher-combo-box>
 <app-group-combo-box name="group" (myEvent)="importGroup($event)" [loading]="loading"></app-group-combo-box>
 
 <input placeholder="semester" type="text" name="semester" id="semester-input" [(ngModel)]="semester" />
 
 <ul>
-  <li *ngFor="let item of assistantsFullNames">{{item}}</li>
+  <li *ngFor="let item of assistantsFullNames; let i = index">
+    {{item}}
+    <button (click)="deleteAssistant(i)">Удалить</button>
+  </li>
+
 </ul>
+
+<app-teacher-combo-box name="newAssistant"
+                       #newAssistant
+                       [loading]="loading">Assistants</app-teacher-combo-box>
+
+<button (click)="addAssistant()">Добавить</button>
+
+
+<button (click)="updateDiscipline()">Обновить дисциплину</button>
+<button (click)="addDiscipline()">Добавить дисциплину</button>
+<button (click)="deleteDiscipline()">Удалить дисциплину</button>
 <!--
 <button mat-button name="update" value="" (click)="update()">Обновить</button>
 <button mat-button name="add" value="" (click)="add()">Добавить</button>
