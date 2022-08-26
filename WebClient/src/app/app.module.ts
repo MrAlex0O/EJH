@@ -23,6 +23,8 @@ import { GroupManagerComponent } from './group-manager/group-manager.component';
 import { TeacherComboBoxComponent } from './teacher-combo-box/teacher-combo-box.component';
 import { TeacherManagerComponent } from './teacher-manager/teacher-manager.component';
 import { DisciplineManagerComponent } from './discipline-manager/discipline-manager.component';
+import { StudentComboBoxComponent } from './student-combo-box/student-combo-box.component';
+import { StudentManagerComponent } from './student-manager/student-manager.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'groupManager', component: GroupManagerComponent },
   { path: 'teacherManager', component: TeacherManagerComponent },
   { path: 'disciplineManager', component: DisciplineManagerComponent },
+  { path: 'studentComboBox', component: StudentManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -51,7 +54,9 @@ const appRoutes: Routes = [
     GroupManagerComponent,
     TeacherComboBoxComponent,
     TeacherManagerComponent,
-    DisciplineManagerComponent
+    DisciplineManagerComponent,
+    StudentComboBoxComponent,
+    StudentManagerComponent
 
   ],
   imports: [
