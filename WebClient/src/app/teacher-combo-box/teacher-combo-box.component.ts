@@ -21,9 +21,6 @@ export class TeacherComboBoxComponent implements OnInit, OnChanges {
   constructor(public _teacherService: TeacherService) { }
 
   ngOnInit(): void {
-
-    this._teacherService.getAll().subscribe(teachers => this.teachers = teachers);
-
   }
   public showById(id: string) {
     this.selectedTeacher = <TeacherModel>this.teachers.find(t => t.id == id);

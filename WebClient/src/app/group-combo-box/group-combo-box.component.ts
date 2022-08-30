@@ -19,7 +19,6 @@ export class GroupComboBoxComponent implements OnInit, OnChanges {
   constructor(public _groupService: GroupService) { }
 
   ngOnInit(): void {
-    this._groupService.getAll().subscribe(groups => this.groups = groups);
 
   }
 

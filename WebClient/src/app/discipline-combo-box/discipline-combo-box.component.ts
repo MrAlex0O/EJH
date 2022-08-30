@@ -12,7 +12,7 @@ import { DisciplineService } from '../_services/discipline.service';
 })
 export class DisciplineComboBoxComponent implements OnInit, OnChanges {
 
-  public disciplines: DisciplineModel[];
+  public disciplines: DisciplineModel[] = [];
   public selectedDiscipline: DisciplineModel;
   @Output() myEvent = new EventEmitter<DisciplineModel>();
   @Input() loading: boolean = false;
@@ -21,7 +21,6 @@ export class DisciplineComboBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this._disciplineService.getAll().subscribe(disciplines => this.disciplines = disciplines);
   }
 
   ngOnChanges() {
@@ -35,5 +34,8 @@ export class DisciplineComboBoxComponent implements OnInit, OnChanges {
   }
   exportValue() {
     this.myEvent.emit(this.selectedDiscipline);
+  }
+  showById(id: string) {
+    this.selectedDiscipline = <DisciplineModel>this.disciplines.find(d => d.id == id);
   }
 }

@@ -25,7 +25,13 @@ import { TeacherManagerComponent } from './teacher-manager/teacher-manager.compo
 import { DisciplineManagerComponent } from './discipline-manager/discipline-manager.component';
 import { StudentComboBoxComponent } from './student-combo-box/student-combo-box.component';
 import { StudentManagerComponent } from './student-manager/student-manager.component';
-
+import { LessonTypeComboBoxComponent } from './lesson-type-combo-box/lesson-type-combo-box.component';
+import { LessonManagerComponent } from './lesson-manager/lesson-manager.component';
+import { LessonComboBoxComponent } from './lesson-combo-box/lesson-combo-box.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule, } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -35,7 +41,8 @@ const appRoutes: Routes = [
   { path: 'groupManager', component: GroupManagerComponent },
   { path: 'teacherManager', component: TeacherManagerComponent },
   { path: 'disciplineManager', component: DisciplineManagerComponent },
-  { path: 'studentComboBox', component: StudentManagerComponent },
+  { path: 'studentManager', component: StudentManagerComponent },
+  { path: 'lessonManager', component: LessonManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -56,14 +63,18 @@ const appRoutes: Routes = [
     TeacherManagerComponent,
     DisciplineManagerComponent,
     StudentComboBoxComponent,
-    StudentManagerComponent
+    StudentManagerComponent,
+    LessonTypeComboBoxComponent,
+    LessonManagerComponent,
+    LessonComboBoxComponent
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    MaterialAppModule,
+    MaterialAppModule, MatFormFieldModule, MatInputModule,
+    MatDatepickerModule, MatNativeDateModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],

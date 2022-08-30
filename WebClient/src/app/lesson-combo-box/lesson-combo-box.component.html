@@ -1,0 +1,10 @@
+<form>
+  <mat-form-field>
+    <mat-select placeholder="lessons" [(ngModel)]="selectedLesson" name="lesson"
+                (selectionChange)="exportValue()">
+      <mat-option *ngFor="let lesson of lessons" [value]="lesson">
+        {{lesson.disciplineName}} {{lesson.groupName}} {{lesson.date}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
