@@ -10,6 +10,6 @@ namespace Logic.DTOs.LessonVisitors
     {
         public Guid LessonId { get; set; }
         public Guid StudentId { get; set; }
-        public Guid StatusId { get; set; }
+        public Guid StatusOnLessonId { get; set; }
     }
 }

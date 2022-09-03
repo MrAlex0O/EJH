@@ -32,6 +32,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { VisitorManagerComponent } from './visitor-manager/visitor-manager.component';
+import { StudentVisitComponent } from './student-visit/student-visit.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -43,6 +46,7 @@ const appRoutes: Routes = [
   { path: 'disciplineManager', component: DisciplineManagerComponent },
   { path: 'studentManager', component: StudentManagerComponent },
   { path: 'lessonManager', component: LessonManagerComponent },
+  { path: 'visitorManager', component: VisitorManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -66,7 +70,9 @@ const appRoutes: Routes = [
     StudentManagerComponent,
     LessonTypeComboBoxComponent,
     LessonManagerComponent,
-    LessonComboBoxComponent
+    LessonComboBoxComponent,
+    VisitorManagerComponent,
+    StudentVisitComponent
 
   ],
   imports: [
@@ -74,7 +80,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     MaterialAppModule, MatFormFieldModule, MatInputModule,
-    MatDatepickerModule, MatNativeDateModule,
+    MatDatepickerModule, MatNativeDateModule, MatTableModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],

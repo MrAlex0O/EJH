@@ -22,7 +22,19 @@ namespace Logic.WriteServices
         }
         public void Add(CreateLessonVisitorRequest createlessonsVisitors)
         {
-            _repositories.LessonVisitors.Add(_mapper.Map<LessonVisitor>(createlessonsVisitors));
+            LessonVisitor? lv = _repositories.LessonVisitors.GetAll().Where(l => l.StudentId == createlessonsVisitors.StudentId &&
+                                                                               l.LessonId == createlessonsVisitors.LessonId).FirstOrDefault();
+            if (lv == null)
+            {
+                _repositories.LessonVisitors.Add(_mapper.Map<LessonVisitor>(createlessonsVisitors));
+            }
+            else
+            {
+                lv.StudentId = createlessonsVisitors.StudentId;
+                lv.StatusOnLessonId = createlessonsVisitors.StatusOnLessonId;
+                _repositories.LessonVisitors.Update(lv);
+            }
+
             _repositories.SaveChanges();
         }
 

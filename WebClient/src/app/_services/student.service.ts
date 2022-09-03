@@ -14,6 +14,9 @@ export class StudentService {
   public getAll(): Observable<StudentModel[]> {
     return this._http.get<StudentModel[]>(API_PATH);
   }
+  public getByGroupId(id: string): Observable<StudentModel[]> {
+    return this._http.get<StudentModel[]>(API_PATH + '/byGroupId/' +  id);
+  }
   public Update(student: StudentModel): Observable<any> {
     return this._http.put<any>(API_PATH + '/' + student.id, student);
   }
