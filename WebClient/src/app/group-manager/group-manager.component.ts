@@ -27,8 +27,9 @@ export class GroupManagerComponent implements OnInit {
     console.log(group);
   }
   update() {
+    let group: GroupModel = { name: this.name, id: this.selected.id }
     this.loading = true;
-    this._groupService.Update(this.selected).subscribe(() => this.loading = false);
+    this._groupService.Update(group).subscribe(() => this.loading = false);
   }
   add() {
     let group: GroupModel = { name: this.name, id: "" }

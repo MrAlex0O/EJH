@@ -9,4 +9,9 @@
   <ItemGroup>
     <Folder Include="src\app\_helpers\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties tsconfig_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
