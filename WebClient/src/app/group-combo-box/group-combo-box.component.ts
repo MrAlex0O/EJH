@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { GroupModel } from '../_models/groupModel';
 import { GroupService } from '../_services/group.service';
 
