@@ -22,8 +22,8 @@ export class GroupManagerComponent implements OnInit {
     this.name = this.selected.name;
   }
   importValue(group: GroupModel) {
-    this.selected = this.viewChild.selectedGroup;
-    this.name = this.viewChild.selectedGroup.name;
+    this.selected = group;
+    this.name = group.name;
     console.log(group);
   }
   update() {

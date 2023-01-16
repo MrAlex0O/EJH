@@ -1,6 +1,7 @@
   <mat-form-field>
-    <mat-select placeholder="groups" [(ngModel)]="selectedGroup" name="group"
-                (selectionChange)="exportValue()">
+    <mat-select placeholder="groups" 
+                (selectionChange)="exportValue()"
+                [formControl]="groupControl">
       <mat-option *ngFor="let group of groups" [value]="group" >
         {{group.name}}
       </mat-option>

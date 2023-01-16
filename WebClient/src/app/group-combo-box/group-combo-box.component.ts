@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { GroupModel } from '../_models/groupModel';
 import { GroupService } from '../_services/group.service';
 
@@ -13,7 +14,11 @@ export class GroupComboBoxComponent implements OnInit, OnChanges {
   public selectedGroup: GroupModel;
   @Output() myEvent = new EventEmitter<GroupModel>();
   @Input() loading: boolean = false;
-    
+
+  public groupControl = new FormControl<GroupModel>(this.groups[0], Validators.required);
+
+
+
   constructor(public _groupService: GroupService) { }
 
   ngOnInit(): void {
@@ -33,6 +38,6 @@ export class GroupComboBoxComponent implements OnInit, OnChanges {
     this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
   }
   exportValue() {
-    this.myEvent.emit(this.selectedGroup);
+    this.myEvent.emit(<GroupModel>this.groupControl.value);
   }
 }

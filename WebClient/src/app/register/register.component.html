@@ -7,7 +7,7 @@
           novalidate>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text"
+        <input matInput  type="text"
                class="form-control"
                name="username"
                [(ngModel)]="form.username"
@@ -27,7 +27,7 @@
         </div>
       </div><div class="form-group">
   <label for="name">Name</label>
-  <input type="text"
+  <input matInput  type="text"
          class="form-control"
          name="name"
          [(ngModel)]="form.name"
@@ -47,7 +47,7 @@
   </div>
 </div><div class="form-group">
   <label for="surname">Surname</label>
-  <input type="text"
+  <input matInput  type="text"
          class="form-control"
          name="surname"
          [(ngModel)]="form.surname"
@@ -68,7 +68,7 @@
 </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email"
+        <input matInput  type="email"
                class="form-control"
                name="email"
                [(ngModel)]="form.email"
@@ -85,7 +85,7 @@
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password"
+        <input matInput  type="password"
                class="form-control"
                name="password"
                [(ngModel)]="form.password"
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button mat-button class="btn btn-primary btn-block">Sign Up</button>
       </div>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
         Signup failed!<br />{{ errorMessage }}

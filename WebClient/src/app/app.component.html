@@ -1,58 +1,104 @@
+
 <body [class]="s.OS.S.theme.obs | async">
-  <h2>Электронный журнал старосты</h2>
-  <!--<mat-form-field appearance="fill">
-    <mat-label>Theme Selection</mat-label>
-    <mat-select [formControl]="themeSelect" (selectionChange)="changeTheme()" >
-      <mat-option *ngFor="let theme of themes" [value]="theme">{{theme}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-    -->
-  <button mat-button (click)="changeTheme()" color="primary">Изменить тему</button>
-  <!--
-    <section>
-      <div class="example-label">Basic</div>
-      <div class="example-button-row">
-        <button mat-button>Basic</button>
-        <button mat-button color="primary">Primary</button>
-        <button mat-button color="accent">Accent</button>
-        <button mat-button color="warn">Warn</button>
-        <button mat-button disabled>Disabled</button>
-        <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+  <mat-sidenav-container class="example-container" >
+    <mat-sidenav #sidenav mode="side">
+
+      <div layout="vertical" layout-fill>
+
+        <p><button mat-button (click)="sidenav.toggle()">Закрыть меню</button></p>
+        <button mat-button (click)="changeTheme()" color="primary">Изменить тему</button>
+
+
+
+
+        <mat-nav-list>
+          <a routerLink="/login">Авторизация</a> <br />
+          <a routerLink="/register">Регистрация</a> <br />
+          <a routerLink="/profile">Профиль</a> <br />
+          <a routerLink="/about">О нас</a> <br />
+          <a routerLink="/groupManager">Менеджер групп</a> <br />
+          <a routerLink="/teacherManager">Менеджер преподавателей</a> <br />
+          <a routerLink="/disciplineManager">Менеджер дисциплин(предметов)</a> <br />
+          <a routerLink="/studentManager">Менеджер студентов</a> <br />
+          <a routerLink="/lessonManager">Менеджер занятий(пар)</a> <br />
+          <a routerLink="/visitorManager">Менеджер посещений</a> <br />
+          <a routerLink="#">Работа...</a> <br />
+
+
+        </mat-nav-list>
+
+
+
+
       </div>
-    </section>
 
-    <section>
-      <div class="example-label">Raised</div>
-      <div class="example-button-row">
-        <button mat-raised-button>Basic</button>
-        <button mat-raised-button color="primary">Primary</button>
-        <button mat-raised-button color="accent">Accent</button>
-        <button mat-raised-button color="warn">Warn</button>
-        <button mat-raised-button disabled>Disabled</button>
-        <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
-      </div>
-    </section>
-  -->
+    </mat-sidenav>
 
-  <div>
+    <mat-sidenav-content>
 
-    <nav>
-      <a routerLink="/login">Авторизация</a> <br />
-      <a routerLink="/register">Регистрация</a> <br />
-      <a routerLink="/profile">Профиль</a> <br />
-      <a routerLink="/about">О нас</a> <br />
-      <a routerLink="/groupManager">Менеджер групп</a> <br />
-      <a routerLink="/teacherManager">Менеджер преподавателей</a> <br />
-      <a routerLink="/disciplineManager">Менеджер дисциплин(предметов)</a> <br />
-      <a routerLink="/studentManager">Менеджер студентов</a> <br />
-      <a routerLink="/lessonManager">Менеджер занятий(пар)</a> <br />
-      <a routerLink="/visitorManager">Менеджер посещений</a> <br />
-      <a routerLink="#">Работа...</a> <br />
+      <h2>Электронный журнал старосты</h2>
+      <p><button mat-button (click)="sidenav.toggle()">Открыть меню</button></p>
+      <router-outlet></router-outlet>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
-
-    </nav>
-    <router-outlet></router-outlet>
-
-  </div>
 
 </body>

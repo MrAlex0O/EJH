@@ -1,6 +1,6 @@
 <app-lesson-combo-box name="lesson" (myEvent)="importLesson($event)" [loading]="loading"></app-lesson-combo-box>
 
-<button (click)="show()">show</button>
+<button mat-button (click)="show()">show</button>
 <ul>
   <li *ngFor="let student of students; let i = index">
     <p>
@@ -14,7 +14,7 @@
   </mat-select>
 </mat-form-field>
 </form>
-    <button (click)="save(i)">Save</button>
+    <button mat-button (click)="save(i)">Save</button>
   </li>
 
 </ul>

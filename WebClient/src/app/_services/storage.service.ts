@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 const USER_KEY = 'auth-user';
+const THEME = 'theme';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +9,21 @@ export class StorageService {
   clean(): void {
     window.sessionStorage.clear();
   }
+  public saveTheme(theme: string) {
+
+    window.sessionStorage.removeItem(THEME);
+    window.sessionStorage.setItem(THEME, theme);
+  }
+
+  public getTheme(): any {
+    const theme = window.sessionStorage.getItem(THEME);
+    if (theme) {
+      return theme;
+    }
+    return 'light';
+  }
+
+
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));

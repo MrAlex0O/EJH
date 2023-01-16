@@ -33,6 +33,8 @@ import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
 import { VisitorManagerComponent } from './visitor-manager/visitor-manager.component';
 import { StudentVisitComponent } from './student-visit/student-visit.component';
 const appRoutes: Routes = [
@@ -82,7 +84,9 @@ const appRoutes: Routes = [
     MaterialAppModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule, MatListModule,
+
+    MatSidenavModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },

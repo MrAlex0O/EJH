@@ -1,12 +1,12 @@
 <app-student-combo-box name="students" (myEvent)="importValue($event)" [loading]="loading"></app-student-combo-box>
 
 
-<input placeholder="surname" type="text" name="surname" id="surname-input" [(ngModel)]="surname" />
-<input placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
-<input placeholder="midname" type="text" name="midname" id="midname-input" [(ngModel)]="midname" />
-<input placeholder="address" type="text" name="address" id="address-input" [(ngModel)]="address" />
-<input placeholder="email" type="text" name="email" id="email-input" [(ngModel)]="email" />
-<input placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
+<input matInput  placeholder="surname" type="text" name="surname" id="surname-input" [(ngModel)]="surname" />
+<input matInput  placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
+<input matInput  placeholder="midname" type="text" name="midname" id="midname-input" [(ngModel)]="midname" />
+<input matInput  placeholder="address" type="text" name="address" id="address-input" [(ngModel)]="address" />
+<input matInput  placeholder="email" type="text" name="email" id="email-input" [(ngModel)]="email" />
+<input matInput  placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
 
 <app-group-combo-box name="groups" (myEvent)="importGroup($event)" [loading]="loading"></app-group-combo-box>
 
