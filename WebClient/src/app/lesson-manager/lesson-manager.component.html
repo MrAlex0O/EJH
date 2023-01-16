@@ -1,14 +1,19 @@
 <app-lesson-combo-box name="lesson" (myEvent)="importLesson($event)" [loading]="loading"></app-lesson-combo-box>
+
+<br />
 <app-discipline-combo-box name="discipline" (myEvent)="importDiscipline($event)" [loading]="loading"></app-discipline-combo-box>
+
+<br />
 <app-lesson-type-combo-box name="lesson-type" (myEvent)="importLessonType($event)" [loading]="loading"></app-lesson-type-combo-box>
 
 
 <mat-form-field>
-  <input matInput  matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
+  <input matInput matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 
+<br />
 
 
 <button mat-button name="update" value="" (click)="update()">Обновить</button>

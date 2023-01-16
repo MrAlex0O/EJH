@@ -57,6 +57,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DisciplineComboBoxComponent,
+    DisciplineManagerComponent,
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
@@ -67,7 +68,6 @@ const appRoutes: Routes = [
     GroupManagerComponent,
     TeacherComboBoxComponent,
     TeacherManagerComponent,
-    DisciplineManagerComponent,
     StudentComboBoxComponent,
     StudentManagerComponent,
     LessonTypeComboBoxComponent,
@@ -81,10 +81,10 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),HttpClientModule, 
     MaterialAppModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
-    RouterModule.forRoot(appRoutes),
-    HttpClientModule, MatListModule,
+    MatListModule,
 
     MatSidenavModule
   ],

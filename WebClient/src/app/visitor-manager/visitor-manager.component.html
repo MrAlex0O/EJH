@@ -1,19 +1,21 @@
 <app-lesson-combo-box name="lesson" (myEvent)="importLesson($event)" [loading]="loading"></app-lesson-combo-box>
 
+<br />
 <button mat-button (click)="show()">show</button>
 <ul>
   <li *ngFor="let student of students; let i = index">
     <p>
       {{student.surname}} {{student.name}} {{student.midname}} {{selectedStatuses[i].name}}
     </p>
-    <form><mat-form-field>
-  <mat-select (selectionChange)="selectStatus(i, $event.value)" selected="selectedStatuses[i]">
-    <mat-option *ngFor="let prf of statuses" [value]="prf">
-      {{ prf.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</form>
+    <form>
+      <mat-form-field>
+        <mat-select (selectionChange)="selectStatus(i, $event.value)" selected="selectedStatuses[i]">
+          <mat-option *ngFor="let prf of statuses" [value]="prf">
+            {{ prf.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
     <button mat-button (click)="save(i)">Save</button>
   </li>
 
