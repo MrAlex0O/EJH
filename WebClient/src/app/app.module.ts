@@ -35,8 +35,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { VisitorManagerComponent } from './visitor-manager/visitor-manager.component';
 import { StudentVisitComponent } from './student-visit/student-visit.component';
+import { GenericTableComponent } from './generic-table/generic-table.component';
+import { ReportManagerComponent } from './report-manager/report-manager.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -49,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'studentManager', component: StudentManagerComponent },
   { path: 'lessonManager', component: LessonManagerComponent },
   { path: 'visitorManager', component: VisitorManagerComponent },
+  { path: 'reportManager', component: ReportManagerComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -74,7 +79,9 @@ const appRoutes: Routes = [
     LessonManagerComponent,
     LessonComboBoxComponent,
     VisitorManagerComponent,
-    StudentVisitComponent
+    StudentVisitComponent,
+    GenericTableComponent,
+    ReportManagerComponent
 
   ],
   imports: [
@@ -84,7 +91,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),HttpClientModule, 
     MaterialAppModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
-    MatListModule,
+    MatListModule, MatSortModule, MatPaginatorModule,
 
     MatSidenavModule
   ],
