@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { GroupComboBoxComponent } from '../group-combo-box/group-combo-box.component';
 import { GroupModel } from '../_models/groupModel';
 import { GroupService } from '../_services/group.service'
@@ -11,16 +10,16 @@ import { GroupService } from '../_services/group.service'
 })
 export class GroupManagerComponent implements OnInit {
 
-  constructor(private _groupService: GroupService, private _router:Router) { }
   @Input() selected: GroupModel = { id: "", name: "" };
   name: string = "";
   @ViewChild(GroupComboBoxComponent)
-    viewChild!: GroupComboBoxComponent;
+  viewChild!: GroupComboBoxComponent;
   loading: boolean = false;
 
-  ngOnInit(): void {
-    this.name = this.selected.name;
-  }
+  constructor(private _groupService: GroupService) { }
+
+  ngOnInit(): void { }
+
   importValue(group: GroupModel) {
     this.selected = group;
     this.name = group.name;
@@ -40,5 +39,5 @@ export class GroupManagerComponent implements OnInit {
     this.loading = true;
     this._groupService.Delete(this.selected).subscribe(() => this.loading = false);
   }
-  
+
 }
