@@ -10,32 +10,34 @@ import { GroupService } from '../_services/group.service';
   styleUrls: ['./group-combo-box.component.css']
 })
 export class GroupComboBoxComponent implements OnInit, OnChanges {
-  public groups: GroupModel[] = [];
+  groups: GroupModel[] = [];
   public selectedGroup: GroupModel;
   @Output() myEvent = new EventEmitter<GroupModel>();
   @Input() loading: boolean = false;
+
   public groupControl = new FormControl<GroupModel>(this.groups[0], Validators.required);
 
-  constructor(private _groupService: GroupService) { }
 
-  ngOnInit(): void { }
 
+  constructor(public _groupService: GroupService) { }
+
+  ngOnInit(): void {
+
+  }
+
+  public showById(id: string) {
+    this.selectedGroup = <GroupModel>this.groups.find(g => g.id == id);
+  }
   ngOnChanges() {
     if (this.loading == false) {
       this.upload();
     }
   }
-
   public upload(): void {
     this.groups.length = 0;
     this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
   }
-
   exportValue() {
     this.myEvent.emit(<GroupModel>this.groupControl.value);
-  }
-
-  public showById(id: string) {
-    this.selectedGroup = <GroupModel>this.groups.find(g => g.id == id);
   }
 }

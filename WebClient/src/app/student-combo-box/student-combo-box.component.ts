@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { StudentModel } from '../_models/studentModel';
 import { StudentService } from '../_services/student.service';
 
@@ -10,32 +12,29 @@ import { StudentService } from '../_services/student.service';
   styleUrls: ['./student-combo-box.component.css']
 })
 export class StudentComboBoxComponent implements OnInit, OnChanges {
-  public students: StudentModel[] = [];
+  students: StudentModel[] = [];
   public selectedStudent: StudentModel;
+  public student: StudentModel;
   @Output() myEvent = new EventEmitter<StudentModel>();
   @Input() loading: boolean = false;
-  public studentControl = new FormControl<StudentModel>(this.students[0], Validators.required);
 
-  constructor(private _studentService: StudentService) { }
+  constructor(public _studentService: StudentService) { }
 
-  ngOnInit(): void { }
-
+  ngOnInit(): void {
+  }
+  public showById(id: string) {
+    this.selectedStudent = <StudentModel>this.students.find(t => t.id == id);
+  }
   ngOnChanges() {
     if (this.loading == false) {
       this.upload();
     }
   }
-
   public upload(): void {
     this.students.length = 0;
     this._studentService.getAll().subscribe(students => this.students.push(...students));
   }
-
   exportValue() {
-    this.myEvent.emit(<StudentModel>this.studentControl.value);
-  }
-
-  public showById(id: string) {
-    this.selectedStudent = <StudentModel>this.students.find(g => g.id == id);
+    this.myEvent.emit(this.selectedStudent);
   }
 }

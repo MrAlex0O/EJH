@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LessonModel } from '../_models/lessonModel';
 import { LessonService } from '../_services/lesson.service';
 
@@ -10,32 +11,30 @@ import { LessonService } from '../_services/lesson.service';
   styleUrls: ['./lesson-combo-box.component.css']
 })
 export class LessonComboBoxComponent implements OnInit, OnChanges {
-  public lessons: LessonModel[] = [];
+  lessons: LessonModel[] = [];
   public selectedLesson: LessonModel;
   @Output() myEvent = new EventEmitter<LessonModel>();
   @Input() loading: boolean = false;
-  public lessonControl = new FormControl<LessonModel>(this.lessons[0], Validators.required);
 
-  constructor(private _lessonService: LessonService) { }
+  constructor(public _lessonService: LessonService) { }
 
-  ngOnInit(): void { }
-  
+  ngOnInit(): void {
+
+  }
+
+  public showById(id: string) {
+    this.selectedLesson = <LessonModel>this.lessons.find(g => g.id == id);
+  }
   ngOnChanges() {
     if (this.loading == false) {
       this.upload();
     }
   }
-
   public upload(): void {
     this.lessons.length = 0;
     this._lessonService.getAll().subscribe(lessons => this.lessons.push(...lessons));
   }
-
   exportValue() {
-    this.myEvent.emit(<LessonModel>this.lessonControl.value);
-  }
-
-  public showById(id: string) {
-    this.selectedLesson = <LessonModel>this.lessons.find(g => g.id == id);
+    this.myEvent.emit(this.selectedLesson);
   }
 }

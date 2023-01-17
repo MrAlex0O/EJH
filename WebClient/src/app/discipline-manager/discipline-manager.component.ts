@@ -16,7 +16,14 @@ export class DisciplineManagerComponent implements OnInit {
 
   constructor(private _disciplineService: DisciplineService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    /*this.name = this.selected.name;
+    this.surname = this.selected.surname;
+    this.midname = this.selected.midname;
+    this.email = this.selected.email;
+    this.address = this.selected.address;
+    this.phoneNumber = this.selected.phoneNumber;*/
+  }
 
 
   @Input() selected: DisciplineModel;
@@ -36,7 +43,7 @@ export class DisciplineManagerComponent implements OnInit {
   loading: boolean = false;
   
   importDiscipline(discipline: DisciplineModel) {
-    this.selected = discipline;
+    this.selected = this.disciplineViewChild.selectedDiscipline;
     this.id = discipline.id;
     this.name = discipline.name;
     this.lectorId = discipline.lectorId;

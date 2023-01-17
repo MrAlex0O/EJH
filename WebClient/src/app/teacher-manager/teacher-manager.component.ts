@@ -31,13 +31,13 @@ export class TeacherManagerComponent implements OnInit {
     this.phoneNumber = this.selected.phoneNumber;
   }
   importValue(teacher: TeacherModel) {
-    this.selected = teacher;
-    this.name = teacher.name;
-    this.surname = teacher.surname;
-    this.midname = teacher.midname;
-    this.email = teacher.email;
-    this.address = teacher.address;
-    this.phoneNumber = teacher.phoneNumber;
+    this.selected = this.viewChild.selectedTeacher;
+    this.name = this.viewChild.selectedTeacher.name;
+    this.surname = this.viewChild.selectedTeacher.surname;
+    this.midname = this.viewChild.selectedTeacher.midname;
+    this.email = this.viewChild.selectedTeacher.email;
+    this.address = this.viewChild.selectedTeacher.address;
+    this.phoneNumber = this.viewChild.selectedTeacher.phoneNumber;
     console.log(teacher);
   }
   update() {

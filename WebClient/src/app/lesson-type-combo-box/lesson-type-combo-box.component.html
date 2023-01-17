@@ -1,10 +1,10 @@
-<mat-form-field>
-  <mat-select placeholder="lessonTypes"
-              (selectionChange)="exportValue()"
-              [formControl]="lessonTypeControl"
-              [(ngModel)]="selectedLessonType">
-    <mat-option *ngFor="let lessonType of lessonTypes" [value]="lessonType">
-      {{lessonType.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<form>
+  <mat-form-field>
+    <mat-select placeholder="lessonTypes" [(ngModel)]="selectedLessonType" name="lessonType"
+                (selectionChange)="exportValue()">
+      <mat-option *ngFor="let lessonType of lessonTypes" [value]="lessonType">
+        {{lessonType.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
