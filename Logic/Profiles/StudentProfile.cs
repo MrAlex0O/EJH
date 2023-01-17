@@ -15,6 +15,7 @@ namespace Logic.Profiles
         {
             CreateMap<CreateStudentRequest, Person>();
             CreateMap<UpdateStudentRequest, Person>();
+            CreateMap<UpdateStudentRequest, Student>();
         }
     }
 }

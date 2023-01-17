@@ -35,13 +35,13 @@ export class StudentManagerComponent implements OnInit {
     this.phoneNumber = this.selected.phoneNumber;
   }
   importValue(student: StudentModel) {
-    this.selected = this.studentViewChild.selectedStudent;
-    this.name = this.studentViewChild.selectedStudent.name;
-    this.surname = this.studentViewChild.selectedStudent.surname;
-    this.midname = this.studentViewChild.selectedStudent.midname;
-    this.email = this.studentViewChild.selectedStudent.email;
-    this.address = this.studentViewChild.selectedStudent.address;
-    this.phoneNumber = this.studentViewChild.selectedStudent.phoneNumber;
+    this.selected = student;
+    this.name = student.name;
+    this.surname = student.surname;
+    this.midname = student.midname;
+    this.email = student.email;
+    this.address = student.address;
+    this.phoneNumber = student.phoneNumber;
     this.groupViewChild.showById(student.groupId);
     console.log(student);
   }

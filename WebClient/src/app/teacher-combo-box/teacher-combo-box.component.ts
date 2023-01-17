@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
 import { TeacherModel } from '../_models/teacherModel';
 import { TeacherService } from '../_services/teacher.service';
 
@@ -12,29 +10,32 @@ import { TeacherService } from '../_services/teacher.service';
   styleUrls: ['./teacher-combo-box.component.css']
 })
 export class TeacherComboBoxComponent implements OnInit, OnChanges {
-  teachers: TeacherModel[] = [];
+  public teachers: TeacherModel[] = [];
   public selectedTeacher: TeacherModel;
-  public teacher: TeacherModel;
   @Output() myEvent = new EventEmitter<TeacherModel>();
   @Input() loading: boolean = false;
+  public teacherControl = new FormControl<TeacherModel>(this.teachers[0], Validators.required);
 
-  constructor(public _teacherService: TeacherService) { }
+  constructor(private _teacherService: TeacherService) { }
 
-  ngOnInit(): void {
-  }
-  public showById(id: string) {
-    this.selectedTeacher = <TeacherModel>this.teachers.find(t => t.id == id);
-  }
+  ngOnInit(): void { }
+
   ngOnChanges() {
     if (this.loading == false) {
       this.upload();
     }
   }
+
   public upload(): void {
     this.teachers.length = 0;
     this._teacherService.getAll().subscribe(teachers => this.teachers.push(...teachers));
   }
+
   exportValue() {
-    this.myEvent.emit(this.selectedTeacher);
+    this.myEvent.emit(<TeacherModel>this.teacherControl.value);
+  }
+
+  public showById(id: string) {
+    this.selectedTeacher = <TeacherModel>this.teachers.find(g => g.id == id);
   }
 }
