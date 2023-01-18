@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { GenericReportResponse } from '../generic-table/generic-table.component';
 
 @Component({
   selector: 'report-manager',
@@ -12,52 +13,40 @@ export class ReportManagerComponent implements OnInit {
   ngOnInit() {
   }
 
-  columnHeader = { 'profileName': 'Profile Name', 'profileDesc': 'Description', 'adminUser': 'Admin User', 'id': '' };
+  columnHeader = { 'id': 'Id', 'fullName': 'Full name', 'groupName': 'Group name'};
 
-  tableData: ProfileSetUp[] = [
+  tableData: GenericReportResponse[] = [
     {
-      id: 1,
-      profileName: "Cameron Villams",
-      profileDesc: "Face to face contact",
-      adminUser: "Iwan Rynders",
-      action: ""
+      id: "1",
+      fullName: "Cameron Villams",
+      groupName: "a"
     },
     {
-      id: 2,
-      profileName: "Charl Angle",
-      profileDesc: "Face to face contact",
-      adminUser: "Unknown",
-      action: ""
+      id: "2",
+      fullName: "Charl Angle",
+      groupName: "b"
     },
     {
-      id: 3,
-      profileName: "Johan Abraham",
-      profileDesc: "Face to face contact",
-      adminUser: "Unknown",
-      action: ""
+      id: "3",
+      fullName: "Johan Abraham",
+      groupName: "c"
     },
     {
-      id: 4,
-      profileName: "Niekie Gadgilly",
-      profileDesc: "Face to face contact",
-      adminUser: "Unknown",
-      action: ""
+      id: "4",
+      fullName: "Niekie Gadgilly",
+      groupName: "d"
     },
     {
-      id: 5,
-      profileName: "Veer S",
-      profileDesc: "Face to face contact",
-      adminUser: "Unknown",
-      action: ""
+      id: "5",
+      fullName: "Veer S",
+      groupName: "2"
+    },
+    {
+      id: "6",
+      fullName: "Veer Sancho",
+      groupName: "1"
     }
   ];
 }
 
 
-export interface ProfileSetUp {
-  id: number;
-  profileName: string;
-  profileDesc: string;
-  adminUser: string;
-  action: string;
-}

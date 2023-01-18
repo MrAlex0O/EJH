@@ -29,7 +29,7 @@ $dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accen
 
 .light-theme, .dark-theme {
   mat-sidenav-container {
-    font-size: 24px;
+    font-size: 20px;
     padding: 15px;
   }
 
@@ -41,6 +41,21 @@ $dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accen
   a {
     border-bottom: 1px solid;
     margin: 5px 10px 5px 10px;
+  }
+
+  table {
+    width: 80%;
+    margin: 5px 10px 5px 10px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+
+  th {
+    font-size: 20px;
+    padding-left: 16px;
+    font-weight: bold;
   }
 }
 
