@@ -1,8 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { StateService } from './_services/state.service';
-import { MatDrawerMode } from '@angular/material/sidenav';
 import { StorageService } from './_services/storage.service';
 @Component({
   selector: 'app-root',
@@ -14,7 +11,7 @@ export class AppComponent implements OnInit{
   themes: string[] = ['light', 'dark'];
   selectedTheme: string = 'light';
   themeMap: Map<string, string> = new Map();
-  constructor(public s: StateService, private overlayContainer: OverlayContainer, public storageService : StorageService) {
+  constructor(private overlayContainer: OverlayContainer, public storageService : StorageService) {
     this.themeMap.set('light', 'light-theme');
     this.themeMap.set('dark', 'dark-theme');
   }
@@ -40,7 +37,7 @@ export class AppComponent implements OnInit{
   }
 
   addThemeClass() {
-    const themeClass: string = this.s.OS.snapshot(this.s.OS.S.theme)
+    const themeClass: string = this.storageService.OS.snapshot(this.storageService.OS.S.theme)
     this.overlayContainer.getContainerElement().classList.add(themeClass)
   }
   changeTheme() {
@@ -51,7 +48,7 @@ export class AppComponent implements OnInit{
     this.storageService.saveTheme(this.selectedTheme);
 
     const theme: string | undefined = this.themeMap.get(this.selectedTheme);
-    this.s.OS.put(this.s.OS.S.theme, theme);
+    this.storageService.OS.put(this.storageService.OS.S.theme, theme);
     this.removeThemeClasses();
     this.addThemeClass();
   }
