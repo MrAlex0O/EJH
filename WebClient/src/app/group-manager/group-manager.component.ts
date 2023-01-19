@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { GroupComboBoxComponent } from '../group-combo-box/group-combo-box.component';
+import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 import { GroupModel } from '../_models/groupModel';
 import { GroupService } from '../_services/group.service'
 
@@ -10,15 +10,18 @@ import { GroupService } from '../_services/group.service'
 })
 export class GroupManagerComponent implements OnInit {
 
-  @Input() selected: GroupModel = { id: "", name: "" };
+  @Input() selected: GroupModel;
+  groups: GroupModel[] = [];
   name: string = "";
-  @ViewChild(GroupComboBoxComponent)
-  viewChild!: GroupComboBoxComponent;
+  @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
+  renderFunction = (item: GroupModel) => { return `${item.name}`; }
   loading: boolean = false;
 
   constructor(private _groupService: GroupService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
+  }
 
   importValue(group: GroupModel) {
     this.selected = group;

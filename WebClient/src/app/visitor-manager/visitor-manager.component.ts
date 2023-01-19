@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { StudentVisitComponent } from '../student-visit/student-visit.component';
 import { LessonModel } from '../_models/lessonModel';
 import { StatusOnLesson } from '../_models/statusOnLesson';
 import { StudentModel } from '../_models/studentModel';
 import { StudentVisitModel } from '../_models/studentVisitModel';
+import { LessonService } from '../_services/lesson.service';
 import { StudentService } from '../_services/student.service';
 import { VisitorService } from '../_services/visitor.service';
 
@@ -20,19 +19,15 @@ export class VisitorManagerComponent implements OnInit {
 
   students: StudentModel[] = [];
   selectedStatuses: StatusOnLesson[] = [];
-
-  constructor(private _studentService: StudentService, private _visitorService: VisitorService) {
-
-
-  }
+  lessons: LessonModel[] = [];
+  renderFunction = (item: LessonModel) => { return `${item.disciplineName} ${item.groupName} ${item.date} ${item.lessonType}`; }
+  constructor(private _studentService: StudentService, private _visitorService: VisitorService, private _lessonService: LessonService) { }
 
   ngOnInit(): void {
     this.loading = true;
     this.statuses.length = 0;
     this._visitorService.getStatusesOnLesson().subscribe(statuses => { this.statuses.push(...statuses); this.loading = false });
-    
-  }
-  exportValue() {
+    this._lessonService.getAll().subscribe(lessons => { this.lessons.push(...lessons); this.loading = false });
 
   }
 
@@ -51,14 +46,9 @@ export class VisitorManagerComponent implements OnInit {
         });
       }
 
-      
       this.loading = false;
     });
     
-
-
-    
-
     this.show();
   }
 
@@ -72,8 +62,6 @@ export class VisitorManagerComponent implements OnInit {
         let studentIndex: number = this.students.findIndex(s => s.id == visits.studentsIds[i]);
         this.selectedStatuses[studentIndex] = <StatusOnLesson>this.statuses.find(s => s.id == visits.studentStatusesIds[i]);
       }
-
-
 
     });
   }

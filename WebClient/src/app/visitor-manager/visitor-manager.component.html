@@ -1,4 +1,4 @@
-<app-lesson-combo-box name="lesson" (myEvent)="importLesson($event)" [loading]="loading"></app-lesson-combo-box>
+<app-generic-combo-box name="lesson" [placeholder]="'Select lesson'" [models]="lessons" [viewPattern]="renderFunction" (myEvent)="importLesson($event)"></app-generic-combo-box>
 
 <br />
 <button mat-button (click)="show()">show</button>

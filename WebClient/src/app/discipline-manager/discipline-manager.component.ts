@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { DisciplineComboBoxComponent } from '../discipline-combo-box/discipline-combo-box.component';
-import { GroupComboBoxComponent } from '../group-combo-box/group-combo-box.component';
-import { TeacherComboBoxComponent } from '../teacher-combo-box/teacher-combo-box.component';
 import { DisciplineModel } from '../_models/disciplineModel';
 import { GroupModel } from '../_models/groupModel';
 import { TeacherModel } from '../_models/teacherModel';
 import { DisciplineService } from '../_services/discipline.service';
+import { TeacherService } from '../_services/teacher.service';
+import { GroupService } from '../_services/group.service';
+import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 
 @Component({
   selector: 'app-discipline-manager',
@@ -14,10 +14,7 @@ import { DisciplineService } from '../_services/discipline.service';
 })
 export class DisciplineManagerComponent implements OnInit {
 
-  constructor(private _disciplineService: DisciplineService) { }
-
-  ngOnInit(): void { }
-
+  
 
   @Input() selected: DisciplineModel;
   id: string = "";
@@ -29,12 +26,24 @@ export class DisciplineManagerComponent implements OnInit {
   semester: number = 0;
   assistantsIds: string[] = [];
   assistantsFullNames: string[] = [];
-  @ViewChild(DisciplineComboBoxComponent) disciplineViewChild!: DisciplineComboBoxComponent;
-  @ViewChild('lector') lectorViewChild!: TeacherComboBoxComponent;
-  @ViewChild('newAssistant') assistantViewChild!: TeacherComboBoxComponent;
-  @ViewChild(GroupComboBoxComponent) groupViewChild!: GroupComboBoxComponent;
+  @ViewChild('lectorSelector') lectorViewChild!: GenericComboBoxComponent;
+  @ViewChild('assistantSelector') assistantViewChild!: GenericComboBoxComponent;
+  @ViewChild('groupSelector') groupViewChild!: GenericComboBoxComponent;
+  teacherRenderFunction = (item: TeacherModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
+  disciplineRenderFunction = (item: DisciplineModel) => { return `${item.name} ${item.groupName}`; }
+  groupRenderFunction = (item: GroupModel) => { return `${item.name}`; }
+  groups: GroupModel[] = [];
+  teachers: TeacherModel[] = [];
+  disciplines: DisciplineModel[] = [];
   loading: boolean = false;
-  
+  constructor(private _disciplineService: DisciplineService, private _teacherService: TeacherService, private _groupService: GroupService) { }
+
+  ngOnInit(): void {
+    this._teacherService.getAll().subscribe(teachers => this.teachers.push(...teachers));
+    this._disciplineService.getAll().subscribe(disciplines => this.disciplines.push(...disciplines));
+    this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
+  }
+
   importDiscipline(discipline: DisciplineModel) {
     this.selected = discipline;
     this.id = discipline.id;
@@ -55,10 +64,10 @@ export class DisciplineManagerComponent implements OnInit {
     console.log(discipline);
   }
   importLector(teacher: TeacherModel) {
-
+    this.lectorId = teacher.id;
   }
   importGroup(group: GroupModel) {
-
+    this.groupId = group.id;
   }
 
   deleteAssistant(index: number) {
@@ -67,18 +76,20 @@ export class DisciplineManagerComponent implements OnInit {
   }
 
   addAssistant() {
-    const fullname = this.assistantViewChild.selectedTeacher.surname + " " + this.assistantViewChild.selectedTeacher.name + " " + this.assistantViewChild.selectedTeacher.midname;
+    const id = this.assistantViewChild.selectedModel.id;
+    const teacher = <TeacherModel>this.teachers.find(i => i.id == id);
+    const fullname = teacher.surname + " " + teacher.name + " " + teacher.midname;
     this.assistantsFullNames.push(fullname);
-    this.assistantsIds.push(this.assistantViewChild.selectedTeacher.id);
+    this.assistantsIds.push(this.assistantViewChild.selectedModel.id);
   }
 
   addDiscipline() {
     let discipline: DisciplineModel = {
       name: this.name,
       id: "",
-      lectorId: this.lectorViewChild.selectedTeacher.id,
+      lectorId: this.lectorViewChild.selectedModel.id,
       lectorFullName: "",
-      groupId: this.groupViewChild.selectedGroup.id,
+      groupId: this.groupViewChild.selectedModel.id,
       groupName: "",
       semester: this.semester,
       assistantsIds: this.assistantsIds,
@@ -97,9 +108,9 @@ export class DisciplineManagerComponent implements OnInit {
     let discipline: DisciplineModel = {
       name: this.name,
       id: this.id,
-      lectorId: this.lectorViewChild.selectedTeacher.id,
+      lectorId: this.lectorViewChild.selectedModel.id,
       lectorFullName: "",
-      groupId: this.groupViewChild.selectedGroup.id,
+      groupId: this.groupViewChild.selectedModel.id,
       groupName: "",
       semester: this.semester,
       assistantsIds: this.assistantsIds,

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { TeacherComboBoxComponent } from '../teacher-combo-box/teacher-combo-box.component';
+import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 import { TeacherModel } from '../_models/teacherModel';
 import { TeacherService } from '../_services/teacher.service'
 
@@ -11,18 +10,21 @@ import { TeacherService } from '../_services/teacher.service'
 })
 export class TeacherManagerComponent implements OnInit {
 
-  constructor(private _teacherService: TeacherService) { }
   @Input() selected: TeacherModel;
+  teachers: TeacherModel[] = [];
   name: string = "";
   midname: string = "";
   surname: string = "";
   email: string = "";
   address: string = "";
   phoneNumber: string = "";
-  @ViewChild(TeacherComboBoxComponent) viewChild!: TeacherComboBoxComponent;
+  @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
+  renderFunction = (item: TeacherModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
   loading: boolean = false;
 
+  constructor(private _teacherService: TeacherService) { }
   ngOnInit(): void {
+    this._teacherService.getAll().subscribe(teachers => this.teachers.push(...teachers));
     this.name = this.selected.name;
     this.surname = this.selected.surname;
     this.midname = this.selected.midname;

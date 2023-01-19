@@ -1,4 +1,4 @@
-export interface StudentVisitModel {
+export interface StudentVisitModel{
   lessonId: string;
   studentId: string;
   statusOnLessonId: string;

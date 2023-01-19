@@ -1,33 +1,34 @@
-<app-teacher-combo-box name="teachers" (myEvent)="importValue($event)" [loading]="loading"></app-teacher-combo-box>
+<form>
+  <app-generic-combo-box [placeholder]="'Select teacher'" [models]="teachers" [viewPattern]="renderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
 
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="surname" type="text" name="surname" id="surname-input" [(ngModel)]="surname" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="midname" type="text" name="midname" id="midname-input" [(ngModel)]="midname" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="address" type="text" name="address" id="address-input" [(ngModel)]="address" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="email" type="text" name="email" id="email-input" [(ngModel)]="email" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
+  </mat-form-field>
+  <br />
 
-<br />
-<mat-form-field>
-  <input matInput placeholder="surname" type="text" name="surname" id="surname-input" [(ngModel)]="surname" />
-</mat-form-field>
-<br />
-<mat-form-field>
-  <input matInput placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
-</mat-form-field>
-<br />
-<mat-form-field>
-  <input matInput placeholder="midname" type="text" name="midname" id="midname-input" [(ngModel)]="midname" />
-</mat-form-field>
-<br />
-<mat-form-field>
-  <input matInput placeholder="address" type="text" name="address" id="address-input" [(ngModel)]="address" />
-</mat-form-field>
-<br />
-<mat-form-field>
-  <input matInput placeholder="email" type="text" name="email" id="email-input" [(ngModel)]="email" />
-</mat-form-field>
-<br />
-<mat-form-field>
-  <input matInput placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
-</mat-form-field>
-<br />
+  <button mat-button name="update" value="" (click)="update()">Обновить</button>
+  <button mat-button name="add" value="" (click)="add()">Добавить</button>
+  <button mat-button name="delete" value="" (click)="delete()">Удалить</button>
 
-<button mat-button name="update" value="" (click)="update()">Обновить</button>
-<button mat-button name="add" value="" (click)="add()">Добавить</button>
-<button mat-button name="delete" value="" (click)="delete()">Удалить</button>
-
+</form>

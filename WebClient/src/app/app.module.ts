@@ -9,7 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AppComponent } from './app.component';
-import { DisciplineComboBoxComponent } from './discipline-combo-box/discipline-combo-box.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -18,16 +17,11 @@ import { HttpRequestInterceptor } from './_helpers/http.inceptor';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GroupComboBoxComponent } from './group-combo-box/group-combo-box.component';
 import { GroupManagerComponent } from './group-manager/group-manager.component';
-import { TeacherComboBoxComponent } from './teacher-combo-box/teacher-combo-box.component';
 import { TeacherManagerComponent } from './teacher-manager/teacher-manager.component';
 import { DisciplineManagerComponent } from './discipline-manager/discipline-manager.component';
-import { StudentComboBoxComponent } from './student-combo-box/student-combo-box.component';
 import { StudentManagerComponent } from './student-manager/student-manager.component';
-import { LessonTypeComboBoxComponent } from './lesson-type-combo-box/lesson-type-combo-box.component';
 import { LessonManagerComponent } from './lesson-manager/lesson-manager.component';
-import { LessonComboBoxComponent } from './lesson-combo-box/lesson-combo-box.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,7 +35,7 @@ import { VisitorManagerComponent } from './visitor-manager/visitor-manager.compo
 import { StudentVisitComponent } from './student-visit/student-visit.component';
 import { GenericTableComponent } from './generic-table/generic-table.component';
 import { ReportManagerComponent } from './report-manager/report-manager.component';
-import { GenericComboBoxComponent } from './me-combo-box/me-combo-box.component';
+import { GenericComboBoxComponent } from './generic-combo-box/generic-combo-box.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -62,7 +56,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DisciplineComboBoxComponent,
     DisciplineManagerComponent,
     HomeComponent,
     AboutComponent,
@@ -70,15 +63,10 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    GroupComboBoxComponent,
     GroupManagerComponent,
-    TeacherComboBoxComponent,
     TeacherManagerComponent,
-    StudentComboBoxComponent,
     StudentManagerComponent,
-    LessonTypeComboBoxComponent,
     LessonManagerComponent,
-    LessonComboBoxComponent,
     VisitorManagerComponent,
     StudentVisitComponent,
     GenericTableComponent,

@@ -1,4 +1,6 @@
-export interface LessonVisitModel {
+import { BaseModel } from "./BaseModel";
+
+export interface LessonVisitModel extends BaseModel {
 
   disciplineId: string,
   disciplineName: string,

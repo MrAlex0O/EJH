@@ -1,4 +1,6 @@
-export interface DisciplineModel {
+import { BaseModel } from "./BaseModel";
+
+export interface DisciplineModel extends BaseModel {
   id: string;
   name: string;
   lectorId: string;

@@ -1,4 +1,6 @@
-export interface TeacherModel {
+import { BaseModel } from "./BaseModel";
+
+export interface TeacherModel extends BaseModel {
   id: string;
   name: string;
   midname: string;

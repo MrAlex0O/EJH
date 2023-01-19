@@ -1,4 +1,6 @@
-export interface LessonModel {
+import { BaseModel } from "./BaseModel";
+
+export interface LessonModel extends BaseModel {
   
   id: string;
   disciplineId: string;
@@ -11,6 +13,6 @@ export interface LessonModel {
   assistantsFullNames: string[];
   lessonTypeId: string;
   lessonType: string;
-  date: Date | null;
+  date: string;
   sequenceNumber: number
 }

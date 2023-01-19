@@ -1,14 +1,15 @@
-<app-discipline-combo-box #disciplineViewChild name="disciplines" (myEvent)="importDiscipline($event)" [loading]="loading"></app-discipline-combo-box>
+<app-generic-combo-box [placeholder]="'Select discipline'" [models]="disciplines" [viewPattern]="disciplineRenderFunction" (myEvent)="importDiscipline($event)"></app-generic-combo-box>
 
 <mat-form-field>
   <input matInput placeholder="name" type="text" name="name" id="name-input" #newName [(ngModel)]="name" />
 </mat-form-field>
 <br />
-<app-teacher-combo-box name="lector" #lector (myEvent)="importLector($event)" [loading]="loading">Lector</app-teacher-combo-box>
-<app-group-combo-box name="group" (myEvent)="importGroup($event)" [loading]="loading"></app-group-combo-box>
-
-<input matInput placeholder="semester" type="text" name="semester" id="semester-input" [(ngModel)]="semester" />
-
+<app-generic-combo-box #lectorSelector [placeholder]="'Select lector'" [models]="teachers" [viewPattern]="teacherRenderFunction" (myEvent)="importLector($event)"></app-generic-combo-box>
+<app-generic-combo-box #groupSelector [placeholder]="'Select group'" [models]="groups" [viewPattern]="groupRenderFunction" (myEvent)="importGroup($event)"></app-generic-combo-box>
+<p>
+  Семестр:
+  <input matInput placeholder="semester" type="text" name="semester" id="semester-input" [(ngModel)]="semester" />
+</p>
 <br />
 <ul>
   <li *ngFor="let item of assistantsFullNames; let i = index">
@@ -18,9 +19,8 @@
 
 </ul>
 
-<app-teacher-combo-box name="newAssistant"
-                       #newAssistant
-                       [loading]="loading">Assistants</app-teacher-combo-box>
+<app-generic-combo-box #assistantSelector [placeholder]="'Select teacher'" [models]="teachers" [viewPattern]="teacherRenderFunction"></app-generic-combo-box>
+
 <button mat-button (click)="addAssistant()">Добавить ассистента</button>
 
 <br />

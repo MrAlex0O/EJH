@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { GroupComboBoxComponent } from '../group-combo-box/group-combo-box.component';
-import { StudentComboBoxComponent } from '../student-combo-box/student-combo-box.component';
+import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 import { GroupModel } from '../_models/groupModel';
 import { StudentModel } from '../_models/studentModel';
+import { GroupService } from '../_services/group.service';
 import { StudentService } from '../_services/student.service'
 
 @Component({
@@ -13,7 +12,6 @@ import { StudentService } from '../_services/student.service'
 })
 export class StudentManagerComponent implements OnInit {
 
-  constructor(private _studentService: StudentService) { }
   @Input() selected: StudentModel;
   name: string = "";
   midname: string = "";
@@ -21,12 +19,18 @@ export class StudentManagerComponent implements OnInit {
   email: string = "";
   address: string = "";
   phoneNumber: string = "";
-  group: GroupModel;
-  @ViewChild(StudentComboBoxComponent) studentViewChild!: StudentComboBoxComponent;
-  @ViewChild(GroupComboBoxComponent) groupViewChild!: GroupComboBoxComponent;
+  groupId: string = "";
+  groups: GroupModel[] = [];
+  students: StudentModel[] = [];
+  @ViewChild('groupSelector') groupViewChild!: GenericComboBoxComponent;
+  studentRenderFunction = (item: StudentModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
+  groupRenderFunction = (item: GroupModel) => { return `${item.name}`; }
   loading: boolean = false;
 
+  constructor(private _studentService: StudentService, private _groupService: GroupService) { }
   ngOnInit(): void {
+    this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
+    this._studentService.getAll().subscribe(students => this.students.push(...students));
     this.name = this.selected.name;
     this.surname = this.selected.surname;
     this.midname = this.selected.midname;
@@ -47,30 +51,30 @@ export class StudentManagerComponent implements OnInit {
   }
 
   importGroup(group: GroupModel) {
-    this.group = group;
+    this.groupId = group.id;
   }
   update() {
     this.loading = true;
     let student: StudentModel = {
-        name: this.name, id: this.selected.id, midname: this.midname,
-        surname: this.surname,
-        address: this.address,
-        email: this.email,
+      name: this.name, id: this.selected.id, midname: this.midname,
+      surname: this.surname,
+      address: this.address,
+      email: this.email,
       phoneNumber: this.phoneNumber,
-      groupId: this.groupViewChild.selectedGroup.id,
-        groupName: ""
+      groupId: this.groupId,
+      groupName: ""
     }
     this._studentService.Update(student).subscribe(() => this.loading = false);
   }
   add() {
     let student: StudentModel = {
-        name: this.name, id: "", midname: this.midname,
-        surname: this.surname,
-        address: this.address,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-      groupId: this.groupViewChild.selectedGroup.id,
-        groupName: ""
+      name: this.name, id: "", midname: this.midname,
+      surname: this.surname,
+      address: this.address,
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      groupId: this.groupId,
+      groupName: ""
     }
     this.loading = true;
     this._studentService.Add(student).subscribe(() => this.loading = false);

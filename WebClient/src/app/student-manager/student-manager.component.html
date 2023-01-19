@@ -1,5 +1,5 @@
 <form>
-  <app-student-combo-box name="students" (myEvent)="importValue($event)" [loading]="loading"></app-student-combo-box>
+  <app-generic-combo-box [placeholder]="'Select student'" [models]="students" [viewPattern]="studentRenderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
 
 
   <br />
@@ -27,10 +27,10 @@
     <input matInput placeholder="phoneNumber" type="text" name="phoneNumber" id="phoneNumber-input" [(ngModel)]="phoneNumber" />
   </mat-form-field>
   <br />
-  <app-group-combo-box name="groups" (myEvent)="importGroup($event)" [loading]="loading"></app-group-combo-box>
-
-  <br />
-  <button mat-button name="update" value="" (click)="update()">Обновить</button>
-  <button mat-button name="add" value="" (click)="add()">Добавить</button>
-  <button mat-button name="delete" value="" (click)="delete()">Удалить</button>
+    <app-generic-combo-box [placeholder]="'Select group'" #groupSelector [models]="groups" [viewPattern]="groupRenderFunction" (myEvent)="importGroup($event)"></app-generic-combo-box>
+    
+      <br />
+      <button mat-button name="update" value="" (click)="update()">Обновить</button>
+      <button mat-button name="add" value="" (click)="add()">Добавить</button>
+      <button mat-button name="delete" value="" (click)="delete()">Удалить</button>
 </form>

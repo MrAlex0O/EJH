@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-select placeholder="models"
+  <mat-select [placeholder]="placeholder"
               (selectionChange)="exportValue()"
               [formControl]="modelControl"
               [(ngModel)]="selectedModel">

@@ -5,20 +5,21 @@ import { StudentService } from '../_services/student.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-combo-box',
-  templateUrl: './me-combo-box.component.html',
-  styleUrls: ['./me-combo-box.component.css']
+  selector: 'app-generic-combo-box',
+  templateUrl: './generic-combo-box.component.html',
+  styleUrls: ['./generic-combo-box.component.css']
 })
 export class GenericComboBoxComponent implements OnInit, OnChanges {
   @Input() public models: BaseModel[] = [];
-  public selectedModel: BaseModel;
-  @Output() myEvent = new EventEmitter<BaseModel>();
+  @Input() public selectedModel: BaseModel;
+  @Output() myEvent = new EventEmitter<any>();
   @Input() loading: boolean = false;
+  @Input() placeholder: string = "";
+  public modelControl = new FormControl<BaseModel>(this.models[0], Validators.required);
+
   @Input() viewPattern = (item: any) => {
     return item.toString();
   };
-
-  public modelControl = new FormControl<BaseModel>(this.models[0], Validators.required);
 
   constructor() { }
 
@@ -32,7 +33,7 @@ export class GenericComboBoxComponent implements OnInit, OnChanges {
   }
 
   exportValue() {
-    this.myEvent.emit(<BaseModel>this.modelControl.value);
+    this.myEvent.emit(<any>this.modelControl.value);
   }
 
   public showById(id: string) {
