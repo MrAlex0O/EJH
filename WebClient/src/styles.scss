@@ -33,6 +33,10 @@ $dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accen
     padding: 15px;
   }
 
+  mat-sidenav {
+    width: 500px;
+  }
+
   button {
     border: 1px solid;
     margin: 5px 10px 5px 10px;

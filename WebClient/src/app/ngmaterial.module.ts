@@ -1,10 +1,26 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule, } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
-  imports: [MatButtonModule, MatFormFieldModule, MatSelectModule],
-  exports: [MatButtonModule, MatFormFieldModule, MatSelectModule]
+  imports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
+    MatDatepickerModule, MatNativeDateModule, MatTableModule,
+    MatListModule, MatSortModule, MatPaginatorModule,
+    MatSidenavModule
+],
+  exports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
+    MatDatepickerModule, MatNativeDateModule, MatTableModule,
+    MatListModule, MatSortModule, MatPaginatorModule,
+    MatSidenavModule
+]
 })
 export class MaterialAppModule { }
