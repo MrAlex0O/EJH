@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GenericReportResponse } from '../generic-table/generic-table.component';
 
 @Component({

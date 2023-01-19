@@ -17,12 +17,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    /*this.themeSelect.valueChanges.subscribe(themeColor => {
-      const theme: string | undefined = this.themeMap.get(themeColor);
-      this.s.OS.put(this.s.OS.S.theme, theme);
-      this.removeThemeClasses();
-      this.addThemeClass();
-    })*/
     this.selectedTheme = this.storageService.getTheme();
     this.removeThemeClasses();
     this.addThemeClass();

@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-select placeholder="models"
+              (selectionChange)="exportValue()"
+              [formControl]="modelControl"
+              [(ngModel)]="selectedModel">
+    <mat-option *ngFor="let model of models" [value]="model">
+      {{viewPattern(model)}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

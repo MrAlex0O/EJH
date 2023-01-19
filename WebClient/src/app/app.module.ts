@@ -41,6 +41,7 @@ import { VisitorManagerComponent } from './visitor-manager/visitor-manager.compo
 import { StudentVisitComponent } from './student-visit/student-visit.component';
 import { GenericTableComponent } from './generic-table/generic-table.component';
 import { ReportManagerComponent } from './report-manager/report-manager.component';
+import { GenericComboBoxComponent } from './me-combo-box/me-combo-box.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -81,7 +82,8 @@ const appRoutes: Routes = [
     VisitorManagerComponent,
     StudentVisitComponent,
     GenericTableComponent,
-    ReportManagerComponent
+    ReportManagerComponent,
+    GenericComboBoxComponent
 
   ],
   imports: [
