@@ -2,12 +2,13 @@
 using Logic.WriteServices;
 using Logic.DTOs.Group;
 using Logic.ReadServices.Interfaces;
+using DataBase.Contexts;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
 {
-    //[Authorization.Authorize]
+    [Authorization.Authorize( Roles.Admin, Roles.Teacher )]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupController : ControllerBase

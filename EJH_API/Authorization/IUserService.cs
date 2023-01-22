@@ -10,6 +10,7 @@ namespace API.Authorization
         User GetById(Guid id);
         bool Register(RegisterRequest model);
         void Update(Guid id, UpdateRequest model);
-        void Delete(Guid id);
+        void Delete(Guid id); 
+        public Guid[] GetUserRoles(Guid id);
     }
 }

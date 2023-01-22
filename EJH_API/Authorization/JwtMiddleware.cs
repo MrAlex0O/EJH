@@ -17,6 +17,8 @@
             {
                 // attach user to context on successful jwt validation
                 context.Items["User"] = userService.GetById(userId.Value);
+            Guid[] RoleIds = userService.GetUserRoles((Guid)userId);
+                context.Items["Roles"] = RoleIds;
             }
             await _next(context);
         }

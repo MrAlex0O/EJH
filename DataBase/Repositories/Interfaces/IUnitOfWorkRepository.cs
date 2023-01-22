@@ -19,6 +19,9 @@ namespace DataBase.Repositories.Interfaces
         public BaseRepository<StatusOnLesson> StatusesOnLesson { get; }
         public BaseRepository<Student> Students { get; }
         public BaseRepository<Teacher> Teachers { get; }
+        public BaseRepository<User> Users { get; }
+        public BaseRepository<Role> Roles { get; }
+        public BaseRepository<UserRole> UserRoles { get; }
         public void SaveChanges();
 
         public Task SaveChangesAsync();

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Authorization.Authorize]
+    //[Authorization.Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DisciplineController : ControllerBase
@@ -25,7 +25,6 @@ namespace API.Controllers
 
         // GET api/<DisciplineController>
         [HttpGet]
-        [Authorization.AllowAnonymous]
         public async Task<ActionResult<List<GetDisciplineResponse>>> Get()
         {
             try

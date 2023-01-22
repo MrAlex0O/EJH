@@ -22,6 +22,8 @@ namespace DataBase.Contexts
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);
         public bool SaveChanges();
         public EntityEntry Update<TEntity>(TEntity entity);

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace API.Controllers
 {
-    [Authorization.Authorize]
+    //[Authorization.Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase

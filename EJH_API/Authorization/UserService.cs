@@ -26,7 +26,7 @@ namespace API.Authorization
 
             // validate
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
-                throw new Exception("Username or password is incorrect");
+                throw new Exception("Username or password is incorrect");           //#TODO
 
             // authentication successful
             AuthResponse response = _mapper.Map<AuthResponse>(user);
@@ -73,7 +73,7 @@ namespace API.Authorization
 
             // validate
             if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
-                throw new Exception("Username '" + model.Username + "' is already taken");
+                throw new Exception("Username '" + model.Username + "' is already taken");  //#TODO
 
             // hash password if it was entered
             if (!string.IsNullOrEmpty(model.Password))
@@ -97,8 +97,19 @@ namespace API.Authorization
         private User getUser(Guid id)
         {
             var user = _context.Users.Find(id);
-            if (user == null) throw new KeyNotFoundException("User not found");
+            if (user == null) throw new KeyNotFoundException("User not found");     //#TODO
             return user;
+        }
+        public Guid[] GetUserRoles(Guid id)
+        {
+            UserRole[] roles = _context.UserRoles.Where(i => i.UserId == id).ToArray();
+            List<Guid> result = new List<Guid>();
+            foreach (var role in roles)
+            {
+                result.Add(role.RoleId);
+            }
+            return result.ToArray();
+
         }
 
     }

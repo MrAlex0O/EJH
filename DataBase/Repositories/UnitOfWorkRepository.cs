@@ -29,6 +29,10 @@ namespace DataBase.Repositories
         private BaseRepository<Student>? _studentRepository;
         private BaseRepository<Teacher>? _teacherRepository;
 
+        private BaseRepository<User>? _userRepository;
+        private BaseRepository<Role>? _roleRepository;
+        private BaseRepository<UserRole>? _userRoleRepository;
+
         private bool _disposed = false;
 
         public BaseRepository<Assistant> Assistants => _assistantsRepository ??= new BaseRepository<Assistant>((Context)_context);
@@ -41,6 +45,9 @@ namespace DataBase.Repositories
         public BaseRepository<StatusOnLesson> StatusesOnLesson => _statusOnLessonRepository ??= new BaseRepository<StatusOnLesson>((Context)_context);
         public BaseRepository<Student> Students => _studentRepository ??= new BaseRepository<Student>((Context)_context);
         public BaseRepository<Teacher> Teachers => _teacherRepository ??= new BaseRepository<Teacher>((Context)_context);
+        public BaseRepository<User> Users => _userRepository ??= new BaseRepository<User>((Context)_context);
+        public BaseRepository<Role> Roles => _roleRepository ??= new BaseRepository<Role>((Context)_context);
+        public BaseRepository<UserRole> UserRoles => _userRoleRepository ??= new BaseRepository<UserRole>((Context)_context);
         
 
         public void SaveChanges()
