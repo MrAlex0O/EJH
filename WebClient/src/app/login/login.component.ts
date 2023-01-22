@@ -14,13 +14,15 @@ export class LoginComponent implements OnInit {
 
 ;
   data: AuthReponseModel = {
-    id: "",
-    name: "",
-    surname: "",
-    midname: "",
-    username: "",
-    password: "",
-    token: "" } ;
+      id: "",
+      name: "",
+      surname: "",
+      midname: "",
+      username: "",
+      password: "",
+      token: "",
+      roles: []
+  } ;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';

@@ -10,4 +10,5 @@ export interface AuthReponseModel extends BaseModel {
   username: string;
   password: string;
   token: string;
+  roles: string[];
 }

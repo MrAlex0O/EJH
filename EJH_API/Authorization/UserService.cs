@@ -4,25 +4,28 @@ using DataBase.Contexts;
 using DataBase.Models;
 using Org.BouncyCastle.Crypto.Generators;
 using BCrypt.Net;
+using DataBase.Repositories.Interfaces;
 
 namespace API.Authorization
 {
     public class UserService : IUserService
     {
-        private Context _context;
+        private IUnitOfWorkRepository _repository;
         private IJwtUtils _jwtUtils;
         private readonly IMapper _mapper;
+        private IUserQuery _userQuery;
 
-        public UserService(Context context, IJwtUtils jwtUtils, IMapper mapper)
+        public UserService(IUnitOfWorkRepository repository, IJwtUtils jwtUtils, IMapper mapper, IUserQuery userQuery)
         {
-            _context = context;
+            _repository = repository;
             _jwtUtils = jwtUtils;
             _mapper = mapper;
+            _userQuery = userQuery;
         }
 
         public AuthResponse Authenticate(AuthRequest model)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Username == model.Username);
+            User user = _repository.Users.GetAll().FirstOrDefault(x => x.Username == model.Username);
 
             // validate
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
@@ -30,15 +33,17 @@ namespace API.Authorization
 
             // authentication successful
             AuthResponse response = _mapper.Map<AuthResponse>(user);
-            Person person = _context.Persons.Where(i => i.Id == user.PersonId).FirstOrDefault();
+            Person person = _repository.Persons.Get(user.PersonId);
             response.Surname = person.Surname;
             response.Name = person.Name;
             response.Token = _jwtUtils.GenerateToken(user);
-            return response;
+            response.Roles = _userQuery.GetRolesByUser(user.Id).ToArray();
+
+            return response; 
         }
         public IEnumerable<User> GetAll()
         {
-            return _context.Users;
+            return _repository.Users.GetAll();
         }
 
         public User GetById(Guid id)
@@ -49,7 +54,7 @@ namespace API.Authorization
         public bool Register(RegisterRequest model)
         {
             // validate
-            if (_context.Users.Any(x => x.Username == model.Username))
+            if (_repository.Users.GetAll().Any(x => x.Username == model.Username))
                 return false;
 
             // map model to new user object
@@ -59,10 +64,10 @@ namespace API.Authorization
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
             // save user
-            person = _context.Persons.Add(person).Entity;
+            person = _repository.Persons.Add(person);
             user.PersonId = person.Id;
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            _repository.Users.Add(user);
+            _repository.SaveChanges();
             return true;
         }
         
@@ -72,7 +77,7 @@ namespace API.Authorization
             var user = getUser(id);
 
             // validate
-            if (model.Username != user.Username && _context.Users.Any(x => x.Username == model.Username))
+            if (model.Username != user.Username && _repository.Users.GetAll().Any(x => x.Username == model.Username))
                 throw new Exception("Username '" + model.Username + "' is already taken");  //#TODO
 
             // hash password if it was entered
@@ -81,28 +86,28 @@ namespace API.Authorization
 
             // copy model to user and save
             _mapper.Map(model, user);
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _repository.Users.Update(user);
+            _repository.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
             var user = getUser(id);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
+            _repository.Users.Delete(user);
+            _repository.SaveChanges();
         }
 
         // helper methods
 
         private User getUser(Guid id)
         {
-            var user = _context.Users.Find(id);
+            var user = _repository.Users.Get(id);
             if (user == null) throw new KeyNotFoundException("User not found");     //#TODO
             return user;
         }
         public Guid[] GetUserRoles(Guid id)
         {
-            UserRole[] roles = _context.UserRoles.Where(i => i.UserId == id).ToArray();
+            UserRole[] roles = _repository.UserRoles.GetAll().Where(i => i.UserId == id).ToArray();
             List<Guid> result = new List<Guid>();
             foreach (var role in roles)
             {

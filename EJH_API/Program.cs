@@ -100,6 +100,7 @@ builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
 #region auth
 builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserQuery, UserQuery>();
 #endregion auth
 
 builder.Services.AddDbContext<IWebContext, Context>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

@@ -30,7 +30,7 @@ namespace API.Controllers
 
         [Authorization.AllowAnonymous]
         [HttpPost("login")]
-        public IActionResult Authenticate(AuthRequest model)
+        public async Task<ActionResult<AuthResponse>> Authenticate(AuthRequest model)
         {
             var response = _userService.Authenticate(model);
             return Ok(response);
