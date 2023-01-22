@@ -1,4 +1,4 @@
-﻿namespace API.Authorization.Models
+﻿namespace API.Authorization.Models.Users
 {
     public class AuthResponse
     {

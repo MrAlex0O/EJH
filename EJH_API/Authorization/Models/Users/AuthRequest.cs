@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Authorization.Models
+namespace API.Authorization.Models.Users
 {
     public class AuthRequest
     {

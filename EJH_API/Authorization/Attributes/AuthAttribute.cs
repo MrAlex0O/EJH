@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace API.Authorization
+namespace API.Authorization.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
@@ -31,21 +31,10 @@ namespace API.Authorization
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
 
             if (roles != null)
-                if (_roles.Intersect(roles) != null)
-                    context.Result = new JsonResult(new { message = "Permission deried" }) { StatusCode = StatusCodes.Status403Forbidden };
-
-        }
-        public void OnAuthorization(AuthorizationFilterContext context, string aaa)
-        {
-            // skip authorization if action is decorated with [AllowAnonymous] attribute
-            var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
-            if (allowAnonymous)
-                return;
-
-            // authorization
-            User user = (User)context.HttpContext.Items["User"];
-            if (user == null)
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            {
+                if (_roles.Intersect(roles).Count() == 0)
+                    context.Result = new JsonResult(new { message = "Permission denied" }) { StatusCode = StatusCodes.Status403Forbidden };
+            }
         }
     }
 }

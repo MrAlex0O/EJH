@@ -1,8 +1,8 @@
 ﻿using DataBase.Models;
 
-namespace API.Authorization
+namespace API.Authorization.Services
 {
-    public interface IJwtUtils
+    public interface IJwtService
     {
         public string GenerateToken(User user);
         public Guid? ValidateToken(string token);

@@ -1,21 +1,22 @@
-﻿using API.Authorization.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using DataBase.Contexts;
 using DataBase.Models;
 using Org.BouncyCastle.Crypto.Generators;
 using BCrypt.Net;
 using DataBase.Repositories.Interfaces;
+using API.Authorization.Queries;
+using API.Authorization.Models.Users;
 
-namespace API.Authorization
+namespace API.Authorization.Services
 {
     public class UserService : IUserService
     {
         private IUnitOfWorkRepository _repository;
-        private IJwtUtils _jwtUtils;
+        private IJwtService _jwtUtils;
         private readonly IMapper _mapper;
         private IUserQuery _userQuery;
 
-        public UserService(IUnitOfWorkRepository repository, IJwtUtils jwtUtils, IMapper mapper, IUserQuery userQuery)
+        public UserService(IUnitOfWorkRepository repository, IJwtService jwtUtils, IMapper mapper, IUserQuery userQuery)
         {
             _repository = repository;
             _jwtUtils = jwtUtils;
@@ -39,7 +40,7 @@ namespace API.Authorization
             response.Token = _jwtUtils.GenerateToken(user);
             response.Roles = _userQuery.GetRolesByUser(user.Id).ToArray();
 
-            return response; 
+            return response;
         }
         public IEnumerable<User> GetAll()
         {
@@ -58,19 +59,24 @@ namespace API.Authorization
                 return false;
 
             // map model to new user object
-            var user = _mapper.Map<User>(model);
-            var person = _mapper.Map<Person>(model);
+            User user = _mapper.Map<User>(model);
+            Person person = _mapper.Map<Person>(model);
             // hash password
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+
 
             // save user
             person = _repository.Persons.Add(person);
             user.PersonId = person.Id;
-            _repository.Users.Add(user);
+            user = _repository.Users.Add(user);
+            Role role = _repository.Roles.GetAll().Where(i => i.Name == model.Role).FirstOrDefault();
+            UserRole userRole = new UserRole() { UserId = user.Id, RoleId = role.Id };
+            _repository.UserRoles.Add(userRole);
             _repository.SaveChanges();
             return true;
         }
-        
+
 
         public void Update(Guid id, UpdateRequest model)
         {
@@ -115,6 +121,18 @@ namespace API.Authorization
             }
             return result.ToArray();
 
+        }
+
+
+        public List<RoleResponse> GetRoles()
+        {
+            List<RoleResponse> result = new List<RoleResponse>();
+            List<Role> roles = _repository.Roles.GetAll();
+            foreach (Role role in roles)
+            {
+                result.Add(_mapper.Map<RoleResponse>(role));
+            }
+            return result;
         }
 
     }

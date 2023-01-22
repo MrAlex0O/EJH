@@ -1,7 +1,7 @@
-﻿using API.Authorization.Models;
+﻿using API.Authorization.Models.Users;
 using DataBase.Models;
 
-namespace API.Authorization
+namespace API.Authorization.Services
 {
     public interface IUserService
     {
@@ -10,7 +10,8 @@ namespace API.Authorization
         User GetById(Guid id);
         bool Register(RegisterRequest model);
         void Update(Guid id, UpdateRequest model);
-        void Delete(Guid id); 
+        void Delete(Guid id);
         public Guid[] GetUserRoles(Guid id);
+        public List<RoleResponse> GetRoles();
     }
 }

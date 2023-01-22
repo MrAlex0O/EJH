@@ -1,8 +1,8 @@
-﻿using API.Authorization.Models;
+﻿using API.Authorization.Models.Users;
 using AutoMapper;
 using DataBase.Models;
 
-namespace API.Authorization
+namespace API.Authorization.Profiles
 {
     public class UserProfile : Profile
     {
@@ -16,6 +16,7 @@ namespace API.Authorization
             CreateMap<UpdateRequest, User>();
             CreateMap<RegisterRequest, Person>();
             CreateMap<UpdateRequest, Person>();
+            CreateMap<Role, RoleResponse>();
         }
     }
 }

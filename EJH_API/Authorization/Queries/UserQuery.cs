@@ -2,7 +2,7 @@
 using Dapper;
 using System.Data;
 
-namespace API.Authorization
+namespace API.Authorization.Queries
 {
     public class UserQuery : IUserQuery
     {

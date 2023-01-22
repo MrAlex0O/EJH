@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterModel } from '../_models/registerModel'
 import { LoginModel } from '../_models/loginModel'
 import { environment } from '../../environments/environment';
+import { RoleModel } from '../_models/roleModel';
 
 const AUTH_API = environment.api_path + '/User';
   //'https://localhost:7287/api/User';
@@ -13,7 +14,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class UserService {
   constructor(private http: HttpClient) { }
 
   login(login: LoginModel): Observable<any> {
@@ -30,6 +31,9 @@ export class AuthService {
       register,
       httpOptions
     );
+  }
+  getRoles(): Observable<any> {
+    return this.http.get<RoleModel[]>(AUTH_API + '/roles');
   }
   logout(): Observable<any> {
     sessionStorage.removeItem("auth-user");

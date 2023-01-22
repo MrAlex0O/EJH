@@ -1,4 +1,4 @@
-﻿namespace API.Authorization
+﻿namespace API.Authorization.Queries
 {
     public interface IUserQuery
     {

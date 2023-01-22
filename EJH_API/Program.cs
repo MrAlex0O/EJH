@@ -1,4 +1,8 @@
-using API.Authorization;
+using API.Authorization.Middleware;
+using API.Authorization.Middlewares;
+using API.Authorization.Models;
+using API.Authorization.Queries;
+using API.Authorization.Services;
 using AutoMapper;
 using DataBase.Contexts;
 using DataBase.Repositories;
@@ -98,7 +102,7 @@ builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
 #endregion services
 
 #region auth
-builder.Services.AddScoped<IJwtUtils, JwtUtils>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserQuery, UserQuery>();
 #endregion auth

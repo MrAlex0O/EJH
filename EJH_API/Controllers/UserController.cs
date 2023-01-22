@@ -1,7 +1,8 @@
-﻿using API.Authorization;
-using API.Authorization.Models;
+﻿using API.Authorization.Models;
+using API.Authorization.Models.Users;
+using API.Authorization.Services;
 using AutoMapper;
-using Microsoft.AspNetCore.Cors;
+using DataBase.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -28,15 +29,24 @@ namespace API.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [Authorization.AllowAnonymous]
+        [Authorization.Attributes.AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Authenticate(AuthRequest model)
         {
             var response = _userService.Authenticate(model);
             return Ok(response);
+
+        }
+        
+        [Authorization.Attributes.AllowAnonymous]
+        [HttpGet("roles")]
+        public async Task<ActionResult<List<RoleResponse>>> GetRoles()
+        {
+            var response = _userService.GetRoles();
+            return Ok(response);
         }
 
-        [Authorization.AllowAnonymous]
+        [Authorization.Attributes.Authorize(Roles.Admin)]
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest model)
         {
@@ -47,7 +57,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Authorization.AllowAnonymous]
+        [Authorization.Attributes.AllowAnonymous]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();

@@ -1,4 +1,4 @@
-﻿namespace API.Authorization
+﻿namespace API.Authorization.Models
 {
     public class AppSettings
     {

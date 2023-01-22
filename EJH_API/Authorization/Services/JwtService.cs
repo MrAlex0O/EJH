@@ -6,17 +6,19 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-namespace API.Authorization
+using API.Authorization.Models;
+
+namespace API.Authorization.Services
 {
-    public class JwtUtils : IJwtUtils
+    public class JwtService : IJwtService
     {
         private readonly AppSettings _appSettings;
 
-        public JwtUtils(IOptions<AppSettings> appSettings)
+        public JwtService(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
         }
-        
+
         public string GenerateToken(User user)
         {
             // generate token that is valid for 7 days

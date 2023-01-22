@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 
-namespace API.Authorization
+namespace API.Authorization.Middlewares
 {
     public class ErrorHandlerMiddleware
     {
@@ -25,7 +25,7 @@ namespace API.Authorization
 
                 switch (error)
                 {
-                   case KeyNotFoundException e:
+                    case KeyNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;

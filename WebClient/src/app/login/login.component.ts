@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
 import { LoginModel } from '../_models/loginModel'
 import { AuthReponseModel } from '../_models/AuthResponseModel'
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  constructor(private _authService: AuthService, private _storageService: StorageService) { }
+  constructor(private _authService: UserService, private _storageService: StorageService) { }
 
   ngOnInit(): void {
     if (this._storageService.isLoggedIn()) {

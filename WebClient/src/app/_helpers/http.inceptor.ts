@@ -25,8 +25,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         },
         (err) => {
           if (err instanceof HttpErrorResponse) {
-            console.log('Server response')
-            console.log(JSON.stringify(err))
+            console.log('Server response');
+            console.log(JSON.stringify(err));
+            alert(err.status + '; ' + err.statusText + '; ' + err.error['message']);
           }
         }
       )

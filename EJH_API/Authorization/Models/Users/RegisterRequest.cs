@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Authorization.Models
+namespace API.Authorization.Models.Users
 {
     public class RegisterRequest
     {
@@ -18,5 +18,6 @@ namespace API.Authorization.Models
 
         [Required]
         public string Password { get; set; }
+        public string Role { get; set; }
     }
 }
