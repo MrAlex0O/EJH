@@ -8,5 +8,6 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface IReportReadService
     {
+        public List<object> GigaFunction(Guid lessonId);
     }
 }

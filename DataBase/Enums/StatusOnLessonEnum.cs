@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBase.Enums
 {
-    internal enum StatusOnLessonEnum
+    public enum StatusOnLessonEnum
     {
         Present = 1,
         Missing = 2,

@@ -42,6 +42,11 @@ namespace DataBase.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             SeedDB.UpdateTables(modelBuilder);
+            
+            modelBuilder.Entity<LessonVisitor>()
+                .HasOne<Lesson>(v => v.Lesson)
+                .WithMany(l => l.LessonVisitors)
+                .HasForeignKey(x => x.LessonId);
         }
         public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

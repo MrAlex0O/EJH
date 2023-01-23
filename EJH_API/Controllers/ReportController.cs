@@ -2,6 +2,7 @@
 using Logic.WriteServices;
 using Logic.DTOs.Report;
 using Logic.ReadServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,12 +13,18 @@ namespace API.Controllers
     [ApiController]
     public class ReportController : ControllerBase
     {
-        IReportReadService _ReportReadService;
-        public ReportController(IReportReadService ReportReadService)
+        private readonly IReportReadService _reportReadService;
+        public ReportController(IReportReadService reportReadService)
         {
-            _ReportReadService = ReportReadService;
+            _reportReadService = reportReadService;
         }
 
+        [HttpGet("a")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<object>>> GigaEndpoint()
+        {
+            return _reportReadService.GigaFunction(Guid.NewGuid());
+        }
 
         // GET api/<ReportController>
         [HttpGet]

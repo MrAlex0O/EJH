@@ -14,5 +14,6 @@ namespace DataBase.Models
         public LessonType? LessonType { get; set; }
         public DateTime Date { get; set; }
         public int SequenceNumber { get; set; }
+        public IEnumerable<LessonVisitor> LessonVisitors { get; set; }
     }
 }
