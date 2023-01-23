@@ -42,11 +42,26 @@ namespace DataBase.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             SeedDB.UpdateTables(modelBuilder);
-            
+
             modelBuilder.Entity<LessonVisitor>()
                 .HasOne<Lesson>(v => v.Lesson)
                 .WithMany(l => l.LessonVisitors)
                 .HasForeignKey(x => x.LessonId);
+
+            modelBuilder.Entity<Lesson>()
+                .HasOne<Discipline>(x => x.Discipline)
+                .WithMany(i => i.Lessons)
+                .HasForeignKey(x => x.DisciplineId);
+
+            modelBuilder.Entity<Student>()
+                .HasOne<Group>(s => s.Group)
+                .WithMany(i => i.Studnets)
+                .HasForeignKey(x => x.GroupId);
+
+            modelBuilder.Entity<Discipline>()
+                .HasOne<Group>(d => d.Group)
+                .WithMany(i => i.Disciplines)
+                .HasForeignKey(x => x.GroupId);
         }
         public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -103,7 +118,7 @@ namespace DataBase.Contexts
                 Console.WriteLine(e);
                 return false;
             }
-            
+
             return true;
         }
     }

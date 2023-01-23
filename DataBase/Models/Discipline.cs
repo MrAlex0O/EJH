@@ -14,5 +14,6 @@ namespace DataBase.Models
         public Guid? GroupId { get; set; }
         public Group? Group { get; set; }
         public int Semester { get; set; }
+        public IEnumerable<Lesson> Lessons { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs.Report;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Logic.Queries.Interfaces
 {
     public interface IReportQuery
     {
+        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
     }
 }

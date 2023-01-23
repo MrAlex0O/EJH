@@ -19,20 +19,13 @@ namespace API.Controllers
             _reportReadService = reportReadService;
         }
 
-        [HttpGet("a")]
-        [AllowAnonymous]
-        public async Task<ActionResult<List<object>>> GigaEndpoint()
-        {
-            return _reportReadService.GigaFunction(Guid.NewGuid());
-        }
-
         // GET api/<ReportController>
-        [HttpGet]
-        public async Task<ActionResult<List<GenericReportResponse>>> Get()
+        [HttpGet("disciplineVisits/{id}")]
+        public async Task<ActionResult<GetDisciplineVisitsReportResponse>> GetDisciplineVisitsReport(Guid id)
         {
             try
             {
-                return Ok();
+                return Ok(_reportReadService.GetDisciplineVisits(id));
 
             }
             catch (Exception ex)
@@ -41,20 +34,7 @@ namespace API.Controllers
             }
         }
 
-        // GET api/<ReportController>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<GenericReportResponse>>> Get(Guid id)
-        {
-            try
-            {
-                return Ok();
-
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
-        }
+        
 
     }
 }

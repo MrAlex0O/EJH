@@ -99,6 +99,10 @@ builder.Services.AddScoped<IStatusOnLessonQuery, StatusOnLessonQuery>();
 builder.Services.AddScoped<ILessonVisitorWriteService, LessonVisitorsWriteService>();
 builder.Services.AddScoped<ILessonVisitorReadService, LessonVisitorReadService>();
 builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
+
+
+builder.Services.AddScoped<IReportReadService, ReportReadService>();
+builder.Services.AddScoped<IReportQuery, ReportQuery>();
 #endregion services
 
 #region auth

@@ -8,7 +8,7 @@ using DataBase.Contexts;
 
 namespace API.Controllers
 {
-    //[Authorization.Attributes.Authorize( Roles.Admin, Roles.Teacher )]
+    [Authorization.Attributes.Authorize( Roles.Admin, Roles.Teacher )]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupController : ControllerBase

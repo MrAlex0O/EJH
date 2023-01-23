@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.DTOs.Report;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface IReportReadService
     {
-        public List<object> GigaFunction(Guid lessonId);
+        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
     }
 }

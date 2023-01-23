@@ -7,32 +7,23 @@ using System.Threading.Tasks;
 using DataBase.Enums;
 using DataBase.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Logic.Queries.Interfaces;
+using Logic.DTOs.Report;
 
 namespace Logic.ReadServices
 {
     public class ReportReadService : IReportReadService
     {
-        private IUnitOfWorkRepository _unitOfWorkRepository;
+        private IReportQuery _reportQuery;
 
-        public ReportReadService(IUnitOfWorkRepository unitOfWorkRepository)
+        public ReportReadService(IReportQuery reportQuery)
         {
-            _unitOfWorkRepository = unitOfWorkRepository;
+            _reportQuery = reportQuery;
         }
 
-        public List<object> GigaFunction(Guid lessonId)
+        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId)
         {
-            var queryable = _unitOfWorkRepository.Lessons.Where(x => x.Id == lessonId).Include(l => l.LessonVisitors)
-                .ThenInclude(lv => lv.Student).ThenInclude(s => s.Person).Include(l => l.LessonVisitors)
-                .ThenInclude(sl => sl.StatusOnLesson).Select(rl => (object) new
-                {
-                    name = rl.LessonVisitors.FirstOrDefault().Student.Person.Surname,
-                    sLess1 = rl.LessonVisitors.FirstOrDefault(lv =>
-                        lv.StatusOnLesson != null && lv.StatusOnLesson.EnumId == (int)StatusOnLessonEnum.Present),
-                    sLess2 = rl.LessonVisitors.FirstOrDefault(lv =>
-                        lv.StatusOnLesson != null && lv.StatusOnLesson.EnumId == (int)StatusOnLessonEnum.Missing)
-                });
-            
-            return queryable.ToList();
+            return _reportQuery.GetDisciplineVisits(disciplineId);
         }
     }
 }
