@@ -10,17 +10,18 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
     MatListModule, MatSortModule, MatPaginatorModule,
-    MatSidenavModule
+    MatSidenavModule, MatAutocompleteModule
 ],
   exports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
     MatListModule, MatSortModule, MatPaginatorModule,
-    MatSidenavModule
+    MatSidenavModule, MatAutocompleteModule
 ]
 })
 export class MaterialAppModule { }

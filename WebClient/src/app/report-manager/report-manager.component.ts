@@ -33,7 +33,9 @@ export class ReportManagerComponent implements OnInit {
   tableData: DisciplineVisitsModel[] = [];
 
   constructor(private _reportService: ReportService, private _disciplineService: DisciplineService,
-              private _groupService: GroupService  ) { }
+              private _groupService: GroupService  ) { 
+
+  }
 
   ngOnInit() {
     this._disciplineService.getAll().subscribe(disciplines => this.disciplines.push(...disciplines));
@@ -42,8 +44,8 @@ export class ReportManagerComponent implements OnInit {
 
   columnHeader = { 'id': 'Id', 'fullName': 'Full name', 'groupName': 'Group name'};
   columnHeader1 = {
-    'fullName': 'ФИО', 'present': 'Присутствовал', 'missing': 'Отсутствовал', 'liberation': 'Освобождение'
-    , 'anotherSubgroup': 'Другая подгруппа', 'seriousReason':'Уважительная причина', 'incalculable':'Невычислимо'
+    'fullName': 'ФИО', 'present': 'Присутствовал', 'missing': 'Отсутствовал', 'liberation': 'Освобождение',
+    'anotherSubgroup': 'Другая подгруппа', 'seriousReason': 'Уважительная причина', 'incalculable': 'Невычислимо'
   };
 
   importReport(report: ReportModel) {
