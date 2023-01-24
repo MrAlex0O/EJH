@@ -18,9 +18,6 @@ export class GenericTableComponent implements OnInit {
 
   constructor() { }
 
-public rerender() {
-  }
-
   ngOnInit() {
     console.log(this.tableData);
     this.dataSource = new MatTableDataSource(this.tableData);
