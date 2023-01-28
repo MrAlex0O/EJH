@@ -4,6 +4,7 @@
   <app-generic-combo-box [placeholder]="'Select group'" [models]="groups" [viewPattern]="renderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
     <br />
     <mat-form-field>
+      <mat-label>name</mat-label>
       <input matInput type="text" name="name" id="group-input" #newGroup [(ngModel)]="name" />
     </mat-form-field>
 

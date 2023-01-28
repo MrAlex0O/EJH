@@ -2,7 +2,7 @@
 
 
 
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+<table mat-table [dataSource]="dataSource" matSort>
 
     <tr [matColumnDef]="header" *ngFor="let header of objectKeys(columnHeader)">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{columnHeader[header]}} </th>

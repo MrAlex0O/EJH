@@ -11,17 +11,18 @@ import { MatListModule } from '@angular/material/list'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   imports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
     MatListModule, MatSortModule, MatPaginatorModule,
-    MatSidenavModule, MatAutocompleteModule
+    MatSidenavModule, MatAutocompleteModule, MatIconModule
 ],
   exports: [MatButtonModule, MatFormFieldModule, MatSelectModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule,
     MatListModule, MatSortModule, MatPaginatorModule,
-    MatSidenavModule, MatAutocompleteModule
+    MatSidenavModule, MatAutocompleteModule, MatIconModule
 ]
 })
 export class MaterialAppModule { }

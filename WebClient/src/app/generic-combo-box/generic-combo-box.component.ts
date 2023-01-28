@@ -68,8 +68,7 @@ this.myControl.valueChanges.pipe(
 
     filterValue = this.viewPattern(value).toLowerCase();
     }
- const a = this.models.filter(option => this.viewPattern(option).toLowerCase().includes(filterValue));
-    return a;
+    return this.models.filter(option => this.viewPattern(option).toLowerCase().includes(filterValue));
   }
 
 

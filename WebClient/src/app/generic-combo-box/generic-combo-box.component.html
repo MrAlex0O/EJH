@@ -1,6 +1,5 @@
-<mat-label>{{placeholder}}: </mat-label>
-
 <mat-form-field>
+  <mat-label>{{placeholder}}: </mat-label>
   <input type="text"
          [placeholder]="placeholder"
          aria-label="Number"
@@ -13,7 +12,7 @@
     <mat-option *ngFor="let model of filteredOptions" [value]="model">
       {{viewPattern(model)}}
     </mat-option>
-  </mat-autocomplete>
+  </mat-autocomplete>	
 </mat-form-field>
-
-  <br />
+<mat-icon>arrow_downward</mat-icon>
+<br />

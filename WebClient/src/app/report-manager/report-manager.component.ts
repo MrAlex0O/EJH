@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
-import { GenericReportResponse, GenericTableComponent } from '../generic-table/generic-table.component';
+import { GenericTableComponent } from '../generic-table/generic-table.component';
 import { DisciplineModel } from '../_models/disciplineModel';
 import { GroupModel } from '../_models/groupModel';
 import { DisciplineVisitsModel } from '../_models/Reports/DisciplineVisitsModel';
