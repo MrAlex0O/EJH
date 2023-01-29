@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { DisciplineModel } from '../_models/disciplineModel';
 import { LessonModel } from '../_models/lessonModel';
 import { LessonTypeModel } from '../_models/lessonTypeModel';
@@ -23,9 +24,10 @@ export class LessonManagerComponent implements OnInit {
   lessons: LessonModel[] = [];
   disciplineId: string;
   lessonTypeId: string;
-  lessonRenderFunction = (item: LessonModel) => { return `${item.disciplineName} ${item.groupName} ${item.date} ${item.lessonType}`; }
-  disciplineRenderFunction = (item: DisciplineModel) => { return `${item.name} ${item.groupName}`; }
-  lessonTypeRenderFunction = (item: LessonTypeModel) => { return `${item.name}`; }
+  sequenceNumber: number = 0;
+  lessonRenderFunction = RenderFunctions.lessonRenderFunction;
+  disciplineRenderFunction = RenderFunctions.disciplineRenderFunction;
+  lessonTypeRenderFunction = RenderFunctions.lessonRenderFunction;
 
   date = new FormControl(new Date());
   loading: boolean = false;
@@ -50,7 +52,7 @@ export class LessonManagerComponent implements OnInit {
       lessonTypeId: this.lessonTypeId,
       lessonType: '',
       date: ConvertDate(<Date>this.date.value),
-      sequenceNumber: 0
+      sequenceNumber: this.sequenceNumber
     }
     this.loading = true;
     this._lessonService.Add(lesson).subscribe(() => this.loading = false);
@@ -70,7 +72,7 @@ export class LessonManagerComponent implements OnInit {
       lessonTypeId: this.lessonTypeId,
       lessonType: '',
       date: ConvertDate(<Date>this.date.value),
-      sequenceNumber: 0
+      sequenceNumber: this.sequenceNumber
     }
     this.loading = true;
     this._lessonService.Update(lesson).subscribe(() => this.loading = false);
@@ -86,6 +88,7 @@ export class LessonManagerComponent implements OnInit {
     this.disciplineViewChild.showById(lesson.disciplineId);
     this.lessonTypeViewChild.showById(lesson.lessonTypeId);
     this.date.setValue(new Date(lesson.date));
+    this.sequenceNumber = lesson.sequenceNumber;
   }  
   importDiscipline(discipline: DisciplineModel) {
     this.disciplineId = discipline.id;

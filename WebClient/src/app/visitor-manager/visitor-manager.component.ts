@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { LessonModel } from '../_models/lessonModel';
 import { StatusOnLesson } from '../_models/statusOnLesson';
 import { StudentModel } from '../_models/studentModel';
@@ -20,7 +21,7 @@ export class VisitorManagerComponent implements OnInit {
   students: StudentModel[] = [];
   selectedStatuses: StatusOnLesson[] = [];
   lessons: LessonModel[] = [];
-  renderFunction = (item: LessonModel) => { return `${item.disciplineName} ${item.groupName} ${item.date} ${item.lessonType}`; }
+  renderFunction = RenderFunctions.lessonRenderFunction;
   constructor(private _studentService: StudentService, private _visitorService: VisitorService, private _lessonService: LessonService) { }
 
   ngOnInit(): void {
@@ -37,7 +38,6 @@ export class VisitorManagerComponent implements OnInit {
     this.students.length = 0;
     this._studentService.getByGroupId(this.selectedLesson.groupId).subscribe(students => {
       this.students.push(...students);
-      //students.forEach(s => this.students.push(s));
       this.selectedStatuses.length = 0;
       for (let i = 0; i < this.students.length; i++) {
         this.selectedStatuses.push({

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { GroupModel } from '../_models/groupModel';
 import { StudentModel } from '../_models/studentModel';
 import { GroupService } from '../_services/group.service';
@@ -23,8 +24,8 @@ export class StudentManagerComponent implements OnInit {
   groups: GroupModel[] = [];
   students: StudentModel[] = [];
   @ViewChild('groupSelector') groupViewChild!: GenericComboBoxComponent;
-  studentRenderFunction = (item: StudentModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
-  groupRenderFunction = (item: GroupModel) => { return `${item.name}`; }
+  studentRenderFunction = RenderFunctions.studentRenderFunction;
+  groupRenderFunction = RenderFunctions.groupRenderFunction;
   loading: boolean = false;
 
   constructor(private _studentService: StudentService, private _groupService: GroupService) { }

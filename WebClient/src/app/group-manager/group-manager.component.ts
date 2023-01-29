@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { GroupModel } from '../_models/groupModel';
 import { GroupService } from '../_services/group.service'
 
@@ -14,7 +15,7 @@ export class GroupManagerComponent implements OnInit {
   groups: GroupModel[] = [];
   name: string = "";
   @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
-  renderFunction = (item: GroupModel) => { return `${item.name}`; }
+  groupRenderFunction = RenderFunctions.groupRenderFunction;
   loading: boolean = false;
 
   constructor(private _groupService: GroupService) { }

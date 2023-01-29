@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { TeacherModel } from '../_models/teacherModel';
 import { TeacherService } from '../_services/teacher.service'
 
@@ -19,7 +20,7 @@ export class TeacherManagerComponent implements OnInit {
   address: string = "";
   phoneNumber: string = "";
   @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
-  renderFunction = (item: TeacherModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
+  teacherRenderFunction = RenderFunctions.teacherRenderFunction;
   loading: boolean = false;
 
   constructor(private _teacherService: TeacherService) { }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } fr
 import { MatSort } from '@angular/material/sort';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 import { GenericTableComponent } from '../generic-table/generic-table.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 import { DisciplineModel } from '../_models/disciplineModel';
 import { GroupModel } from '../_models/groupModel';
 import { DisciplineVisitsModel } from '../_models/Reports/DisciplineVisitsModel';
@@ -25,9 +26,9 @@ export class ReportManagerComponent implements OnInit {
   groups: GroupModel[] = [];
   @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
   @ViewChild(GenericTableComponent) tableViewChild!: GenericTableComponent;
-  reportRenderFunction = (item: ReportModel) => { return `${item.name}`; }
-  disciplineRenderFunction = (item: DisciplineModel) => { return `${item.name} ${item.groupName}`; }
-  groupRenderFunction = (item: GroupModel) => { return `${item.name}`; }
+  reportRenderFunction = RenderFunctions.reportRenderFunction;
+  disciplineRenderFunction = RenderFunctions.disciplineRenderFunction;
+  groupRenderFunction = RenderFunctions.groupRenderFunction;
   loading: boolean = false;
 
   tableData: DisciplineVisitsModel[] = [];

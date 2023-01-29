@@ -6,6 +6,7 @@ import { DisciplineService } from '../_services/discipline.service';
 import { TeacherService } from '../_services/teacher.service';
 import { GroupService } from '../_services/group.service';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { RenderFunctions } from '../_helpers/renderFunctions';
 
 @Component({
   selector: 'app-discipline-manager',
@@ -29,9 +30,9 @@ export class DisciplineManagerComponent implements OnInit {
   @ViewChild('lectorSelector') lectorViewChild!: GenericComboBoxComponent;
   @ViewChild('assistantSelector') assistantViewChild!: GenericComboBoxComponent;
   @ViewChild('groupSelector') groupViewChild!: GenericComboBoxComponent;
-  teacherRenderFunction = (item: TeacherModel) => { return `${item.surname} ${item.name} ${item.midname}`; }
-  disciplineRenderFunction = (item: DisciplineModel) => { return `${item.name} ${item.groupName}`; }
-  groupRenderFunction = (item: GroupModel) => { return `${item.name}`; }
+  teacherRenderFunction = RenderFunctions.teacherRenderFunction;
+  disciplineRenderFunction = RenderFunctions.disciplineRenderFunction;
+  groupRenderFunction = RenderFunctions.groupRenderFunction;
   groups: GroupModel[] = [];
   teachers: TeacherModel[] = [];
   disciplines: DisciplineModel[] = [];

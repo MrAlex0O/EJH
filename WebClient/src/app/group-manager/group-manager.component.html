@@ -1,7 +1,7 @@
 
 <form>
   
-  <app-generic-combo-box [placeholder]="'Select group'" [models]="groups" [viewPattern]="renderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
+  <app-generic-combo-box [placeholder]="'Select group'" [models]="groups" [viewPattern]="groupRenderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
     <br />
     <mat-form-field>
       <mat-label>name</mat-label>

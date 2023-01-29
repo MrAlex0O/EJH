@@ -6,6 +6,11 @@
 <br />
 <app-generic-combo-box #lessonTypeSelector [placeholder]="'Select lesson type'" [models]="lessonTypes" [viewPattern]="lessonTypeRenderFunction" (myEvent)="importLessonType($event)"></app-generic-combo-box>
 
+<mat-form-field>
+  <mat-label>sequence number</mat-label>
+  <input matInput type="text" name="sequenceNumber" id="sequenceNumber-input" [(ngModel)]="sequenceNumber" />
+</mat-form-field>
+<br />
 
 <mat-form-field>
   <input matInput matInput [matDatepicker]="picker1" placeholder="Select date" [formControl]="date">

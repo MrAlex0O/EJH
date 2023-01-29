@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, retry, startWith } from 'rxjs/operators';
@@ -52,6 +52,7 @@ this.myControl.valueChanges.pipe(
   public showById(id: string) {
 
     this.selectedModel = <BaseModel>this.models.find(g => g.id == id);
+    this.showValue = this.viewPattern(this.selectedModel);
   }
 
 
@@ -71,7 +72,9 @@ this.myControl.valueChanges.pipe(
     return this.models.filter(option => this.viewPattern(option).toLowerCase().includes(filterValue));
   }
 
-
+  clear() {
+    this.showValue = '';
+  }
 
 
 }
