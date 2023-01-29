@@ -8,7 +8,7 @@ using DataBase.Contexts;
 
 namespace API.Controllers
 {
-    [Authorization.Attributes.Authorize( Roles.Admin, Roles.Teacher )]
+    [Authorization.Attributes.Authorize( Roles.Admin )]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupController : ControllerBase
@@ -24,6 +24,7 @@ namespace API.Controllers
 
         // GET api/<GroupController>
         [HttpGet]
+        [Authorization.Attributes.Authorize( Roles.Student)]
         public async Task<ActionResult<List<GetGroupResponse>>> Get()
         {
             try

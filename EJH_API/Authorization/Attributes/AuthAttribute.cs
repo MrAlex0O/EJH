@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq;
 
 namespace API.Authorization.Attributes
 {
@@ -20,6 +21,12 @@ namespace API.Authorization.Attributes
         {
             // skip authorization if action is decorated with [AllowAnonymous] attribute
             var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
+            var attributes = context.ActionDescriptor.EndpointMetadata.OfType<AuthorizeAttribute>();
+            foreach (var a in attributes)
+            {
+                _roles.AddRange(a._roles);
+            }
+            _roles = _roles.Distinct().ToList();
             if (allowAnonymous)
                 return;
 
