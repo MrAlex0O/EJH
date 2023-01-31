@@ -27,7 +27,7 @@ export class LessonManagerComponent implements OnInit {
   sequenceNumber: number = 0;
   lessonRenderFunction = RenderFunctions.lessonRenderFunction;
   disciplineRenderFunction = RenderFunctions.disciplineRenderFunction;
-  lessonTypeRenderFunction = RenderFunctions.lessonRenderFunction;
+  lessonTypeRenderFunction = RenderFunctions.lessonTypeRenderFunction;
 
   date = new FormControl(new Date());
   loading: boolean = false;
