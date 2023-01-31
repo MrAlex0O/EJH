@@ -33,8 +33,20 @@ namespace API.Controllers
                 return Conflict(ex.Message);
             }
         }
+        // GET api/<ReportController>
+        [HttpGet("studentVisits/{id}")]
+        public async Task<ActionResult<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid id)
+        {
+            try
+            {
+                return Ok(_reportReadService.GetDisciplineVisitsByStudentId(id));
 
-        
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
 
     }
 }

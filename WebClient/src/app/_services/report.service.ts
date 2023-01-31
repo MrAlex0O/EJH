@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { DisciplineVisitsModel } from '../_models/Reports/DisciplineVisitsModel';
+import { DisciplineVisitsReportModel } from '../_models/Reports/DisciplineVisitsModel';
+import { StudentVisitsReportModel } from '../_models/Reports/studentVisitsModel';
 
 const API_PATH = environment.api_path + '/Report';
 @Injectable({
@@ -12,7 +13,10 @@ export class ReportService {
 
   constructor(private _http: HttpClient) { }
 
-  public getAll(id: string): Observable<DisciplineVisitsModel[]> {
-    return this._http.get<DisciplineVisitsModel[]>(API_PATH + '/disciplineVisits/' + id);
+  public getDisciplineVisits(id: string): Observable<DisciplineVisitsReportModel[]> {
+    return this._http.get<DisciplineVisitsReportModel[]>(API_PATH + '/disciplineVisits/' + id);
+  }
+  public getStudentVisits(id: string): Observable<StudentVisitsReportModel[]> {
+    return this._http.get<StudentVisitsReportModel[]>(API_PATH + '/studentVisits/' + id);
   }
 }

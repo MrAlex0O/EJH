@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { HttpRequestInterceptor } from './_helpers/http.inceptor';
+import { HttpRequestInterceptor } from './_helpers/http.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';

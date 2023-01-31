@@ -1,7 +1,8 @@
 <app-generic-combo-box [placeholder]="'Select report'" [models]="reports" [viewPattern]="reportRenderFunction" (myEvent)="importReport($event)"></app-generic-combo-box>
 
-<app-generic-combo-box [placeholder]="'Select group'" [models]="groups" [viewPattern]="groupRenderFunction" (myEvent)="importGroup($event)"></app-generic-combo-box>
-<app-generic-combo-box [placeholder]="'Select discipline'" [models]="disciplines" [viewPattern]="disciplineRenderFunction" (myEvent)="importDiscipline($event)"></app-generic-combo-box>
+<app-generic-combo-box *ngIf="isGroup" [placeholder]="'Select group'" [models]="groups" [viewPattern]="groupRenderFunction" (myEvent)="importGroup($event)"></app-generic-combo-box>
+<app-generic-combo-box *ngIf="isDiscipline" [placeholder]="'Select discipline'" [models]="disciplines" [viewPattern]="disciplineRenderFunction" (myEvent)="importDiscipline($event)"></app-generic-combo-box>
+<app-generic-combo-box *ngIf="isStudent" [placeholder]="'Select student'" [models]="students" [viewPattern]="studentRenderFunction" (myEvent)="importStudent($event)"></app-generic-combo-box>
 
 <button (click)="getReportData()">Отобразить</button>
 
@@ -14,5 +15,5 @@
 </div>
 <ng-template #content>
 
-  <app-generic-table [tableData]="tableData" [columnHeader]="columnHeader1"></app-generic-table>
+  <app-generic-table [tableData]="tableData" [columnHeader]="columnHeader"></app-generic-table>
 </ng-template>

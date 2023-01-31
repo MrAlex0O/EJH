@@ -10,5 +10,6 @@ namespace Logic.ReadServices.Interfaces
     public interface IReportReadService
     {
         public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
+        public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId);
     }
 }

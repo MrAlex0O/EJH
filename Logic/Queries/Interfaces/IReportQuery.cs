@@ -10,5 +10,6 @@ namespace Logic.Queries.Interfaces
     public interface IReportQuery
     {
         public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
+        public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId);
     }
 }
