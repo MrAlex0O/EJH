@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
+import { DateToJSONString } from '../_helpers/dateFunctions';
 import { RenderFunctions } from '../_helpers/renderFunctions';
 import { DisciplineModel } from '../_models/disciplineModel';
 import { LessonModel } from '../_models/lessonModel';
@@ -51,7 +52,7 @@ export class LessonManagerComponent implements OnInit {
       assistantsFullNames: [],
       lessonTypeId: this.lessonTypeId,
       lessonType: '',
-      date: ConvertDate(<Date>this.date.value),
+      date: DateToJSONString(<Date>this.date.value),
       sequenceNumber: this.sequenceNumber
     }
     this.loading = true;
@@ -71,7 +72,7 @@ export class LessonManagerComponent implements OnInit {
       assistantsFullNames: [],
       lessonTypeId: this.lessonTypeId,
       lessonType: '',
-      date: ConvertDate(<Date>this.date.value),
+      date: DateToJSONString(<Date>this.date.value),
       sequenceNumber: this.sequenceNumber
     }
     this.loading = true;
@@ -98,12 +99,3 @@ export class LessonManagerComponent implements OnInit {
   }
 }
 
-function ConvertDate(date: Date): string {
-  let month = (date.getMonth()+1).toString();
-  let day = date.getDate().toString();
-  if (day.length == 1) day = '0'+day;
-  if (month.length == 1) month = '0' + month;
-  const year = date.getFullYear();
-  const result = `${year}-${month}-${day}T12:00:00.000`;
-  return result;
-}

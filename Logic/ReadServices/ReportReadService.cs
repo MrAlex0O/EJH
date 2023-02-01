@@ -29,5 +29,15 @@ namespace Logic.ReadServices
         {
             return _reportQuery.GetDisciplineVisitsByStudentId(studentId);
         }
+
+        public List<GetStudentVisitsResponse> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
+        {
+            return _reportQuery.GetStudentVisitsByDay(request);
+        }
+
+        public List<GetStudentVisitsResponse> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
+        {
+            return _reportQuery.GetStudentVisitsByInterval(request);
+        }
     }
 }

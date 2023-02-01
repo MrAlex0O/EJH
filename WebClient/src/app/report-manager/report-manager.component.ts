@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box.component';
 import { GenericTableComponent } from '../generic-table/generic-table.component';
@@ -13,6 +14,9 @@ import { DisciplineService } from '../_services/discipline.service';
 import { GroupService } from '../_services/group.service';
 import { ReportService } from '../_services/report.service';
 import { StudentService } from '../_services/student.service';
+import { StudentVisitsByDayRequest } from '../_models/Reports/studentVisitsByDayRequest';
+import { StudentVisitsByIntervalRequest } from '../_models/Reports/studentVisitsByIntervalRequest';
+import { DateToJSONString } from '../_helpers/dateFunctions';
 
 @Component({
   selector: 'report-manager',
@@ -28,6 +32,8 @@ export class ReportManagerComponent implements OnInit {
   isGroup: boolean;
   isStudent: boolean;
   isDiscipline: boolean;
+  isDate: boolean;
+  isDateInterval: boolean;
   reports: ReportModel[] = [
     {
       id: reportTypeEnum.disciplineVisits, name: "Посещаемость дисциплин (за все время)", headers: {
@@ -36,6 +42,18 @@ export class ReportManagerComponent implements OnInit {
       } },
     {
       id: reportTypeEnum.studentVisits, name: "Посещаемость студента (за все время)", headers: {
+        'disciplineName': 'Дисциплина',
+        'lessonTypeName': 'Тип занятия', 'present': 'Присутствовал', 'missing': 'Отсутствовал', 'liberation': 'Освобождение',
+        'anotherSubgroup': 'Другая подгруппа', 'seriousReason': 'Уважительная причина', 'incalculable': 'Невычислимо'
+      } },
+    {
+      id: reportTypeEnum.studentVisitsByDay, name: "Посещаемость студента (за день)", headers: {
+        'disciplineName': 'Дисциплина',
+        'lessonTypeName': 'Тип занятия', 'present': 'Присутствовал', 'missing': 'Отсутствовал', 'liberation': 'Освобождение',
+        'anotherSubgroup': 'Другая подгруппа', 'seriousReason': 'Уважительная причина', 'incalculable': 'Невычислимо'
+      } },
+    {
+      id: reportTypeEnum.studentVisitsByInterval, name: "Посещаемость студента (за интервал)", headers: {
         'disciplineName': 'Дисциплина',
         'lessonTypeName': 'Тип занятия', 'present': 'Присутствовал', 'missing': 'Отсутствовал', 'liberation': 'Освобождение',
         'anotherSubgroup': 'Другая подгруппа', 'seriousReason': 'Уважительная причина', 'incalculable': 'Невычислимо'
@@ -52,6 +70,11 @@ export class ReportManagerComponent implements OnInit {
   studentRenderFunction = RenderFunctions.studentRenderFunction;
   loading: boolean = false;
 
+  date = new FormControl(new Date());
+  range = new FormGroup({
+    start: new FormControl<Date | null>(new Date()),
+    end: new FormControl<Date | null>(new Date()),
+  });
   tableData: BaseReportModel[] = [];
   columnHeader = {};
 
@@ -63,6 +86,8 @@ export class ReportManagerComponent implements OnInit {
     this.isDiscipline = false;
     this.isGroup = false;
     this.isStudent = false;
+    this.isDate = false;
+    this.isDateInterval = false;
   }
   ngOnInit() {
     this._disciplineService.getAll().subscribe(disciplines => this.disciplines.push(...disciplines));
@@ -84,6 +109,17 @@ export class ReportManagerComponent implements OnInit {
       }
       case reportTypeEnum.studentVisits: {
         this.isStudent = true;
+        break;
+      }
+      case reportTypeEnum.studentVisitsByDay: {
+        this.isStudent = true;
+        this.isDate = true;
+        break;
+      }
+      case reportTypeEnum.studentVisitsByInterval: {
+        this.isDateInterval = true;
+        this.isStudent = true;
+        break;
       }
     }
   }
@@ -114,6 +150,26 @@ export class ReportManagerComponent implements OnInit {
         });
         break;
       }
+      case reportTypeEnum.studentVisitsByDay: {
+        this._reportService.getStudentVisitsByDay({
+          studentId: this.selectedStudent.id,
+          date: DateToJSONString(<Date>this.date.value) }).subscribe(data => {
+          this.tableData.push(...data);
+          this.rerender();
+        });
+        break;
+      }
+      case reportTypeEnum.studentVisitsByInterval: {
+        this._reportService.getStudentVisitsByInterval({
+            studentId: this.selectedStudent.id,
+          dateStart: DateToJSONString(<Date>this.range.value.start),
+          dateEnd: DateToJSONString(<Date>this.range.value.end)
+        }).subscribe(data => {
+          this.tableData.push(...data);
+          this.rerender();
+        });
+        break;
+      }
     }
     
   }
@@ -132,5 +188,7 @@ export class ReportManagerComponent implements OnInit {
 
 enum reportTypeEnum {
   disciplineVisits = "disciplineVisits",
-  studentVisits = 'studentVisits'
+  studentVisits = 'studentVisits',
+  studentVisitsByDay = 'studentVisitByDay',
+  studentVisitsByInterval = 'studentVisitByInterval'
 }

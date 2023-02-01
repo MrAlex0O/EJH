@@ -11,5 +11,12 @@ namespace Logic.Queries.Interfaces
     {
         public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
         public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId);
+
+        public List<GetStudentVisitsResponse> GetStudentVisitsByDay(GetStudentVisitByDayRequest request);
+
+
+        public List<GetStudentVisitsResponse> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request);
+
+
     }
 }

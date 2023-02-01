@@ -47,6 +47,34 @@ namespace API.Controllers
                 return Conflict(ex.Message);
             }
         }
+        // POST api/<ReportController>
+        [HttpPost("studentVisitsByDay")]
+        public async Task<ActionResult<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
+        {
+            try
+            {
+                return Ok(_reportReadService.GetStudentVisitsByDay(request));
+
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
+        // POST api/<ReportController>
+        [HttpPost("studentVisitsByInterval")]
+        public async Task<ActionResult<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
+        {
+            try
+            {
+                return Ok(_reportReadService.GetStudentVisitsByInterval(request));
+
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
 
     }
 }
