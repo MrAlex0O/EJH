@@ -1,6 +1,7 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from './_services/storage.service';
+import { DateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,9 +12,11 @@ export class AppComponent implements OnInit{
   themes: string[] = ['light', 'dark'];
   selectedTheme: string = 'light';
   themeMap: Map<string, string> = new Map();
-  constructor(private overlayContainer: OverlayContainer, public storageService : StorageService) {
+  constructor(private overlayContainer: OverlayContainer, public storageService: StorageService, private dateAdapter: DateAdapter<Date>) {
     this.themeMap.set('light', 'light-theme');
     this.themeMap.set('dark', 'dark-theme');
+
+    this.dateAdapter.setLocale('ru-RU'); //dd/MM/yyyy;
   }
 
   ngOnInit(): void {
