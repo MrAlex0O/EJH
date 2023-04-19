@@ -121,13 +121,6 @@ namespace DataBase.Contexts
                 DateCreate = DateTime.Now,
                 DateUpdate = DateTime.Now
             });
-            modelBuilder.Entity<Role>().HasData(new Role
-            {
-                Id = Guid.Parse(Roles.Student),
-                Name = "Student",
-                DateCreate = DateTime.Now,
-                DateUpdate = DateTime.Now
-            });
         }
         private static void UpdateAdmin(ModelBuilder modelBuilder)
         {
@@ -175,7 +168,6 @@ namespace DataBase.Contexts
         public const string Admin =   "6aa74582-0eba-4eee-a960-3b6fc3092130";
         public const string Teacher = "3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9";
         public const string Headman = "f69a359a-4986-4253-9409-078660dc8fc8";
-        public const string Student = "bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9";
     }
 
 }
