@@ -8,7 +8,6 @@ using DataBase.Contexts;
 
 namespace API.Controllers
 {
-    [Authorization.Attributes.Authorize( Roles.Admin )]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupController : ControllerBase
@@ -21,16 +20,13 @@ namespace API.Controllers
             _groupReadService = groupReadService;
         }
 
-
         // GET api/<GroupController>
         [HttpGet]
-        [Authorization.Attributes.Authorize( Roles.Student)]
-        public async Task<ActionResult<List<GetGroupResponse>>> Get()
+        public async Task<ActionResult<IEnumerable<GetGroupResponse>>> Get()
         {
             try
             {
-                return Ok(_groupReadService.GetAll());
-
+                return Ok(await _groupReadService.GetAll());
             }
             catch (Exception ex)
             {
@@ -44,8 +40,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_groupReadService.Get(id));
-
+                return Ok(await _groupReadService.Get(id));
             }
             catch (Exception ex)
             {

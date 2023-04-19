@@ -16,13 +16,13 @@ namespace Logic.ReadServices
         {
             _groupQuery = query;
         }
-        public List<GetLessonVisitorResponse> GetAll()
+        public async Task<IEnumerable<GetLessonVisitorResponse>> GetAll()
         {
-            return _groupQuery.GetAll();
+            return await _groupQuery.GetAll();
         }
-        public GetLessonVisitorResponse GetByLessonId(Guid id)
+        public async Task<GetLessonVisitorResponse> GetByLessonId(Guid id)
         {
-            return _groupQuery.GetByLessonId(id);
+            return await _groupQuery.GetByLessonId(id);
         }
     }
 }

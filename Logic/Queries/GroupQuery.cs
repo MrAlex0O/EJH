@@ -19,24 +19,26 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetGroupResponse> GetAll()
+        public async Task<IEnumerable<GetGroupResponse>> GetAll()
         {
             string querry = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
                                 ORDER BY ""DateCreate"" ASC";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetGroupResponse>(querry).ToList();
+                var res =  db.QueryAsync<GetGroupResponse>(querry);
+                return await res;
             }
         }
-        public GetGroupResponse Get(Guid id)
+        public async Task<GetGroupResponse> Get(Guid id)
         {
             string querry = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
                                 WHERE ""Id"" = '{id}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetGroupResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetGroupResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
     }

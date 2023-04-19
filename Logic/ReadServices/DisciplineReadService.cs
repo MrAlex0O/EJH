@@ -16,17 +16,17 @@ namespace Logic.ReadServices
         {
             _disciplineQuery = disciplineQuery;
         }
-        public List<GetDisciplineResponse> GetAll()
+        public async Task<IEnumerable<GetDisciplineResponse>> GetAll()
         {
-            return _disciplineQuery.GetAll();
+            return await _disciplineQuery.GetAll();
         }
-        public GetDisciplineResponse Get(Guid id)
+        public async Task<GetDisciplineResponse> Get(Guid id)
         {
-            return _disciplineQuery.Get(id);
+            return await _disciplineQuery.Get(id);
         }
-        public List<GetDisciplineResponse> GetByTeacherId(Guid teacherId)
+        public async Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid teacherId)
         {
-            return _disciplineQuery.GetByTeacherId(teacherId);
+            return await _disciplineQuery.GetByTeacherId(teacherId);
         }
     }
 }

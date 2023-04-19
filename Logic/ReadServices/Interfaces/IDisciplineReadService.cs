@@ -9,8 +9,8 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface IDisciplineReadService
     {
-        public List<GetDisciplineResponse> GetAll();
-        public GetDisciplineResponse Get(Guid id);
-        public List<GetDisciplineResponse> GetByTeacherId(Guid TeacherId);
+        public Task<IEnumerable<GetDisciplineResponse>> GetAll();
+        public Task<GetDisciplineResponse> Get(Guid id);
+        public Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid TeacherId);
     }
 }

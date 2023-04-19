@@ -9,10 +9,10 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface IReportReadService
     {
-        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId);
-        public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId);
-        public List<GetStudentVisitsResponse> GetStudentVisitsByDay(GetStudentVisitByDayRequest request);
-        public List<GetStudentVisitsResponse> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request);
+        public Task<IEnumerable<GetDisciplineVisitsReportResponse>> GetDisciplineVisits(Guid disciplineId);
+        public Task<IEnumerable<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid studentId);
+        public Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request);
+        public Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request);
 
     }
 }

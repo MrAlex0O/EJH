@@ -13,7 +13,7 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId)
+        public async Task<IEnumerable<GetDisciplineVisitsReportResponse>> GetDisciplineVisits(Guid disciplineId)
         {
             string querry = $@"SELECT DISTINCT ""Persons"".""Surname"" || ' ' || ""Persons"".""Name"" || ' ' || ""Persons"".""Midname"" AS ""FullName""
 , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Present""
@@ -34,10 +34,11 @@ ORDER BY 1";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetDisciplineVisitsReportResponse>(querry).ToList();
+                var res = db.QueryAsync<GetDisciplineVisitsReportResponse>(querry);
+                return await res;
             }
         }
-        public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId)
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid studentId)
         {
             string querry = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
 , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
@@ -59,11 +60,12 @@ ORDER BY 1, 2";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentVisitsResponse>(querry).ToList();
+                var res = db.QueryAsync<GetStudentVisitsResponse>(querry);
+                return await res;
             }
         }
         
-        public List<GetStudentVisitsResponse> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
         {
             string querry = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
 , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
@@ -86,10 +88,11 @@ ORDER BY 1, 2";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentVisitsResponse>(querry).ToList();
+                var res = db.QueryAsync<GetStudentVisitsResponse>(querry);
+                return await res;
             }
         }
-        public List<GetStudentVisitsResponse> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
         {
             string querry = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
 , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
@@ -113,7 +116,8 @@ ORDER BY 1, 2";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentVisitsResponse>(querry).ToList();
+                var res = db.QueryAsync<GetStudentVisitsResponse>(querry);
+                return await res;
             }
         }
     }

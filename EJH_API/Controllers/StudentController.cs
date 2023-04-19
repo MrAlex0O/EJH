@@ -31,7 +31,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_studentReadService.GetAll());
+                return Ok(await _studentReadService.GetAll());
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_studentReadService.Get(id));
+                return Ok(await _studentReadService.Get(id));
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_studentReadService.GetByGroupId(groupId));
+                return Ok(await _studentReadService.GetByGroupId(groupId));
             }
             catch (Exception ex)
             {

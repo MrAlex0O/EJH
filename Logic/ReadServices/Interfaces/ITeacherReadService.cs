@@ -9,7 +9,7 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface ITeacherReadService
     {
-        public List<GetTeacherResponse> GetAll();
-        public GetTeacherResponse Get(Guid id);
+        public Task<IEnumerable<GetTeacherResponse>> GetAll();
+        public Task<GetTeacherResponse> Get(Guid id);
     }
 }

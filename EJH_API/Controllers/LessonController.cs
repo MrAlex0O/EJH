@@ -26,7 +26,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_lessonReadService.GetAll());
+                return Ok(await _lessonReadService.GetAll());
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_lessonReadService.Get(id));
+                return Ok(await _lessonReadService.Get(id));
             }
             catch (Exception ex)
             {

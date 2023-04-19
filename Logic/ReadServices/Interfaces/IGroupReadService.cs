@@ -10,7 +10,7 @@ namespace Logic.ReadServices.Interfaces
 {
     public interface IGroupReadService
     {
-        public List<GetGroupResponse> GetAll();
-        public GetGroupResponse Get(Guid id);
+        public Task<IEnumerable<GetGroupResponse>> GetAll();
+        public Task<GetGroupResponse> Get(Guid id);
     }
 }

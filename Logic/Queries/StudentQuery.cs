@@ -18,7 +18,7 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetStudentResponse> GetAll()
+        public async Task<IEnumerable<GetStudentResponse>> GetAll()
         {
             string querry = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
@@ -30,10 +30,12 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentResponse>(querry).ToList();
+
+                var res = db.QueryAsync<GetStudentResponse>(querry);
+                return await res;
             }
         }
-        public GetStudentResponse Get(Guid id)
+        public async Task<GetStudentResponse> Get(Guid id)
         {
             string querry = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
@@ -45,10 +47,11 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetStudentResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
-        public List<GetStudentResponse> GetByGroupId(Guid groupId)
+        public async Task<IEnumerable<GetStudentResponse>> GetByGroupId(Guid groupId)
         {
             string querry = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
@@ -60,7 +63,8 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetStudentResponse>(querry).ToList();
+                var res = db.QueryAsync<GetStudentResponse>(querry);
+                return await res;
             }
         }
 

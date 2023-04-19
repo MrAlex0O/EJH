@@ -18,24 +18,26 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetLessonTypeResponse> GetAll()
+        public async Task<IEnumerable<GetLessonTypeResponse>> GetAll()
         {
             string querry = $@"SELECT ""Id"", ""Name"" FROM ""LessonTypes""
                                 ORDER BY ""DateCreate"" ASC";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetLessonTypeResponse>(querry).ToList();
+                var res = db.QueryAsync<GetLessonTypeResponse>(querry);
+                return await res;
             }
         }
-        public GetLessonTypeResponse Get(Guid id)
+        public async Task<GetLessonTypeResponse> Get(Guid id)
         {
             string querry = $@"SELECT ""Id"", ""Name"" FROM ""LessonTypes""
                                 WHERE ""Id"" = '{id}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetLessonTypeResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetLessonTypeResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
     }

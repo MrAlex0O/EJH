@@ -24,7 +24,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_lessonVisitorsReadService.GetAll());
+                return Ok(await _lessonVisitorsReadService.GetAll());
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_lessonVisitorsReadService.GetByLessonId(id));
+                return Ok(await _lessonVisitorsReadService.GetByLessonId(id));
 
                 
             }

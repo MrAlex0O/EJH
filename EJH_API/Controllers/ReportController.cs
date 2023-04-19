@@ -25,7 +25,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_reportReadService.GetDisciplineVisits(id));
+                return Ok(await _reportReadService.GetDisciplineVisits(id));
 
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_reportReadService.GetDisciplineVisitsByStudentId(id));
+                return Ok(await _reportReadService.GetDisciplineVisitsByStudentId(id));
 
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_reportReadService.GetStudentVisitsByDay(request));
+                return Ok(await _reportReadService.GetStudentVisitsByDay(request));
 
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(_reportReadService.GetStudentVisitsByInterval(request));
+                return Ok(await _reportReadService.GetStudentVisitsByInterval(request));
 
             }
             catch (Exception ex)

@@ -18,7 +18,7 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetTeacherResponse> GetAll()
+        public async Task<IEnumerable<GetTeacherResponse>> GetAll()
         {
             string querry = $@"SELECT ""Teachers"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber""
@@ -28,10 +28,11 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetTeacherResponse>(querry).ToList();
+                var res = db.QueryAsync<GetTeacherResponse>(querry);
+                return await res;
             }
         }
-        public GetTeacherResponse Get(Guid id)
+        public async Task<GetTeacherResponse> Get(Guid id)
         {
             string querry = $@"SELECT ""Teachers"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber""
@@ -41,7 +42,8 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetTeacherResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetTeacherResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Logic.Queries.Interfaces
 {
     public interface ILessonVisitorQuery
     {
-        public List<GetLessonVisitorResponse> GetAll();
-        public GetLessonVisitorResponse GetByLessonId(Guid id);
+        public Task<IEnumerable<GetLessonVisitorResponse>> GetAll();
+        public Task<GetLessonVisitorResponse> GetByLessonId(Guid id);
     }
 }

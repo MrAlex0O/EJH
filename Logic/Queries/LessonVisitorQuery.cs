@@ -18,7 +18,7 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetLessonVisitorResponse> GetAll()
+        public async Task<IEnumerable<GetLessonVisitorResponse>> GetAll()
         {
             string querry = $@"SELECT 
 ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""DisciplineName"",
@@ -44,10 +44,11 @@ GROUP BY ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetLessonVisitorResponse>(querry).ToList();
+                var res = db.QueryAsync<GetLessonVisitorResponse>(querry);
+                return await res;
             }
         }
-        public GetLessonVisitorResponse GetByLessonId(Guid id)
+        public async Task<GetLessonVisitorResponse> GetByLessonId(Guid id)
         {
             string querry = $@"SELECT 
 ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""DisciplineName"",
@@ -74,7 +75,8 @@ GROUP BY ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetLessonVisitorResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetLessonVisitorResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
     }

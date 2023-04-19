@@ -18,7 +18,7 @@ namespace Logic.Queries
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
-        public List<GetDisciplineResponse> GetAll()
+        public async Task<IEnumerable<GetDisciplineResponse>> GetAll()
         {
             string querry = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
@@ -43,10 +43,11 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetDisciplineResponse>(querry).ToList();
+                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                return await res;
             }
         }
-        public GetDisciplineResponse Get(Guid id)
+        public async Task<GetDisciplineResponse> Get(Guid id)
         {
             string querry = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
@@ -71,10 +72,11 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetDisciplineResponse>(querry).FirstOrDefault();
+                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                return (await res).FirstOrDefault();
             }
         }
-        public List<GetDisciplineResponse> GetByTeacherId(Guid teacherId)
+        public async Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid teacherId)
         {
             string querry = $@"SELECT * FROM (
 
@@ -105,7 +107,8 @@ OR '{teacherId}' = ANY (""AssistantsIds"")";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                return db.Query<GetDisciplineResponse>(querry).ToList();
+                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                return await res;
             }
         }
     }

@@ -21,23 +21,23 @@ namespace Logic.ReadServices
             _reportQuery = reportQuery;
         }
 
-        public List<GetDisciplineVisitsReportResponse> GetDisciplineVisits(Guid disciplineId)
+        public async Task<IEnumerable<GetDisciplineVisitsReportResponse>> GetDisciplineVisits(Guid disciplineId)
         {
-            return _reportQuery.GetDisciplineVisits(disciplineId);
+            return await _reportQuery.GetDisciplineVisits(disciplineId);
         }
-        public List<GetStudentVisitsResponse> GetDisciplineVisitsByStudentId(Guid studentId)
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid studentId)
         {
-            return _reportQuery.GetDisciplineVisitsByStudentId(studentId);
-        }
-
-        public List<GetStudentVisitsResponse> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
-        {
-            return _reportQuery.GetStudentVisitsByDay(request);
+            return await _reportQuery.GetDisciplineVisitsByStudentId(studentId);
         }
 
-        public List<GetStudentVisitsResponse> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
         {
-            return _reportQuery.GetStudentVisitsByInterval(request);
+            return await _reportQuery.GetStudentVisitsByDay(request);
+        }
+
+        public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
+        {
+            return await _reportQuery.GetStudentVisitsByInterval(request);
         }
     }
 }
