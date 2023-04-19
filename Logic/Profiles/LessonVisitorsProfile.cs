@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DataBase.Models;
-using Logic.DTOs.LessonVisitors;
+using Logic.DTOs.LessonVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Profiles
 {
-    public class LessonVisitorsProfile : Profile
+    public class LessonVisitorProfile : Profile
     {
-        public LessonVisitorsProfile()
+        public LessonVisitorProfile()
         {
             CreateMap<CreateLessonVisitorRequest, LessonVisitor>();
             CreateMap<UpdateLessonVisitorRequest, LessonVisitor>();

@@ -1,4 +1,4 @@
-﻿using Logic.DTOs.LessonVisitors;
+﻿using Logic.DTOs.LessonVisitor;
 using Logic.ReadServices.Interfaces;
 using Logic.WriteServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;

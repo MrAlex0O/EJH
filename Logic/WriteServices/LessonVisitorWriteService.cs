@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
-using Logic.DTOs.LessonVisitors;
+using Logic.DTOs.LessonVisitor;
 using Logic.WriteServices.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {
-    public class LessonVisitorsWriteService : ILessonVisitorWriteService
+    public class LessonVisitorWriteService : ILessonVisitorWriteService
     {
         private IUnitOfWorkRepository _repositories;
         readonly IMapper _mapper;
-        public LessonVisitorsWriteService(IUnitOfWorkRepository repositories, IMapper mapper)
+        public LessonVisitorWriteService(IUnitOfWorkRepository repositories, IMapper mapper)
         {
             _repositories = repositories;
             _mapper = mapper;

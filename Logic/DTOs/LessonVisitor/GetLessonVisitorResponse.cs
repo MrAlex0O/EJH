@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.DTOs.LessonVisitors
+namespace Logic.DTOs.LessonVisitor
 {
     public class GetLessonVisitorResponse
     {

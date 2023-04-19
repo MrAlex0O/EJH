@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Logic.DTOs.LessonVisitors;
+using Logic.DTOs.LessonVisitor;
 using Logic.Queries.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System;

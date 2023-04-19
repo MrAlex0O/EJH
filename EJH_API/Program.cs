@@ -96,7 +96,7 @@ builder.Services.AddScoped<ILessonQuery, LessonQuery>();
 builder.Services.AddScoped<IStatusOnLessonReadService, StatusOnLessonReadService>();
 builder.Services.AddScoped<IStatusOnLessonQuery, StatusOnLessonQuery>();
 
-builder.Services.AddScoped<ILessonVisitorWriteService, LessonVisitorsWriteService>();
+builder.Services.AddScoped<ILessonVisitorWriteService, LessonVisitorWriteService>();
 builder.Services.AddScoped<ILessonVisitorReadService, LessonVisitorReadService>();
 builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
 

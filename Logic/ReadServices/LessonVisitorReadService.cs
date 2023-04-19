@@ -1,4 +1,4 @@
-﻿using Logic.DTOs.LessonVisitors;
+﻿using Logic.DTOs.LessonVisitor;
 using Logic.Queries.Interfaces;
 using Logic.ReadServices.Interfaces;
 using System;

@@ -1,4 +1,4 @@
-﻿using Logic.DTOs.LessonVisitors;
+﻿using Logic.DTOs.LessonVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
