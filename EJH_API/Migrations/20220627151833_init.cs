@@ -9,33 +9,33 @@ namespace DataBase.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
+            migrationBuilder.CreateTable(   //создать таблицу
+                name: "Groups",             //с названием Groups
+                columns: table => new   //со следующими столбцами
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false), //Id типа UUID
+                    Name = table.Column<string>(type: "text", nullable: false), //Name типа text
                     DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false) 
                 },
-                constraints: table =>
+                constraints: table =>   //указание ограничений
                 {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
+                    table.PrimaryKey("PK_Groups", x => x.Id);   //первичный ключ PK_Groups по полю Id
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LessonTypes",
-                columns: table => new
+            migrationBuilder.CreateTable(   //создать таблицу
+                name: "LessonTypes",        //с названием LessonTypes
+                columns: table => new       //со  следующими столбцами
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false), //Id типа UUID
+                    Name = table.Column<string>(type: "text", nullable: false), //Name типа text
                     EnumId = table.Column<int>(type: "integer", nullable: false),
                     DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
-                constraints: table =>
+                constraints: table => //указание ограничений
                 {
-                    table.PrimaryKey("PK_LessonTypes", x => x.Id);
+                    table.PrimaryKey("PK_LessonTypes", x => x.Id); //первичный ключ PK_LessonTypes по полю Id
                 });
 
             migrationBuilder.CreateTable(
@@ -72,31 +72,31 @@ namespace DataBase.Migrations
                     table.PrimaryKey("PK_StatusOnLessons", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Disciplines",
-                columns: table => new
+            migrationBuilder.CreateTable(   //создать таблицу
+                name: "Disciplines",        //с названием Disciplines
+                columns: table => new       //со следующими столбцами
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    LectorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    GroupId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Semester = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false), //Id типа UUID
+                    Name = table.Column<string>(type: "text", nullable: false),     //Name типа text
+                    LectorId = table.Column<Guid>(type: "uuid", nullable: true),    //LectorId типа UUID
+                    GroupId = table.Column<Guid>(type: "uuid", nullable: true),     //GroupId типа UUID
+                    Semester = table.Column<int>(type: "integer", nullable: false), //Semester типа integer
                     DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
-                constraints: table =>
+                constraints: table =>   //указание ограничений
                 {
-                    table.PrimaryKey("PK_Disciplines", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Disciplines_Groups_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Groups",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Disciplines_Persons_LectorId",
-                        column: x => x.LectorId,
-                        principalTable: "Persons",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_Disciplines", x => x.Id);  //первичный ключ PK_Disciplines по полю Id
+                    table.ForeignKey(                               //внешний ключ
+                        name: "FK_Disciplines_Groups_GroupId",      //с названием FK_Disciplines_Groups_GroupId
+                        column: x => x.GroupId,                     //по полю GroupId
+                        principalTable: "Groups",                   //который ссылается на таблицу Groups
+                        principalColumn: "Id");                     //на поле Groups.Id
+                    table.ForeignKey(                               //внешний ключ
+                        name: "FK_Disciplines_Persons_LectorId",    //с названием FK_Disciplines_Persons_LectorId
+                        column: x => x.LectorId,                    //по полю LectorId
+                        principalTable: "Persons",                  //который ссылается на таблицу Persons
+                        principalColumn: "Id");                     //на поле Persons.Id
                 });
 
             migrationBuilder.CreateTable(
