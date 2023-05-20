@@ -22,19 +22,48 @@ import { VisitorManagerComponent } from './visitor-manager/visitor-manager.compo
 import { GenericTableComponent } from './generic-table/generic-table.component';
 import { ReportManagerComponent } from './report-manager/report-manager.component';
 import { GenericComboBoxComponent } from './generic-combo-box/generic-combo-box.component';
+import { AuthGuard } from './_helpers/auth.guard';
+import { Role } from './_models/roleModel';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'groupManager', component: GroupManagerComponent },
-  { path: 'teacherManager', component: TeacherManagerComponent },
-  { path: 'disciplineManager', component: DisciplineManagerComponent },
-  { path: 'studentManager', component: StudentManagerComponent },
-  { path: 'lessonManager', component: LessonManagerComponent },
-  { path: 'visitorManager', component: VisitorManagerComponent },
-  { path: 'reportManager', component: ReportManagerComponent },
+  {
+    path: 'register', component: RegisterComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'profile', component: ProfileComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman, Role.Teacher] }
+  },
+  {
+    path: 'groupManager', component: GroupManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman] }
+  },
+  {
+    path: 'teacherManager', component: TeacherManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Teacher] }
+  },
+  {
+    path: 'disciplineManager', component: DisciplineManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman] }
+  },
+  {
+    path: 'studentManager', component: StudentManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman] }
+  },
+  {
+    path: 'lessonManager', component: LessonManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman, Role.Teacher] }
+  },
+  {
+    path: 'visitorManager', component: VisitorManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Headman, Role.Teacher] }
+  },
+  {
+    path: 'reportManager', component: ReportManagerComponent,
+    canActivate: [AuthGuard], data: { roles: [Role.Admin, Role.Teacher] }
+  },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -61,7 +90,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),HttpClientModule, 
+    RouterModule.forRoot(appRoutes), HttpClientModule,
     MaterialAppModule
   ],
   providers: [
