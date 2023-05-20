@@ -10,7 +10,7 @@ import { GenericComboBoxComponent } from '../generic-combo-box/generic-combo-box
 })
 export class RegisterComponent implements OnInit {
   roles: RoleModel[] = [];
-  @Input() selected: RoleModel;
+  @Input() selectedRole: RoleModel;
   @ViewChild(GenericComboBoxComponent) viewChild!: GenericComboBoxComponent;
   renderFunction = (item: RoleModel) => { return `${item.name}`; }
   form: RegisterModel = {
@@ -21,29 +21,16 @@ export class RegisterComponent implements OnInit {
     password: "",
     role: ""
   };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
   constructor(private _userService: UserService) { }
   ngOnInit(): void {
     this._userService.getRoles().subscribe(roles => this.roles.push(...roles));
   }
   importValue(role: RoleModel) {
-    this.selected = role;
+    this.selectedRole = role;
   }
 
-  onSubmit(): void {
-    this.form.role = this.selected.name;
-    this._userService.register(this.form).subscribe({
-      next: data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
-    });
+  register(): void {
+    this.form.role = this.selectedRole.name;
+    this._userService.register(this.form).subscribe();
   }
 }
