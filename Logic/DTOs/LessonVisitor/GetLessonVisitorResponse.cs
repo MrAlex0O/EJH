@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Logic.DTOs.LessonVisitor
+﻿namespace Logic.DTOs.LessonVisitor
 {
     public class GetLessonVisitorResponse
     {
@@ -13,7 +7,7 @@ namespace Logic.DTOs.LessonVisitor
         public DateTime Date { get; set; }
         public Guid LessonId { get; set; }
         public Guid LessonTypeId { get; set; }
-        public string LessonTypeName { get; set; }      
+        public string LessonTypeName { get; set; }
         public Guid[] StudentsIds { get; set; }
         public Guid[] LessonsVisitorsIds { get; set; }
         public string[] StudentFullName { get; set; }

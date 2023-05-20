@@ -37,7 +37,7 @@ namespace API.Controllers
             return Ok(response);
 
         }
-        
+
         [Authorization.Attributes.AllowAnonymous]
         [HttpGet("roles")]
         public async Task<ActionResult<List<RoleResponse>>> GetRoles()

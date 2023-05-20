@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Logic.WriteServices;
+﻿using API.Authorization.Attributes;
+using DataBase.Contexts;
 using Logic.DTOs.Group;
 using Logic.ReadServices.Interfaces;
-using DataBase.Contexts;
-using API.Authorization.Attributes;
+using Logic.WriteServices;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +35,7 @@ namespace API.Controllers
                 return Conflict(ex.Message);
             }
         }
-        
+
         // GET api/<GroupController>
         [HttpGet("{id}")]
         public async Task<ActionResult<GetGroupResponse>> Get(Guid id)

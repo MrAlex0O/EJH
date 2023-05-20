@@ -14,7 +14,7 @@ namespace API.Controllers
         ILessonWriteService _lessonWriteService;
         IAssistantWriteService _assistantWriteService;
         ILessonReadService _lessonReadService;
-        public LessonController(ILessonWriteService lessonWriteService, IAssistantWriteService assistantWriteService, ILessonReadService lessonReadService )
+        public LessonController(ILessonWriteService lessonWriteService, IAssistantWriteService assistantWriteService, ILessonReadService lessonReadService)
         {
             _lessonWriteService = lessonWriteService;
             _assistantWriteService = assistantWriteService;

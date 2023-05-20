@@ -2,11 +2,6 @@
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
 using Logic.DTOs.Group;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {
@@ -29,7 +24,7 @@ namespace Logic.WriteServices
         public void Update(Guid id, UpdateGroupRequest updateGroupRequest)
         {
             Group group = _repositories.Groups.Get(id);
-            
+
             _mapper.Map<UpdateGroupRequest, Group>(updateGroupRequest, group);
             _repositories.Groups.Update(group);
             _repositories.SaveChanges();

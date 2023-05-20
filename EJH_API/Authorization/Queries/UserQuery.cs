@@ -1,5 +1,4 @@
-﻿using API.Authorization.Models;
-using Dapper;
+﻿using Dapper;
 using System.Data;
 
 namespace API.Authorization.Queries

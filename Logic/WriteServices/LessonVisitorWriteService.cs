@@ -3,11 +3,6 @@ using DataBase.Models;
 using DataBase.Repositories.Interfaces;
 using Logic.DTOs.LessonVisitor;
 using Logic.WriteServices.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {

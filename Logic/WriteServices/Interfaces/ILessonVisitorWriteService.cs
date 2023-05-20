@@ -1,10 +1,4 @@
-﻿using DataBase.Models;
-using Logic.DTOs.LessonVisitor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Logic.DTOs.LessonVisitor;
 
 namespace Logic.WriteServices.Interfaces
 {

@@ -14,8 +14,6 @@ using Logic.ReadServices;
 using Logic.ReadServices.Interfaces;
 using Logic.WriteServices;
 using Logic.WriteServices.Interfaces;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -134,7 +132,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("CorsPolicy");
 app.UseMiddleware<ErrorHandlerMiddleware>();
-app.UseMiddleware<JwtMiddleware>();     
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
 

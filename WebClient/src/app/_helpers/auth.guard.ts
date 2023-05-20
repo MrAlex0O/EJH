@@ -15,6 +15,8 @@ export class AuthGuard implements CanActivate {
       const { roles } = route.data;
       let intersection: string[] = roles.filter((x: string) => userRoles.includes(x));
       if (intersection.length == 0) {
+
+        alert('Доступ запрещен');
         this.router.navigate(['/']);
         return false;
       }

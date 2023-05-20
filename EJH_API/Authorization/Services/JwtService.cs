@@ -1,12 +1,10 @@
-﻿using DataBase.Models;
-using System.Text;
-
+﻿using API.Authorization.Models;
+using DataBase.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using API.Authorization.Models;
 
 namespace API.Authorization.Services
 {

@@ -1,11 +1,6 @@
 ﻿using DataBase.Models;
 using DataBase.Repositories.Interfaces;
 using Logic.WriteServices.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {
@@ -35,7 +30,7 @@ namespace Logic.WriteServices
         public void DeleteByDisciplineId(Guid disciplineId)
         {
             List<Assistant> assistants = _repositories.Assistants.GetAll().Where(i => i.DisciplineId == disciplineId).ToList();
-            foreach(var a in assistants)
+            foreach (var a in assistants)
             {
                 _repositories.Assistants.Delete(a);
             }

@@ -1,14 +1,6 @@
-﻿using Logic.ReadServices.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataBase.Enums;
-using DataBase.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Logic.DTOs.Report;
 using Logic.Queries.Interfaces;
-using Logic.DTOs.Report;
+using Logic.ReadServices.Interfaces;
 
 namespace Logic.ReadServices
 {

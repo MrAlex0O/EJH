@@ -1,11 +1,5 @@
-﻿using BCrypt.Net;
-using DataBase.Models;
+﻿using DataBase.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataBase.Contexts
 {
@@ -102,7 +96,7 @@ namespace DataBase.Contexts
         {
             modelBuilder.Entity<Role>().HasData(new Role
             {
-                Id = Guid.Parse( Roles.Admin),
+                Id = Guid.Parse(Roles.Admin),
                 Name = "Admin",
                 DateCreate = DateTime.Now,
                 DateUpdate = DateTime.Now
@@ -165,7 +159,7 @@ namespace DataBase.Contexts
 
     public static class Roles
     {
-        public const string Admin =   "6aa74582-0eba-4eee-a960-3b6fc3092130";
+        public const string Admin = "6aa74582-0eba-4eee-a960-3b6fc3092130";
         public const string Teacher = "3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9";
         public const string Headman = "f69a359a-4986-4253-9409-078660dc8fc8";
     }

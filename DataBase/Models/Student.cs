@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataBase.Models
+﻿namespace DataBase.Models
 {
     public class Student : BaseModel
     {
@@ -12,6 +6,6 @@ namespace DataBase.Models
         public virtual Person? Person { get; set; }
         public Guid? GroupId { get; set; }
         public virtual Group? Group { get; set; }
-        
+
     }
 }

@@ -3,11 +3,6 @@ using DataBase.Models;
 using DataBase.Repositories.Interfaces;
 using Logic.DTOs.Teacher;
 using Logic.WriteServices.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.WriteServices
 {
@@ -22,7 +17,7 @@ namespace Logic.WriteServices
         }
         public void Add(Guid personId)
         {
-            Teacher teacher = new Teacher { PersonId = personId};
+            Teacher teacher = new Teacher { PersonId = personId };
             _repositories.Teachers.Add(teacher);
             _repositories.SaveChanges();
         }

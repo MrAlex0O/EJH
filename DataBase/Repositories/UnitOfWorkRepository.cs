@@ -1,13 +1,6 @@
 ﻿using DataBase.Contexts;
-using DataBase;
 using DataBase.Models;
 using DataBase.Repositories.Interfaces;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataBase.Repositories
 {
@@ -48,7 +41,7 @@ namespace DataBase.Repositories
         public BaseRepository<User> Users => _userRepository ??= new BaseRepository<User>((Context)_context);
         public BaseRepository<Role> Roles => _roleRepository ??= new BaseRepository<Role>((Context)_context);
         public BaseRepository<UserRole> UserRoles => _userRoleRepository ??= new BaseRepository<UserRole>((Context)_context);
-        
+
 
         public void SaveChanges()
         {

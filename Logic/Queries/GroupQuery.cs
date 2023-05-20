@@ -1,14 +1,8 @@
 ﻿using Dapper;
-using DataBase.Models;
 using Logic.DTOs.Group;
 using Logic.Queries.Interfaces;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.Queries
 {
@@ -26,7 +20,7 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res =  db.QueryAsync<GetGroupResponse>(query);
+                var res = db.QueryAsync<GetGroupResponse>(query);
                 return await res;
             }
         }

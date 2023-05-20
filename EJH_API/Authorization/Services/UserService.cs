@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using DataBase.Contexts;
-using DataBase.Models;
-using Org.BouncyCastle.Crypto.Generators;
-using BCrypt.Net;
-using DataBase.Repositories.Interfaces;
+﻿using API.Authorization.Models.Users;
 using API.Authorization.Queries;
-using API.Authorization.Models.Users;
+using AutoMapper;
+using DataBase.Models;
+using DataBase.Repositories.Interfaces;
 
 namespace API.Authorization.Services
 {

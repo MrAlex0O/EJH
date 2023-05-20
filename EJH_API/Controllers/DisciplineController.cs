@@ -94,7 +94,7 @@ namespace API.Controllers
             try
             {
                 _disciplineWriteService.Update(id, updateDisciplineRequest);
-                _assistantWriteService.DeleteByDisciplineId(id); 
+                _assistantWriteService.DeleteByDisciplineId(id);
                 foreach (var assistantId in updateDisciplineRequest.AssistantsIds)
                 {
                     _assistantWriteService.Add(id, assistantId);

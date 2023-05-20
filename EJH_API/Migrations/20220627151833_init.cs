@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -16,7 +15,7 @@ namespace DataBase.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false), //Id типа UUID
                     Name = table.Column<string>(type: "text", nullable: false), //Name типа text
                     DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false) 
+                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>   //указание ограничений
                 {

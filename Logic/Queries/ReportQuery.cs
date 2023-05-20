@@ -64,7 +64,7 @@ ORDER BY 1, 2";
                 return await res;
             }
         }
-        
+
         public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
         {
             string query = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 

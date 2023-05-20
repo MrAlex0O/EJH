@@ -40,7 +40,7 @@ namespace API.Controllers
             {
                 return Ok(await _lessonVisitorsReadService.GetByLessonId(id));
 
-                
+
             }
             catch (Exception ex)
             {
