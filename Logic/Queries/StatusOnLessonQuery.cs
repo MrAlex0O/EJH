@@ -20,23 +20,23 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetStatusOnLessonResponse>> GetAll()
         {
-            string querry = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
+            string query = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
                                 ORDER BY ""DateCreate"" ASC";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetStatusOnLessonResponse>(querry);
+                var res = db.QueryAsync<GetStatusOnLessonResponse>(query);
                 return await res;
             }
         }
         public async Task<GetStatusOnLessonResponse> Get(Guid id)
         {
-            string querry = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
+            string query = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
                                 WHERE ""Id"" = '{id}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetStatusOnLessonResponse>(querry);
+                var res = db.QueryAsync<GetStatusOnLessonResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }

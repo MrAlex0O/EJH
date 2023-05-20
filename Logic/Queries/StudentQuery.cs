@@ -20,7 +20,7 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetStudentResponse>> GetAll()
         {
-            string querry = $@"SELECT ""Students"".""Id"", 
+            string query = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
 		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName""
                             FROM ""Students""
@@ -31,13 +31,13 @@ namespace Logic.Queries
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
 
-                var res = db.QueryAsync<GetStudentResponse>(querry);
+                var res = db.QueryAsync<GetStudentResponse>(query);
                 return await res;
             }
         }
         public async Task<GetStudentResponse> Get(Guid id)
         {
-            string querry = $@"SELECT ""Students"".""Id"", 
+            string query = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
 		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName""
                             FROM ""Students""
@@ -47,13 +47,13 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetStudentResponse>(querry);
+                var res = db.QueryAsync<GetStudentResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }
         public async Task<IEnumerable<GetStudentResponse>> GetByGroupId(Guid groupId)
         {
-            string querry = $@"SELECT ""Students"".""Id"", 
+            string query = $@"SELECT ""Students"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber"",
 		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName""
                             FROM ""Students""
@@ -63,7 +63,7 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetStudentResponse>(querry);
+                var res = db.QueryAsync<GetStudentResponse>(query);
                 return await res;
             }
         }

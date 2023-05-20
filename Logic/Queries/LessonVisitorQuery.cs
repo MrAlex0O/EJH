@@ -20,7 +20,7 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetLessonVisitorResponse>> GetAll()
         {
-            string querry = $@"SELECT 
+            string query = $@"SELECT 
 ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""DisciplineName"",
 		""Lessons"".""Date"", ""Lessons"".""Id"" AS ""LessonId"",
 		""LessonTypes"".""Id"" AS ""LessonTypeId"", ""LessonTypes"".""Name"" AS ""LessonTypeName"",
@@ -44,13 +44,13 @@ GROUP BY ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetLessonVisitorResponse>(querry);
+                var res = db.QueryAsync<GetLessonVisitorResponse>(query);
                 return await res;
             }
         }
         public async Task<GetLessonVisitorResponse> GetByLessonId(Guid id)
         {
-            string querry = $@"SELECT 
+            string query = $@"SELECT 
 ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""DisciplineName"",
 		""Lessons"".""Date"", ""Lessons"".""Id"" AS ""LessonId"",
 		""LessonTypes"".""Id"" AS ""LessonTypeId"", ""LessonTypes"".""Name"" AS ""LessonTypeName"",
@@ -75,7 +75,7 @@ GROUP BY ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetLessonVisitorResponse>(querry);
+                var res = db.QueryAsync<GetLessonVisitorResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }

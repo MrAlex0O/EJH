@@ -20,7 +20,7 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetLessonResponse>> GetAll()
         {
-            string querry = $@"SELECT ""Lessons"".""Id"",
+            string query = $@"SELECT ""Lessons"".""Id"",
                                         ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""Disciplinename"",
                                         l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
                                         ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
@@ -50,13 +50,13 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetLessonResponse>(querry);
+                var res = db.QueryAsync<GetLessonResponse>(query);
                 return await res;
             }
         }
         public async Task<GetLessonResponse> Get(Guid id)
         {
-            string querry = $@"SELECT ""Lessons"".""Id"", 
+            string query = $@"SELECT ""Lessons"".""Id"", 
 ""Disciplines"".""Id"" AS ""DisciplineId"", ""Disciplines"".""Name"" AS ""Disciplinename"",
 l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
 ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
@@ -85,7 +85,7 @@ WHERE ""Lessons"".""Id"" = '{id}'
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetLessonResponse>(querry);
+                var res = db.QueryAsync<GetLessonResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }

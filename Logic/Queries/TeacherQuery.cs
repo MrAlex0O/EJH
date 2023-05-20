@@ -20,7 +20,7 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetTeacherResponse>> GetAll()
         {
-            string querry = $@"SELECT ""Teachers"".""Id"", 
+            string query = $@"SELECT ""Teachers"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber""
                             FROM ""Teachers""
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Teachers"".""PersonId""
@@ -28,13 +28,13 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetTeacherResponse>(querry);
+                var res = db.QueryAsync<GetTeacherResponse>(query);
                 return await res;
             }
         }
         public async Task<GetTeacherResponse> Get(Guid id)
         {
-            string querry = $@"SELECT ""Teachers"".""Id"", 
+            string query = $@"SELECT ""Teachers"".""Id"", 
                             ""Persons"".""Name"", ""Persons"".""Midname"",""Persons"".""Surname"",""Persons"".""Address"",""Persons"".""Email"",""Persons"".""PhoneNumber""
                             FROM ""Teachers""
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Teachers"".""PersonId""
@@ -42,7 +42,7 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetTeacherResponse>(querry);
+                var res = db.QueryAsync<GetTeacherResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }

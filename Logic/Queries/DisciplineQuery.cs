@@ -20,7 +20,7 @@ namespace Logic.Queries
         }
         public async Task<IEnumerable<GetDisciplineResponse>> GetAll()
         {
-            string querry = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
+            string query = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
                             l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
 		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
@@ -43,13 +43,13 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                var res = db.QueryAsync<GetDisciplineResponse>(query);
                 return await res;
             }
         }
         public async Task<GetDisciplineResponse> Get(Guid id)
         {
-            string querry = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
+            string query = $@"SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
                             l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
 		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
@@ -72,13 +72,13 @@ namespace Logic.Queries
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                var res = db.QueryAsync<GetDisciplineResponse>(query);
                 return (await res).FirstOrDefault();
             }
         }
         public async Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid teacherId)
         {
-            string querry = $@"SELECT * FROM (
+            string query = $@"SELECT * FROM (
 
 SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
 
@@ -107,7 +107,7 @@ OR '{teacherId}' = ANY (""AssistantsIds"")";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                var res = db.QueryAsync<GetDisciplineResponse>(querry);
+                var res = db.QueryAsync<GetDisciplineResponse>(query);
                 return await res;
             }
         }
