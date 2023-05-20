@@ -50,6 +50,13 @@ export class StorageService {
     }
     return {};
   }
+  public getRoles(): string[] {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user)['roles'];
+    }
+    return [];
+  }
   public getUserToken(): string {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
