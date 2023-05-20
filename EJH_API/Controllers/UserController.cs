@@ -46,7 +46,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [Authorization.Attributes.Authorize(Roles.Admin)]
+        [Authorization.Attributes.RequireAuthorization(Roles.Admin)]
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest model)
         {

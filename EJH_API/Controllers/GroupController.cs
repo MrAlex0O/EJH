@@ -3,6 +3,7 @@ using Logic.WriteServices;
 using Logic.DTOs.Group;
 using Logic.ReadServices.Interfaces;
 using DataBase.Contexts;
+using API.Authorization.Attributes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +22,7 @@ namespace API.Controllers
         }
 
         // GET api/<GroupController>
+        [RequireAuthorization(Roles.Admin, Roles.Headman)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetGroupResponse>>> Get()
         {

@@ -7,10 +7,10 @@ using System.Linq;
 namespace API.Authorization.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+    public class RequireAuthorizationAttribute : Attribute, IAuthorizationFilter
     {
         List<Guid> _roles = new List<Guid>();
-        public AuthorizeAttribute(params string[] roles)
+        public RequireAuthorizationAttribute(params string[] roles)
         {
             foreach (var role in roles)
             {
@@ -21,7 +21,7 @@ namespace API.Authorization.Attributes
         {
             // skip authorization if action is decorated with [AllowAnonymous] attribute
             var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
-            var attributes = context.ActionDescriptor.EndpointMetadata.OfType<AuthorizeAttribute>();
+            var attributes = context.ActionDescriptor.EndpointMetadata.OfType<RequireAuthorizationAttribute>();
             foreach (var a in attributes)
             {
                 _roles.AddRange(a._roles);
