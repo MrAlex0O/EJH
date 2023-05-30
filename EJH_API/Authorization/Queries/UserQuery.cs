@@ -13,10 +13,8 @@ namespace API.Authorization.Queries
         public List<string> GetRolesByUser(Guid id)
         {
             string querry = $@"SELECT ""Roles"".""Name"" FROM ""UserRoles""
-INNER JOIN ""Roles"" ON ""Roles"".""Id"" = ""UserRoles"".""RoleId""
-WHERE ""UserRoles"".""UserId"" = '{id}'
-";
-
+                                INNER JOIN ""Roles"" ON ""Roles"".""Id"" = ""UserRoles"".""RoleId""
+                                WHERE ""UserRoles"".""UserId"" = '{id}'";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 return db.Query<string>(querry).ToList();

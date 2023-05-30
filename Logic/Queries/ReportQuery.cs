@@ -16,22 +16,21 @@ namespace Logic.Queries
         public async Task<IEnumerable<GetDisciplineVisitsReportResponse>> GetDisciplineVisits(Guid disciplineId)
         {
             string query = $@"SELECT DISTINCT ""Persons"".""Surname"" || ' ' || ""Persons"".""Name"" || ' ' || ""Persons"".""Midname"" AS ""FullName""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Present""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Missing""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Liberation""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""AnotherSubgroup""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""SeriousReason""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Incalculable""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Present""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Missing""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Liberation""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""AnotherSubgroup""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""SeriousReason""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""Persons"".""Surname"") AS ""Incalculable""
 
-FROM ""LessonsVisitors""
-INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
-INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
-INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
-INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
-WHERE ""Lessons"".""DisciplineId"" = '{disciplineId}'
-GROUP BY ""Persons"".""Surname"", ""Persons"".""Name"", ""Persons"".""Midname"", ""StatusOnLessons"".""Name""
-ORDER BY 1";
-
+                              FROM ""LessonsVisitors""
+                              INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
+                              INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
+                              INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
+                              INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
+                              WHERE ""Lessons"".""DisciplineId"" = '{disciplineId}'
+                              GROUP BY ""Persons"".""Surname"", ""Persons"".""Name"", ""Persons"".""Midname"", ""StatusOnLessons"".""Name""
+                              ORDER BY 1";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetDisciplineVisitsReportResponse>(query);
@@ -41,23 +40,22 @@ ORDER BY 1";
         public async Task<IEnumerable<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid studentId)
         {
             string query = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
-FROM ""LessonsVisitors""
-INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
-INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
-INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
-INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
-INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
-INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
-WHERE ""Students"".""Id"" = '{studentId}'
-GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
-ORDER BY 1, 2";
-
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
+                             FROM ""LessonsVisitors""
+                             INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
+                             INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
+                             INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
+                             INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
+                             INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
+                             INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
+                             WHERE ""Students"".""Id"" = '{studentId}'
+                             GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
+                             ORDER BY 1, 2";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStudentVisitsResponse>(query);
@@ -68,24 +66,23 @@ ORDER BY 1, 2";
         public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
         {
             string query = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
-FROM ""LessonsVisitors""
-INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
-INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
-INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
-INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
-INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
-INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
-WHERE ""Students"".""Id"" = '{request.StudentId}'
-AND ""Lessons"".""Date"" = '{request.Date}'
-GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
-ORDER BY 1, 2";
-
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
+                             FROM ""LessonsVisitors""
+                             INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
+                             INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
+                             INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
+                             INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
+                             INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
+                             INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
+                             WHERE ""Students"".""Id"" = '{request.StudentId}'
+                             AND ""Lessons"".""Date"" = '{request.Date}'
+                             GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
+                             ORDER BY 1, 2";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStudentVisitsResponse>(query);
@@ -95,25 +92,24 @@ ORDER BY 1, 2";
         public async Task<IEnumerable<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
         {
             string query = $@"SELECT DISTINCT ""Disciplines"".""Name"" AS ""Disciplinename"", ""LessonTypes"".""Name"" AS ""LessonTypeName"" 
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
-, sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
-FROM ""LessonsVisitors""
-INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
-INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
-INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
-INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
-INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
-INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
-WHERE ""Students"".""Id"" = '{request.StudentId}'
-AND ""Lessons"".""Date"" >= '{request.DateStart}'
-AND ""Lessons"".""Date"" <= '{request.DateEnd}'
-GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
-ORDER BY 1, 2";
-
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 1)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Present""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 2)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Missing""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 3)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Liberation""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 4)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""AnotherSubgroup""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 5)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""SeriousReason""
+                                , sum(count(""StatusOnLessons"".""Id"") FILTER(WHERE ""StatusOnLessons"".""EnumId"" = 6)) OVER(PARTITION BY ""LessonTypes"".""Name"", ""Disciplines"".""Name"") AS ""Incalculable""
+                             FROM ""LessonsVisitors""
+                             INNER JOIN ""Students"" ON ""Students"".""Id"" = ""LessonsVisitors"".""StudentId""
+                             INNER JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
+                             INNER JOIN ""Lessons"" ON ""Lessons"".""Id"" = ""LessonsVisitors"".""LessonId""
+                             INNER JOIN ""Disciplines"" ON ""Disciplines"".""Id"" = ""Lessons"".""DisciplineId""
+                             INNER JOIN ""LessonTypes"" ON ""Lessons"".""LessonTypeId"" = ""LessonTypes"".""Id""
+                             INNER JOIN ""StatusOnLessons"" ON ""StatusOnLessons"".""Id"" = ""LessonsVisitors"".""StatusOnLessonId""
+                             WHERE ""Students"".""Id"" = '{request.StudentId}'
+                             AND ""Lessons"".""Date"" >= '{request.DateStart}'
+                             AND ""Lessons"".""Date"" <= '{request.DateEnd}'
+                             GROUP BY ""Disciplines"".""Name"", ""StatusOnLessons"".""Name"", ""LessonTypes"".""Name""
+                             ORDER BY 1, 2";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStudentVisitsResponse>(query);

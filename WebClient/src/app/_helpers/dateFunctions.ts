@@ -1,4 +1,3 @@
-
 export function DateToJSONString(date: Date): string {
   let month = (date.getMonth() + 1).toString();
   let day = date.getDate().toString();

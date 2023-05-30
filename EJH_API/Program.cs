@@ -1,3 +1,4 @@
+using API;
 using API.Authorization.Middleware;
 using API.Authorization.Middlewares;
 using API.Authorization.Models;
@@ -19,11 +20,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); // устаревшее поведение Даты и Времени в postgreSQL
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
@@ -98,7 +96,6 @@ builder.Services.AddScoped<ILessonVisitorWriteService, LessonVisitorWriteService
 builder.Services.AddScoped<ILessonVisitorReadService, LessonVisitorReadService>();
 builder.Services.AddScoped<ILessonVisitorQuery, LessonVisitorQuery>();
 
-
 builder.Services.AddScoped<IReportReadService, ReportReadService>();
 builder.Services.AddScoped<IReportQuery, ReportQuery>();
 #endregion services
@@ -124,7 +121,6 @@ AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
 #endregion
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -132,7 +128,6 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("CorsPolicy");
 app.UseMiddleware<ErrorHandlerMiddleware>();
-app.UseMiddleware<JwtMiddleware>();
 
 app.UseHttpsRedirection();
 
@@ -140,5 +135,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

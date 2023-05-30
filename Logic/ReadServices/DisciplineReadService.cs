@@ -11,14 +11,17 @@ namespace Logic.ReadServices
         {
             _disciplineQuery = disciplineQuery;
         }
+
         public async Task<IEnumerable<GetDisciplineResponse>> GetAll()
         {
             return await _disciplineQuery.GetAll();
         }
+
         public async Task<GetDisciplineResponse> Get(Guid id)
         {
             return await _disciplineQuery.Get(id);
         }
+
         public async Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid teacherId)
         {
             return await _disciplineQuery.GetByTeacherId(teacherId);

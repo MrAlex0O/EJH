@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { StorageService } from '../_services/storage.service';
+
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
   token: string = "";
@@ -14,12 +15,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       withCredentials: true,
       headers: req.headers.set('Authorization', `Bearer ${this.token}`)
     });
+    req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
     return next.handle(req).pipe(
       tap(
         (event) => {
           if (event instanceof HttpResponse) {
             console.log('Server response')
-
             console.log(JSON.stringify(event))
           }
         },
@@ -34,4 +35,3 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     )
   }
 }
-

@@ -10,7 +10,6 @@ namespace DataBase.Repositories
     {
         private readonly Context _context;
         private readonly DbSet<TEntity> _dbSet;
-
         public BaseRepository(Context context)
         {
             _context = context;
@@ -53,9 +52,7 @@ namespace DataBase.Repositories
         public TEntity Attach(TEntity entity)
         {
             entity = _dbSet.Attach(entity).Entity;
-
             _context.Entry(entity).State = EntityState.Modified;
-            ;
             return entity;
         }
 

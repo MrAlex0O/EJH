@@ -11,4 +11,3 @@ export interface DisciplineModel extends BaseModel {
   assistantsIds: string[];
   assistantsFullNames: string[];
 }
-

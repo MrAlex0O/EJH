@@ -1,8 +1,6 @@
 import { BaseModel } from "./BaseModel";
 
-
-export interface AuthReponseModel extends BaseModel {
-  
+export interface AuthReponseModel extends BaseModel {  
   id: string;
   name: string;
   surname: string;

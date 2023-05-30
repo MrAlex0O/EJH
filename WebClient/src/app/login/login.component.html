@@ -1,14 +1,13 @@
 <mat-form-field>
   <mat-label>Username</mat-label>
-  <input matInput type="text" name="username" id="username" [(ngModel)]="form.username" />
+  <input matInput type="text" name="username" id="username" [(ngModel)]="form.username"/>
   </mat-form-field>
 <br />
 <mat-form-field>
   <mat-label>Password</mat-label>
-  <input matInput type="password" name="password" [(ngModel)]="form.password" />
+  <input matInput type="password" name="password" [(ngModel)]="form.password"/>
 </mat-form-field>
 <br />
 <button mat-button (click)="login()">Войти</button>
 <br />
 <button mat-button (click)="logout()">Выйти</button>
-

@@ -1,7 +1,6 @@
 import { BaseModel } from "./BaseModel";
 
-export interface LessonModel extends BaseModel {
-  
+export interface LessonModel extends BaseModel {  
   id: string;
   disciplineId: string;
   disciplineName: string;

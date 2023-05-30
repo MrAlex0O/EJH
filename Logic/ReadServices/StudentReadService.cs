@@ -21,6 +21,7 @@ namespace Logic.ReadServices
         {
             return await _studentQuery.Get(id);
         }
+
         public async Task<IEnumerable<GetStudentResponse>> GetByGroupId(Guid groupId)
         {
             return await _studentQuery.GetByGroupId(groupId);

@@ -22,7 +22,6 @@ namespace Logic.Queries
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
                             LEFT JOIN ""Groups"" ON ""Groups"".""Id"" = ""Students"".""GroupId""
                             ORDER BY ""Students"".""DateCreate"" ASC";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
 
@@ -39,7 +38,6 @@ namespace Logic.Queries
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
                             LEFT JOIN ""Groups"" ON ""Groups"".""Id"" = ""Students"".""GroupId""
                             WHERE ""Students"".""Id""='{id}'";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStudentResponse>(query);
@@ -55,7 +53,6 @@ namespace Logic.Queries
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Students"".""PersonId""
                             LEFT JOIN ""Groups"" ON ""Groups"".""Id"" = ""Students"".""GroupId""
                             WHERE ""Groups"".""Id""='{groupId}'";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStudentResponse>(query);

@@ -17,7 +17,6 @@ namespace Logic.Queries
         {
             string query = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
                                 ORDER BY ""DateCreate"" ASC";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStatusOnLessonResponse>(query);
@@ -28,7 +27,6 @@ namespace Logic.Queries
         {
             string query = $@"SELECT ""Id"", ""Name"" FROM ""StatusOnLessons""
                                 WHERE ""Id"" = '{id}'";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetStatusOnLessonResponse>(query);

@@ -18,11 +18,8 @@ namespace DataBase.Repositories.Interfaces
         public BaseRepository<Role> Roles { get; }
         public BaseRepository<UserRole> UserRoles { get; }
         public void SaveChanges();
-
         public Task SaveChangesAsync();
-
         public void Dispose(bool disposing);
-
         public void Dispose();
     }
 }

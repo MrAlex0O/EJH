@@ -19,6 +19,5 @@ namespace Logic.ReadServices
         {
             return await _statusOnLessonQuery.Get(id);
         }
-
     }
 }

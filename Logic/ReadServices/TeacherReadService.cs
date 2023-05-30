@@ -16,6 +16,7 @@ namespace Logic.ReadServices
         {
             return await _teacherQuery.GetAll();
         }
+
         public async Task<GetTeacherResponse> Get(Guid id)
         {
             return await _teacherQuery.Get(id);

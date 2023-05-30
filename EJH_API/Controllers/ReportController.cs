@@ -2,8 +2,6 @@
 using Logic.ReadServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace API.Controllers
 {
     //[Authorization.Authorize]
@@ -17,62 +15,28 @@ namespace API.Controllers
             _reportReadService = reportReadService;
         }
 
-        // GET api/<ReportController>
         [HttpGet("disciplineVisits/{id}")]
         public async Task<ActionResult<GetDisciplineVisitsReportResponse>> GetDisciplineVisitsReport(Guid id)
         {
-            try
-            {
-                return Ok(await _reportReadService.GetDisciplineVisits(id));
-
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _reportReadService.GetDisciplineVisits(id));
         }
-        // GET api/<ReportController>
+
         [HttpGet("studentVisits/{id}")]
         public async Task<ActionResult<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid id)
         {
-            try
-            {
-                return Ok(await _reportReadService.GetDisciplineVisitsByStudentId(id));
-
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _reportReadService.GetDisciplineVisitsByStudentId(id));
         }
-        // POST api/<ReportController>
+
         [HttpPost("studentVisitsByDay")]
         public async Task<ActionResult<GetStudentVisitsResponse>> GetStudentVisitsByDay(GetStudentVisitByDayRequest request)
         {
-            try
-            {
-                return Ok(await _reportReadService.GetStudentVisitsByDay(request));
-
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _reportReadService.GetStudentVisitsByDay(request));
         }
-        // POST api/<ReportController>
+
         [HttpPost("studentVisitsByInterval")]
         public async Task<ActionResult<GetStudentVisitsResponse>> GetStudentVisitsByInterval(GetStudentVisitsByIntervalRequest request)
         {
-            try
-            {
-                return Ok(await _reportReadService.GetStudentVisitsByInterval(request));
-
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _reportReadService.GetStudentVisitsByInterval(request));
         }
-
     }
 }

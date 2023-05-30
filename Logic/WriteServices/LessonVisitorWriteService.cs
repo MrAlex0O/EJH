@@ -17,8 +17,9 @@ namespace Logic.WriteServices
         }
         public void Add(CreateLessonVisitorRequest createlessonsVisitors)
         {
-            LessonVisitor? lv = _repositories.LessonVisitors.GetAll().Where(l => l.StudentId == createlessonsVisitors.StudentId &&
-                                                                               l.LessonId == createlessonsVisitors.LessonId).FirstOrDefault();
+            LessonVisitor? lv = _repositories.LessonVisitors.GetAll()
+                .Where(l => l.StudentId == createlessonsVisitors.StudentId && l.LessonId == createlessonsVisitors.LessonId)
+                .FirstOrDefault();
             if (lv == null)
             {
                 _repositories.LessonVisitors.Add(_mapper.Map<LessonVisitor>(createlessonsVisitors));
@@ -29,7 +30,6 @@ namespace Logic.WriteServices
                 lv.StatusOnLessonId = createlessonsVisitors.StatusOnLessonId;
                 _repositories.LessonVisitors.Update(lv);
             }
-
             _repositories.SaveChanges();
         }
 
@@ -43,7 +43,6 @@ namespace Logic.WriteServices
         public void Update(Guid id, UpdateLessonVisitorRequest updatelessonsVisitors)
         {
             LessonVisitor lessonsVisitor = _repositories.LessonVisitors.Get(id);
-
             _mapper.Map<UpdateLessonVisitorRequest, LessonVisitor>(updatelessonsVisitors, lessonsVisitor);
             _repositories.LessonVisitors.Update(lessonsVisitor);
             _repositories.SaveChanges();

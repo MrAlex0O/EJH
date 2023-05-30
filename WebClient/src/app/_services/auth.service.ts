@@ -7,10 +7,6 @@ import { environment } from '../../environments/environment';
 import { RoleModel } from '../_models/roleModel';
 
 const AUTH_API = environment.api_path + '/User';
-  //'https://localhost:7287/api/User';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 @Injectable({
   providedIn: 'root',
 })
@@ -18,25 +14,19 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(login: LoginModel): Observable<any> {
+    return this.http.post(AUTH_API + '/login', login,);
+  }
 
-    return this.http.post(
-      AUTH_API + '/login',
-      login,
-      httpOptions
-    );
-  }
   register(register: RegisterModel): Observable<any> {
-    return this.http.post(
-      AUTH_API + '/register',
-      register,
-      httpOptions
-    );
+    return this.http.post(AUTH_API + '/register', register);
   }
+
   getRoles(): Observable<any> {
     return this.http.get<RoleModel[]>(AUTH_API + '/roles');
   }
+
   logout(): Observable<any> {
     sessionStorage.removeItem("auth-user");
-    return this.http.post(AUTH_API + '/signout', {}, httpOptions);
+    return this.http.post(AUTH_API + '/signout', {});
   }
 }

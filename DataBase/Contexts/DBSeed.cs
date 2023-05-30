@@ -31,7 +31,6 @@ namespace DataBase.Contexts
                 DateCreate = DateTime.Now,
                 DateUpdate = DateTime.Now
             });
-
             modelBuilder.Entity<LessonType>().HasData(new LessonType
             {
                 Id = Guid.Parse("bc9474a1-4fb2-4638-b1c4-f4ca21c68bb9"),
@@ -163,5 +162,4 @@ namespace DataBase.Contexts
         public const string Teacher = "3e46ecb0-a6e6-49eb-9f9e-32daa6595bc9";
         public const string Headman = "f69a359a-4986-4253-9409-078660dc8fc8";
     }
-
 }

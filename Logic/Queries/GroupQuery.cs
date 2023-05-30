@@ -16,8 +16,7 @@ namespace Logic.Queries
         public async Task<IEnumerable<GetGroupResponse>> GetAll()
         {
             string query = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
-                                ORDER BY ""DateCreate"" ASC";
-
+                              ORDER BY ""DateCreate"" ASC";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetGroupResponse>(query);
@@ -27,8 +26,7 @@ namespace Logic.Queries
         public async Task<GetGroupResponse> Get(Guid id)
         {
             string query = $@"SELECT ""Id"", ""Name"" FROM ""Groups""
-                                WHERE ""Id"" = '{id}'";
-
+                              WHERE ""Id"" = '{id}'";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetGroupResponse>(query);

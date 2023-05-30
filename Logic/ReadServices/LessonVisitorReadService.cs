@@ -11,10 +11,12 @@ namespace Logic.ReadServices
         {
             _groupQuery = query;
         }
+
         public async Task<IEnumerable<GetLessonVisitorResponse>> GetAll()
         {
             return await _groupQuery.GetAll();
         }
+
         public async Task<GetLessonVisitorResponse> GetByLessonId(Guid id)
         {
             return await _groupQuery.GetByLessonId(id);

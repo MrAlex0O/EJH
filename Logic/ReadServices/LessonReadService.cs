@@ -11,10 +11,12 @@ namespace Logic.ReadServices
         {
             _lessonQuery = lessonQuery;
         }
+
         public async Task<IEnumerable<GetLessonResponse>> GetAll()
         {
             return await _lessonQuery.GetAll();
         }
+
         public async Task<GetLessonResponse> Get(Guid id)
         {
             return await _lessonQuery.Get(id);

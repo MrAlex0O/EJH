@@ -27,18 +27,19 @@ namespace API.Authorization.Attributes
             _roles = _roles.Distinct().ToList();
             if (allowAnonymous)
                 return;
-
-            // authorization
             User user = (User)context.HttpContext.Items["User"];
             Guid[] roles = (Guid[])context.HttpContext.Items["Roles"];
 
             if (user == null)
+            {
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-
+            }
             if (roles != null)
             {
                 if (_roles.Intersect(roles).Count() == 0)
+                {
                     context.Result = new JsonResult(new { message = "Permission denied" }) { StatusCode = StatusCodes.Status403Forbidden };
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ namespace API.Authorization.Profiles
         {
             CreateMap<User, AuthResponse>();
             CreateMap<Person, AuthResponse>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); ;
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<AuthResponse, Person>();
             CreateMap<RegisterRequest, User>();
             CreateMap<UpdateRequest, User>();

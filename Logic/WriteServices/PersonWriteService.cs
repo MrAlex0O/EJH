@@ -35,6 +35,5 @@ namespace Logic.WriteServices
             _repositories.Persons.Delete(person);
             _repositories.SaveChanges();
         }
-
     }
 }

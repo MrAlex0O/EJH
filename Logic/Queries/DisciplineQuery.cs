@@ -62,9 +62,7 @@ namespace Logic.Queries
                             WHERE ""Disciplines"".""Id""='{id}'
                             GROUP BY ""Disciplines"".""Id"", 
 		                    l.""Id"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"",
-		                    ""Groups"".""Id"", ""Groups"".""Name"",
-		                    ""Disciplines"".""Semester""";
-
+		                    ""Groups"".""Id"", ""Groups"".""Name"", ""Disciplines"".""Semester""";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetDisciplineResponse>(query);
@@ -74,32 +72,26 @@ namespace Logic.Queries
         public async Task<IEnumerable<GetDisciplineResponse>> GetByTeacherId(Guid teacherId)
         {
             string query = $@"SELECT * FROM (
-
-SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
-
-        l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
-		""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
-		""Disciplines"".""Semester"",
-		array_remove(array_agg(a.""Id""), null) AS ""AssistantsIds"",
-
-        array_remove(array_agg(a1.""Surname"" || ' ' || a1.""Name"" || ' ' || a1.""Midname""), null) AS ""AssistantsFullNames""
-FROM ""Disciplines""
-LEFT JOIN ""Groups"" ON ""Groups"".""Id"" = ""Disciplines"".""GroupId""
-LEFT JOIN ""Teachers"" AS l ON l.""Id"" = ""Disciplines"".""LectorId""
-LEFT JOIN ""Persons"" AS l1 ON l1.""Id"" = l.""PersonId""
-LEFT JOIN ""Assistants"" AS a0 ON a0.""DisciplineId"" = ""Disciplines"".""Id""
-LEFT JOIN ""Teachers"" AS a ON a.""Id"" = a0.""TeacherId""
-LEFT JOIN ""Persons"" AS a1 ON a1.""Id"" = a.""PersonId""
-
-GROUP BY ""Disciplines"".""Id"", 
-		l.""Id"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"",
-		""Groups"".""Id"", ""Groups"".""Name"",
-		""Disciplines"".""Semester""
-ORDER BY ""Disciplines"".""DateCreate"" ASC) AS a
-
-WHERE ""LectorId"" = '{teacherId}'
-OR '{teacherId}' = ANY (""AssistantsIds"")";
-
+                            SELECT ""Disciplines"".""Id"", ""Disciplines"".""Name"",
+                            l.""Id"" AS ""LectorId"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"" AS ""LectorFullName"",
+		                    ""Groups"".""Id"" AS ""GroupId"", ""Groups"".""Name"" AS ""GroupName"",
+		                    ""Disciplines"".""Semester"",
+		                    array_remove(array_agg(a.""Id""), null) AS ""AssistantsIds"",
+                            array_remove(array_agg(a1.""Surname"" || ' ' || a1.""Name"" || ' ' || a1.""Midname""), null) AS ""AssistantsFullNames""
+                            FROM ""Disciplines""
+                            LEFT JOIN ""Groups"" ON ""Groups"".""Id"" = ""Disciplines"".""GroupId""
+                            LEFT JOIN ""Teachers"" AS l ON l.""Id"" = ""Disciplines"".""LectorId""
+                            LEFT JOIN ""Persons"" AS l1 ON l1.""Id"" = l.""PersonId""
+                            LEFT JOIN ""Assistants"" AS a0 ON a0.""DisciplineId"" = ""Disciplines"".""Id""
+                            LEFT JOIN ""Teachers"" AS a ON a.""Id"" = a0.""TeacherId""
+                            LEFT JOIN ""Persons"" AS a1 ON a1.""Id"" = a.""PersonId""
+                            GROUP BY ""Disciplines"".""Id"", 
+		                    l.""Id"", l1.""Surname"" || ' ' || l1.""Name"" || ' ' || l1.""Midname"",
+		                    ""Groups"".""Id"", ""Groups"".""Name"",
+		                    ""Disciplines"".""Semester""
+                            ORDER BY ""Disciplines"".""DateCreate"" ASC) AS a
+                            WHERE ""LectorId"" = '{teacherId}'
+                            OR '{teacherId}' = ANY (""AssistantsIds"")";
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetDisciplineResponse>(query);

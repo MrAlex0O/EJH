@@ -30,6 +30,7 @@ namespace Logic.WriteServices
             _repositories.Lessons.Update(lesson);
             _repositories.SaveChanges();
         }
+
         public void Delete(Guid id)
         {
             Lesson lesson = _repositories.Lessons.Get(id);

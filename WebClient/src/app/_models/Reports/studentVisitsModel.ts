@@ -9,5 +9,4 @@ export interface StudentVisitsReportModel extends ReportModel {
   AnotherSubgroup: number; 
   SeriousReason: number;
   Incalculable: number;
-
 }

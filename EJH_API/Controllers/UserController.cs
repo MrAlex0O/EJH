@@ -1,12 +1,11 @@
-﻿using API.Authorization.Models;
+﻿using API.Authorization.Attributes;
+using API.Authorization.Models;
 using API.Authorization.Models.Users;
 using API.Authorization.Services;
 using AutoMapper;
 using DataBase.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API.Controllers
 {
@@ -19,17 +18,14 @@ namespace API.Controllers
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
 
-        public UserController(
-            IUserService userService,
-            IMapper mapper,
-            IOptions<AppSettings> appSettings)
+        public UserController(IUserService userService, IMapper mapper, IOptions<AppSettings> appSettings)
         {
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
         }
 
-        [Authorization.Attributes.AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Authenticate(AuthRequest model)
         {
@@ -38,7 +34,7 @@ namespace API.Controllers
 
         }
 
-        [Authorization.Attributes.AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("roles")]
         public async Task<ActionResult<List<RoleResponse>>> GetRoles()
         {
@@ -46,7 +42,7 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [Authorization.Attributes.RequireAuthorization(Roles.Admin)]
+        [RequireAuthorization(Roles.Admin)]
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest model)
         {
@@ -57,7 +53,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Authorization.Attributes.AllowAnonymous]
+        [RequireAuthorization(Roles.Admin)]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();

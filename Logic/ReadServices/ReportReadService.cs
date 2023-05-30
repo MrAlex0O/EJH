@@ -17,6 +17,7 @@ namespace Logic.ReadServices
         {
             return await _reportQuery.GetDisciplineVisits(disciplineId);
         }
+
         public async Task<IEnumerable<GetStudentVisitsResponse>> GetDisciplineVisitsByStudentId(Guid studentId)
         {
             return await _reportQuery.GetDisciplineVisitsByStudentId(studentId);

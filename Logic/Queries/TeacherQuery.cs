@@ -20,7 +20,6 @@ namespace Logic.Queries
                             FROM ""Teachers""
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Teachers"".""PersonId""
                             ORDER BY ""Teachers"".""DateCreate"" ASC";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetTeacherResponse>(query);
@@ -34,7 +33,6 @@ namespace Logic.Queries
                             FROM ""Teachers""
                             LEFT JOIN ""Persons"" ON ""Persons"".""Id"" = ""Teachers"".""PersonId""
                             WHERE ""Teachers"".""Id""='{id}'";
-
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
                 var res = db.QueryAsync<GetTeacherResponse>(query);

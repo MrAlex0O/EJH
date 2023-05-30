@@ -5,8 +5,6 @@ using Logic.ReadServices.Interfaces;
 using Logic.WriteServices;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -20,82 +18,39 @@ namespace API.Controllers
             _groupWriteService = groupWriteService;
             _groupReadService = groupReadService;
         }
-
-        // GET api/<GroupController>
+        
         [RequireAuthorization(Roles.Admin, Roles.Headman)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetGroupResponse>>> Get()
         {
-            try
-            {
-                return Ok(await _groupReadService.GetAll());
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _groupReadService.GetAll());
         }
 
-        // GET api/<GroupController>
         [HttpGet("{id}")]
         public async Task<ActionResult<GetGroupResponse>> Get(Guid id)
         {
-            try
-            {
-                return Ok(await _groupReadService.Get(id));
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            return Ok(await _groupReadService.Get(id));
         }
 
-        // POST api/<GroupController>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CreateGroupRequest createGroupRequest)
         {
-            try
-            {
-                _groupWriteService.Add(createGroupRequest);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            _groupWriteService.Add(createGroupRequest);
+            return Ok();
         }
 
-        // PUT api/<GroupController>
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(Guid id, [FromBody] UpdateGroupRequest updateGroupRequest)
         {
-            try
-            {
-                _groupWriteService.Update(id, updateGroupRequest);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            _groupWriteService.Update(id, updateGroupRequest);
+            return Ok();
         }
 
-        // DELETE api/<GroupController>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            try
-            {
-                _groupWriteService.Delete(id);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return Conflict(ex.Message);
-            }
+            _groupWriteService.Delete(id);
+            return Ok();
         }
     }
 }

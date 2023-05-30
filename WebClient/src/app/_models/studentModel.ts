@@ -11,4 +11,3 @@ export interface StudentModel extends BaseModel {
   groupId: string;
   groupName: string;
 }
-
