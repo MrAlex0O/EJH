@@ -16,7 +16,6 @@ import { LessonService } from '../_services/lesson.service';
   styleUrls: ['./lesson-manager.component.css']
 })
 export class LessonManagerComponent implements OnInit {
-
   @Input() selected: LessonModel;
   @ViewChild('lessonTypeSelector') lessonTypeViewChild!: GenericComboBoxComponent;
   @ViewChild('disciplineSelector') disciplineViewChild!: GenericComboBoxComponent;
@@ -29,7 +28,6 @@ export class LessonManagerComponent implements OnInit {
   lessonRenderFunction = RenderFunctions.lessonRenderFunction;
   disciplineRenderFunction = RenderFunctions.disciplineRenderFunction;
   lessonTypeRenderFunction = RenderFunctions.lessonTypeRenderFunction;
-
   date = new FormControl(new Date());
   loading: boolean = false;
 
@@ -39,6 +37,7 @@ export class LessonManagerComponent implements OnInit {
     this._lessonService.getAll().subscribe(lessons => this.lessons.push(...lessons));
     this._lessonTypeService.getAll().subscribe(lessonTypes => this.lessonTypes.push(...lessonTypes));
   }
+
   add() {
     let lesson: LessonModel = {
       id: '',
@@ -58,6 +57,7 @@ export class LessonManagerComponent implements OnInit {
     this.loading = true;
     this._lessonService.Add(lesson).subscribe(() => this.loading = false);
   }
+
   update() {
     const dateString = (<Date>this.date.value).toLocaleString();
     let lesson: LessonModel = {
@@ -78,10 +78,12 @@ export class LessonManagerComponent implements OnInit {
     this.loading = true;
     this._lessonService.Update(lesson).subscribe(() => this.loading = false);
   }
+
   delete() {
     this.loading = true;
     this._lessonService.Delete(this.selected).subscribe(() => this.loading = false);
   }
+
   importLesson(lesson: LessonModel) {
     this.selected = lesson;
     this.disciplineId = lesson.disciplineId;
@@ -90,10 +92,12 @@ export class LessonManagerComponent implements OnInit {
     this.lessonTypeViewChild.showById(lesson.lessonTypeId);
     this.date.setValue(new Date(lesson.date));
     this.sequenceNumber = lesson.sequenceNumber;
-  }  
+  }
+
   importDiscipline(discipline: DisciplineModel) {
     this.disciplineId = discipline.id;
   }
+
   importLessonType(lessonType: LessonTypeModel) {
     this.lessonTypeId = lessonType.id;
   }

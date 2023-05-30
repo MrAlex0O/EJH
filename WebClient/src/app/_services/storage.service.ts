@@ -20,10 +20,10 @@ export class StorageService {
   public OS: OStore<ISTART> = new OStore(this.START)
   public selectedTheme$: Observable<string> = this.OS.S.theme.obs
 
-
   clean(): void {
     window.sessionStorage.clear();
   }
+
   public saveTheme(theme: string) {
 
     window.sessionStorage.removeItem(THEME);
@@ -38,11 +38,11 @@ export class StorageService {
     return 'light';
   }
 
-
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
+
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
@@ -50,6 +50,7 @@ export class StorageService {
     }
     return {};
   }
+
   public getRoles(): string[] {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
@@ -57,6 +58,7 @@ export class StorageService {
     }
     return [];
   }
+
   public getUserToken(): string {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
@@ -64,6 +66,7 @@ export class StorageService {
     }
     return "";
   }
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {

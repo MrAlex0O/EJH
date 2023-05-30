@@ -12,7 +12,6 @@ import { StudentService } from '../_services/student.service'
   styleUrls: ['./student-manager.component.css']
 })
 export class StudentManagerComponent implements OnInit {
-
   @Input() selected: StudentModel;
   name: string = "";
   midname: string = "";
@@ -29,6 +28,7 @@ export class StudentManagerComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private _studentService: StudentService, private _groupService: GroupService) { }
+
   ngOnInit(): void {
     this._groupService.getAll().subscribe(groups => this.groups.push(...groups));
     this._studentService.getAll().subscribe(students => this.students.push(...students));
@@ -39,6 +39,7 @@ export class StudentManagerComponent implements OnInit {
     this.address = this.selected.address;
     this.phoneNumber = this.selected.phoneNumber;
   }
+
   importValue(student: StudentModel) {
     this.selected = student;
     this.name = student.name;
@@ -67,6 +68,7 @@ export class StudentManagerComponent implements OnInit {
     }
     this._studentService.Update(student).subscribe(() => this.loading = false);
   }
+
   add() {
     let student: StudentModel = {
       name: this.name, id: "", midname: this.midname,
@@ -80,9 +82,9 @@ export class StudentManagerComponent implements OnInit {
     this.loading = true;
     this._studentService.Add(student).subscribe(() => this.loading = false);
   }
+
   delete() {
     this.loading = true;
     this._studentService.Delete(this.selected).subscribe(() => this.loading = false);
   }
-
 }

@@ -33,6 +33,7 @@ export class TeacherManagerComponent implements OnInit {
     this.address = this.selected.address;
     this.phoneNumber = this.selected.phoneNumber;
   }
+
   importValue(teacher: TeacherModel) {
     this.selected = teacher;
     this.name = teacher.name;
@@ -43,6 +44,7 @@ export class TeacherManagerComponent implements OnInit {
     this.phoneNumber = teacher.phoneNumber;
     console.log(teacher);
   }
+
   update() {
     this.loading = true;
     let teacher: TeacherModel = {
@@ -54,6 +56,7 @@ export class TeacherManagerComponent implements OnInit {
     }
     this._teacherService.Update(teacher).subscribe(() => this.loading = false);
   }
+
   add() {
     let teacher: TeacherModel = {
       name: this.name, id: "", midname: this.midname,
@@ -65,9 +68,9 @@ export class TeacherManagerComponent implements OnInit {
     this.loading = true;
     this._teacherService.Add(teacher).subscribe(() => this.loading = false);
   }
+
   delete() {
     this.loading = true;
     this._teacherService.Delete(this.selected).subscribe(() => this.loading = false);
   }
-
 }

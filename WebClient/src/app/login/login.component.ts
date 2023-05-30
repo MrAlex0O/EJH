@@ -11,8 +11,6 @@ import { AuthReponseModel } from '../_models/AuthResponseModel'
 })
 export class LoginComponent implements OnInit {
   form: LoginModel = { username: "", password: "" };
-
-;
   data: AuthReponseModel = {
       id: "",
       name: "",
@@ -32,6 +30,7 @@ export class LoginComponent implements OnInit {
       this.roles = this.data.roles;
     }
   }
+
   login(): void {
     this._authService.login(this.form).subscribe(
       data => {
@@ -41,8 +40,6 @@ export class LoginComponent implements OnInit {
         window.location.reload();
         console.log("logged as " + data.name);
       });
-
-    
   }
 
   logout(): void {

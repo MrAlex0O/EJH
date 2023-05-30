@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort'
+import { MatSort } from '@angular/material/sort'
+
 @Component({
   selector: 'app-generic-table',
   templateUrl: './generic-table.component.html',
-  styleUrls: ['./generic-table.component.scss']
+  styleUrls: ['./generic-table.component.css']
 })
 export class GenericTableComponent implements OnInit {
 
@@ -23,7 +24,4 @@ export class GenericTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.tableData);
     this.dataSource.sort = this.sort;
   }
-
-
-
 }

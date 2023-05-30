@@ -7,19 +7,10 @@ $my-theme-accent: mat.define-palette(mat.$cyan-palette);
 $my-theme-warn: mat.define-palette(mat.$deep-orange-palette, A200);
 
 $light-theme: mat.define-light-theme( ( color: ( primary: $my-theme-primary, accent: $my-theme-accent, warn: $my-theme-warn, ), ) );
-
 $dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accent: $my-theme-accent, warn: $my-theme-warn, ), ) );
 
-
-
 .dark-theme {
-  // use our theme with angular-material-theme mixin
-  //  @include angular-material-theme($dark-theme);
-  //  @include mat.core-theme($light-theme);
   @include mat.all-component-colors($dark-theme);
-  //background: mat.get-color-from-palette(mat.$deep-purple-palette);
-
-  
 }
 
 .light-theme {
@@ -67,5 +58,3 @@ $dark-theme: mat.define-dark-theme( ( color: ( primary: $my-theme-primary, accen
     font-weight: bold;
   }
 }
-
-

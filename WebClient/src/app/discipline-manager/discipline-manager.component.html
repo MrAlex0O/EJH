@@ -17,13 +17,9 @@
     {{item}}
     <button mat-button (click)="deleteAssistant(i)">Удалить ассистента</button>
   </li>
-
 </ul>
-
 <app-generic-combo-box #assistantSelector [placeholder]="'Select teacher'" [models]="teachers" [viewPattern]="teacherRenderFunction"></app-generic-combo-box>
-
 <button mat-button (click)="addAssistant()">Добавить ассистента</button>
-
 <br />
 <button mat-button (click)="updateDiscipline()">Обновить дисциплину</button>
 <button mat-button (click)="addDiscipline()">Добавить дисциплину</button>

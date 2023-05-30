@@ -17,7 +17,6 @@ export class VisitorManagerComponent implements OnInit {
   loading: boolean = false;
   selectedLesson: LessonModel;
   statuses: StatusOnLesson[] = [];
-
   students: StudentModel[] = [];
   selectedStatuses: StatusOnLesson[] = [];
   lessons: LessonModel[] = [];
@@ -45,24 +44,18 @@ export class VisitorManagerComponent implements OnInit {
             name: ""
         });
       }
-
       this.loading = false;
     });
-    
     this.show();
   }
 
   show() {
-
     this.loading = true;
     this._visitorService.getVisitsByLessonId(this.selectedLesson.id).subscribe(visits => {
       for (let i = 0; i < visits.studentsIds.length; i++) {
-
-
         let studentIndex: number = this.students.findIndex(s => s.id == visits.studentsIds[i]);
         this.selectedStatuses[studentIndex] = <StatusOnLesson>this.statuses.find(s => s.id == visits.studentStatusesIds[i]);
       }
-
     });
   }
 
@@ -72,10 +65,9 @@ export class VisitorManagerComponent implements OnInit {
       studentId: this.students[i].id,
       statusOnLessonId: this.selectedStatuses[i].id
     };
-
     this._visitorService.postVisit(visit).subscribe();
-
   }
+
   selectStatus(i: number, selected: StatusOnLesson) {
     this.selectedStatuses[i] = selected;
   }

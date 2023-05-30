@@ -14,9 +14,6 @@ import { RenderFunctions } from '../_helpers/renderFunctions';
   styleUrls: ['./discipline-manager.component.css']
 })
 export class DisciplineManagerComponent implements OnInit {
-
-  
-
   @Input() selected: DisciplineModel;
   id: string = "";
   name: string = "";
@@ -51,22 +48,20 @@ export class DisciplineManagerComponent implements OnInit {
     this.name = discipline.name;
     this.lectorId = discipline.lectorId;
     this.lectorFullName = discipline.lectorFullName;
-
     this.lectorViewChild.showById(this.lectorId);
-
     this.groupId = discipline.groupId;
     this.groupName = discipline.groupName;
-
     this.groupViewChild.showById(this.groupId);
-
     this.semester = discipline.semester;
     this.assistantsIds = discipline.assistantsIds;
     this.assistantsFullNames = discipline.assistantsFullNames;
     console.log(discipline);
   }
+
   importLector(teacher: TeacherModel) {
     this.lectorId = teacher.id;
   }
+
   importGroup(group: GroupModel) {
     this.groupId = group.id;
   }
@@ -94,12 +89,12 @@ export class DisciplineManagerComponent implements OnInit {
       groupName: "",
       semester: this.semester,
       assistantsIds: this.assistantsIds,
-        assistantsFullNames: []
+      assistantsFullNames: []
     }
     this.loading = true;
     this._disciplineService.Add(discipline).subscribe(() => this.loading = false);
-
   }
+
   deleteDiscipline() {
     this.loading = true;
     this._disciplineService.Delete(this.selected).subscribe(() => this.loading = false);

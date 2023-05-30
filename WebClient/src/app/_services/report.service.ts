@@ -18,12 +18,15 @@ export class ReportService {
   public getDisciplineVisits(id: string): Observable<DisciplineVisitsReportModel[]> {
     return this._http.get<DisciplineVisitsReportModel[]>(API_PATH + '/disciplineVisits/' + id);
   }
+
   public getStudentVisits(id: string): Observable<StudentVisitsReportModel[]> {
     return this._http.get<StudentVisitsReportModel[]>(API_PATH + '/studentVisits/' + id);
   }
+
   public getStudentVisitsByDay(model: StudentVisitsByDayRequest): Observable<StudentVisitsReportModel[]> {
     return this._http.post<StudentVisitsReportModel[]>(API_PATH + '/studentVisitsByDay', model);
   }
+
   public getStudentVisitsByInterval(model: StudentVisitsByIntervalRequest): Observable<StudentVisitsReportModel[]> {
     return this._http.post<StudentVisitsReportModel[]>(API_PATH + '/studentVisitsByInterval', model);
   }

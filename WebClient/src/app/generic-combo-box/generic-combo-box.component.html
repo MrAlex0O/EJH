@@ -8,8 +8,7 @@
          [matAutocomplete]="auto"
          [(ngModel)]="showValue">
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="exportValue($event.option.value)">
-
-    <mat-option *ngFor="let model of filteredOptions" [value]="model">
+<mat-option *ngFor="let model of filteredOptions" [value]="model">
       {{viewPattern(model)}}
     </mat-option>
   </mat-autocomplete>
@@ -17,9 +16,4 @@
 <button mat-button (click)="clear()" matSuffix mat-icon-button>
   <mat-icon>clear</mat-icon>
 </button>
-
 <br />
-
-
-
-

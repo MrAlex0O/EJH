@@ -1,12 +1,8 @@
-
 <body [class]="storageService.OS.S.theme.obs | async">
   <mat-sidenav-container class="example-container" >
     <mat-sidenav #sidenav mode="side">
-
       <div layout="vertical" layout-fill>
-
         <p><button mat-button (click)="sidenav.toggle()">Закрыть меню</button></p>
-
         <mat-nav-list>
           <ul>
             <li> <a routerLink="/login">Авторизация</a> </li>
@@ -23,14 +19,9 @@
           </ul>
           <button mat-button (click)="changeTheme()">Изменить тему</button>
         </mat-nav-list>
-
-
       </div>
-
     </mat-sidenav>
-
     <mat-sidenav-content>
-
       <h2>Электронный журнал старосты</h2>
       <p><button mat-button (click)="sidenav.toggle()">Открыть меню</button></p>
       <router-outlet></router-outlet>
@@ -54,11 +45,6 @@
       <br>
       <br>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </body>

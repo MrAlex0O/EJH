@@ -29,19 +29,21 @@ export class GroupManagerComponent implements OnInit {
     this.name = group.name;
     console.log(group);
   }
+
   update() {
     let group: GroupModel = { name: this.name, id: this.selected.id }
     this.loading = true;
     this._groupService.Update(group).subscribe(() => this.loading = false);
   }
+
   add() {
     let group: GroupModel = { name: this.name, id: "" }
     this.loading = true;
     this._groupService.Add(group).subscribe(() => this.loading = false);
   }
+
   delete() {
     this.loading = true;
     this._groupService.Delete(this.selected).subscribe(() => this.loading = false);
   }
-
 }
