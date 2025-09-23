@@ -1,0 +1,35 @@
+
+<mat-form-field>
+  <mat-label>Username</mat-label>
+  <input matInput type="text" name="username" [(ngModel)]="form.username" />
+</mat-form-field>
+<br />
+
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput type="text" name="name" [(ngModel)]="form.name" />
+</mat-form-field>
+<br />
+
+<mat-form-field>
+  <mat-label>Surname</mat-label>
+  <input matInput type="text" name="surname" [(ngModel)]="form.surname" />
+</mat-form-field>
+<br />
+
+<mat-form-field>
+  <mat-label>Email</mat-label>
+  <input matInput type="email" name="email" [(ngModel)]="form.email"
+         required />
+</mat-form-field>
+<br />
+
+<mat-form-field>
+  <mat-label>Password</mat-label>
+  <input matInput type="password" name="password" [(ngModel)]="form.password" />
+</mat-form-field>
+<br />
+
+<app-generic-combo-box [placeholder]="'Select role'" [models]="roles" [viewPattern]="renderFunction" (myEvent)="importValue($event)"></app-generic-combo-box>
+
+<button mat-button (click)="register()">Зарегистрировать</button>

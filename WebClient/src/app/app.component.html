@@ -1,0 +1,50 @@
+<body [class]="storageService.OS.S.theme.obs | async">
+  <mat-sidenav-container class="example-container" >
+    <mat-sidenav #sidenav mode="side">
+      <div layout="vertical" layout-fill>
+        <p><button mat-button (click)="sidenav.toggle()">Закрыть меню</button></p>
+        <mat-nav-list>
+          <ul>
+            <li> <a routerLink="/login">Авторизация</a> </li>
+            <li> <a routerLink="/register">Регистрация</a> </li>
+            <li> <a routerLink="/profile">Профиль</a> </li>
+            <li> <a routerLink="/about">О нас</a> </li>
+            <li> <a routerLink="/groupManager">Менеджер групп</a> </li>
+            <li> <a routerLink="/teacherManager">Менеджер преподавателей</a> </li>
+            <li> <a routerLink="/disciplineManager">Менеджер дисциплин(предметов)</a> </li>
+            <li> <a routerLink="/studentManager">Менеджер студентов</a> </li>
+            <li> <a routerLink="/lessonManager">Менеджер занятий(пар)</a> </li>
+            <li> <a routerLink="/visitorManager">Менеджер посещений</a> </li>
+            <li> <a routerLink="/reportManager">Отчеты</a> </li>
+          </ul>
+          <button mat-button (click)="changeTheme()">Изменить тему</button>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <h2>Электронный журнал старосты</h2>
+      <p><button mat-button (click)="sidenav.toggle()">Открыть меню</button></p>
+      <router-outlet></router-outlet>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</body>
